@@ -1,5 +1,5 @@
 <template>
-        <div class="group" :type="type">
+        <div id="inputText" class="group" :type="type">
             <input type="text" :id="id" :name="name" required @blur="validation(type)" @focus="persistError" v-model="inputValue" :class="{'error-mark': isFormError}">
             <span class="bar">
                 <span v-if="isFormError" class="error-text">Invalid {{ label }}</span>
@@ -9,9 +9,8 @@
     </template>
     
     <script>
-        import EventBus from '../event-bus';
         export default {
-            name: 'Input',
+            name: 'InputText',
             props: {
                 label: {default: '', type: String},
                 type: {default: '', type: String},
@@ -40,7 +39,6 @@
                         isValid = true;
                     }
                      isValid ? this.isFormError = false : this.isFormError = true;
-                     EventBus.$emit('errorState', this.isFormError);
                 },
                 persistError() {
                     if(this.isFormError == true) {
