@@ -59,16 +59,7 @@
  * prefixes.
  */
 
-body
-{
-  margin: 0;
-  padding: 0;
-  
-  /* make it look decent enough */
-  background: #232323;
-  color: #cdcdcd;
-  font-family: "Avenir Next", "Avenir", sans-serif;
-}
+
 
 a
 {
@@ -86,9 +77,9 @@ a:hover
 #menuToggle
 {
   display: block;
-  position: relative;
-  top: 50px;
-  left: 50px;
+  position: fixed;
+  top: 25px;
+  left: 25px;
   
   z-index: 1;
   
@@ -180,12 +171,12 @@ a:hover
  */
 #menu
 {
-  position: absolute;
-  width: 300px;
+  position: fixed;
+  width: 180px;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  
+  height: 100%;
   background: #ededed;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;

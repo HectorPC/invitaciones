@@ -1,34 +1,51 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <app-header-responsive v-show="isVisibleResponsive"></app-header-responsive>
+    <app-header class="header"></app-header>
+    <app-header-responsive class="header-responsive"></app-header-responsive>
     <router-view></router-view>
     <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import HeaderResponsive from './components/HeaderResponsive.vue'
-import Footer from './components/Footer.vue'
-export default {
-  name: 'App',
-  data() {
-    return {
-      isVisibleResponsive: false
+  import Header from './components/Header.vue'
+  import HeaderResponsive from './components/HeaderResponsive.vue'
+  import Footer from './components/Footer.vue'
+  export default {
+    name: 'App',
+    data() {
+      return {
+        isVisibleResponsive: false
+      }
+    },
+    components: {
+      'app-header': Header,
+      'app-header-responsive': HeaderResponsive,
+      'app-footer': Footer
     }
-  },
-  components: {
-    'app-header': Header,
-    'app-header-responsive': HeaderResponsive,
-    'app-footer': Footer
   }
-}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Rajdhani', sans-serif;
+  #app {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .header-responsive {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      display: none;
+    }
+    .header-responsive {
+      display: block;
+      position: relative;
+      top: -30px;
+      left: -30px;
+      height: 80px;
+      }
   
-}
+  }
 </style>

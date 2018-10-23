@@ -124,8 +124,7 @@
     }
 
     .active {
-        background: grey;
-        color: white;
+        background: white;
         font-weight: bold;
         border-radius: 3px;
     }
