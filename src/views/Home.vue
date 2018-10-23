@@ -34,7 +34,6 @@ import InputText from '../components/InputText.vue'
   #home {
     max-width: 1440px;
     margin: 0 auto;
-
   }
 
 </style>

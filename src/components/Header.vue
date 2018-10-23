@@ -54,6 +54,7 @@
 
     #header {
         height: 70px;
+        opacity: .9;
     }
 
     a {
