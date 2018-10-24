@@ -11,7 +11,7 @@
           A fake / hidden checkbox is used as click reciever,
           so you can use the :checked selector on it.
           -->
-          <input type="checkbox" />
+          <input id="closeMenu" type="checkbox" />
           
           <!--
           Some spans to act as a hamburger.
@@ -28,11 +28,9 @@
           but hey, it's pure CSS magic.
           -->
           <ul id="menu">
-            <a href="#"><li>Home</li></a>
-            <a href="#"><li>About</li></a>
-            <a href="#"><li>Info</li></a>
-            <a href="#"><li>Contact</li></a>
-            <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
+            <a href="#" v-for="invitation in invitationTypes">
+              <li @click="closeMenu">{{ invitation.name }}</li>
+            </a>
           </ul>
         </div>
       </nav>
@@ -42,7 +40,22 @@
 
 <script>
     export default {
-        
+      data() {
+            return {
+                selected: '',
+                invitationTypes: [
+                    {name: 'Section01'},
+                    {name: 'Section02'},
+                    {name: 'Section03'},
+                    {name: 'Section04'}
+                ]
+            }
+        },
+        methods: {
+          closeMenu() {
+            document.querySelector("#closeMenu").checked = true;
+          }
+        }
     }
 </script>
 

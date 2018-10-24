@@ -9,7 +9,6 @@
                     <nav>
                         <ul>
                             <li v-for="invitation in invitationTypes">
-                                <!-- <nav-link @click="selected = invitation.name" :class="{active : invitation.name == selected}">{{ invitation.name }}</nav-link> -->
                                 <nav-link :class="{active : invitation.name == selected}" @click.native="activeLink(invitation.name)">{{ invitation.name }}</nav-link>
                             </li>
                         </ul>
