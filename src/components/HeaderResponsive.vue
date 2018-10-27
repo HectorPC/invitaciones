@@ -53,7 +53,6 @@
         },
         methods: {
           closeMenu() {
-            debugger;
             document.querySelector("#closeMenu").checked = true;
           }
         }

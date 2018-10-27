@@ -65,7 +65,7 @@
         .group {
             position: relative;
             margin-bottom: 45px;
-            z-index:-1;
+            z-index:0;
         }
     
         input {
