@@ -11,6 +11,7 @@
   import Header from './components/Header.vue'
   import HeaderResponsive from './components/HeaderResponsive.vue'
   import Footer from './components/Footer.vue'
+  import EventBus from './event-bus';
   export default {
     name: 'App',
     data() {
