@@ -24,7 +24,7 @@
         overflow: hidden;
         perspective: 400px;
         background-color: transparent;
-        width: 90px;
+        /*width: 90px;*/
         -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.3)));
         border-radius: 22px;
         border: 1px dotted;
