@@ -10,7 +10,7 @@
     
     <script>
         export default {
-            name: 'InputText',
+            name: 'Date',
             props: {
                 label: {default: '', type: String},
                 type: {default: '', type: String},

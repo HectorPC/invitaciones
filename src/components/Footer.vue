@@ -34,6 +34,7 @@
         }
     }
     .footer{
+        position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
@@ -41,5 +42,6 @@
         margin-top: 20px;
         line-height: 24px;
         font-size: 13px;
+        z-index: 1;
     }
 </style>

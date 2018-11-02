@@ -1,14 +1,12 @@
 <template>
     <div class="custom-radios">
-        <div>
-            <input type="radio" :id="id" class="color-2" name="radioGroup" @change="onChangeCheck($event)">
-            <label :for="id">
-                <slot></slot>
-                <span>
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                </span>
-            </label>
-        </div>
+        <input type="radio" :id="id" class="color-2" name="radioGroup" @change="onChangeCheck($event)">
+        <label :for="id">
+            <slot></slot>
+            <span>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+            </span>
+        </label>
     </div>
 </template>
 
@@ -36,7 +34,7 @@
     $color-4: #e74c3c;
 
     .custom-radios {
-
+        display: inline-block;
         div {
             display: inline-block;
         }

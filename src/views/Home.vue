@@ -6,9 +6,23 @@
                 <radio :id="radio1">Radio 1</radio>
                 <radio :id="radio2">Radio 2</radio>
                 <buttonCopy @click.native="copyUrl"></buttonCopy>
-                <card></card>
+                <card>
+                    <span slot="front">1</span>
+                    <span slot="back">IMG</span>
+                </card>
+                <card>
+                    <span slot="front">2</span>
+                    <span slot="back">IMG</span>
+                </card>
+                <card>
+                    <span slot="front">3</span>
+                    <span slot="back">IMG</span>
+                </card>
                 <app-textarea>Textarea</app-textarea>
                 <date></date>
+                <hour></hour>
+                <app-button-generar>Generar URL</app-button-generar>
+                <app-button-previsualizar>Previsualizar</app-button-previsualizar>
             </panel>
         </main-panel>
     </div>
@@ -23,6 +37,9 @@
     import Card from '../components/Card.vue'
     import Textarea from '../components/Textarea.vue'
     import Date from '../components/Date.vue'
+    import Hour from '../components/Hour.vue'
+    import ButtonGenerar from '../components/ButtonGenerar.vue'
+    import ButtonPrevisualizar from '../components/ButtonPrevisualizar.vue'
     import EventBus from '../event-bus'
 
     export default {
@@ -48,6 +65,9 @@
             ButtonCopy,
             Card,
             Date,
+            Hour,
+            appButtonGenerar: ButtonGenerar,
+            appButtonPrevisualizar: ButtonPrevisualizar,
             appTextarea: Textarea
         },
         methods: {
@@ -69,5 +89,8 @@
     #home {
         max-width: 1440px;
         margin: 0 auto;
+        overflow: auto;
+        max-height: 100vh;
+        margin-bottom: 20px;
     }
 </style>

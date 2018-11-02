@@ -1,10 +1,10 @@
 <template>
     <div id="card" class="card">
         <div class="card__side card__side--front card__side--front-1">
-            <div class="card__description">1</div>
+            <div class="card__description"><slot name="front"></slot></div>
         </div>
         <div class="card__side card__side--back card__side--back-1">
-            <div class="card__description">IMG</div>
+            <div class="card__description"><slot name="back"></slot></div>
         </div>
     </div>
 </template>
@@ -24,6 +24,7 @@
     $color-tertiary-dark: #5643FA;
 
     .card {
+        display: inline-block;
         width: 25%;
         position: relative;
         height: 250px;

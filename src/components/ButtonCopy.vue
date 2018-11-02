@@ -3,7 +3,6 @@
         <button class="button">
             <span data-title="COPIADO">COPIAR<img src="../assets/img/copy-icon.png"/></span>
         </button>
-         
     </div>
 </template>
 
