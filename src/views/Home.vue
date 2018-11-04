@@ -43,8 +43,10 @@
             <h2>Introduce los datos de tu invitación</h2>
             <div class="data">
                 <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
-                <date></date>
-                <hour></hour>
+                <div class="time">
+                    <date></date>
+                    <hour></hour>
+                </div>
                 <app-textarea>Textarea</app-textarea>
             </div>
             <h2>Copia y comparte tu invitación</h2>
@@ -138,12 +140,25 @@
         display: block;
     }
 
-    .design {
+    .design, .time {
         display: flex;
         justify-content: space-around;
         text-align: center;
         flex-direction: row;
     }
+
+    .time * {
+        flex-grow: .5;
+    }
+
+    .time:nth-child {
+        padding-right: 60px;
+    }
+
+    .time:nth-child {
+        padding-left: 60px;
+    }
+
     .design-selection {
         display: inline-block;
         height: 300px;

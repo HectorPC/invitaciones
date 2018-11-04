@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="form__group">
-            <textarea id="message" class="form__field" placeholder="Your Message" rows="6"></textarea>
-            <label for="message" class="form__label">Your Message</label>
+            <textarea id="message" class="form__field" placeholder="Descripción" rows="6"></textarea>
+            <label for="message" class="form__label">Descripción</label>
         </div>
     </div>
 </template>
