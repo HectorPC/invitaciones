@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
-            <panel>
+           <!--  <panel>
                 <input-text :type="type" :label="label" :id="id" :name="name" :isError="isError"></input-text>
                 <radio :id="radio1">Radio 1</radio>
                 <radio :id="radio2">Radio 2</radio>
@@ -23,7 +23,41 @@
                 <hour></hour>
                 <app-button-generar>Generar URL</app-button-generar>
                 <app-button-previsualizar>Previsualizar</app-button-previsualizar>
+            </panel> -->
+
+            <h2>Elige el diseño de tu invitación</h2>
+            <panel id="design">
+                
+                <div class="design-selection">
+                    <radio :id="radio1">Radio 1</radio>
+                    <img :src="img1">
+                </div>
+                <div class="design-selection">
+                    <radio :id="radio2">Radio 2</radio>
+                    <img :src="img2">
+                </div>
+                <div class="design-selection">
+                    <radio :id="radio3">Radio 3</radio>
+                    <img :src="img3">
+                </div>
             </panel>
+            <h2>Introduce los datos de tu invitación</h2>
+            <panel id="data">
+                <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
+                <date></date>
+                <hour></hour>
+                <app-textarea>Textarea</app-textarea>
+            </panel>
+            <h2>Copia y comparte tu invitación</h2>
+            <panel id="url">
+                <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
+                <buttonCopy @click.native="copyUrl"></buttonCopy>
+            </panel>
+            <panel id="submit">
+                <app-button-generar>Generar URL</app-button-generar>
+                <app-button-previsualizar>Previsualizar</app-button-previsualizar>
+            </panel>
+
         </main-panel>
     </div>
 </template>
@@ -47,14 +81,21 @@
         data() {
             return {
                 type: 'text',
-                label: 'Nombre',
-                id: 'nombre',
-                name: 'nombre',
+                label1: 'Título',
+                id1: 'title',
+                name1: 'title',
+                label2: '',
+                id2: 'url',
+                name2: 'url',
                 isError: false,
-                radio1: 'radio1',
-                radio2: 'radio2',
+                radio1: 'design1',
+                radio2: 'design2',
+                radio3: 'design3',
                 radioChecked: '',
-                backgroundImage: 'src/assets/backgrounds/up2.png'
+                backgroundImage: 'src/assets/backgrounds/up2.png',
+                img1: '',
+                img2: '',
+                img3: '',
             }
         },
         components: {
@@ -92,5 +133,27 @@
         overflow: auto;
         max-height: 100vh;
         margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    h2 {
+        display: block;
+    }
+
+    #design {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        flex-direction: row;
+    }
+    .design-selection {
+        display: inline-block;
+        height: 300px;
+        width: 300px;
+        border: 1px solid green;
+    }
+
+    @media (min-width: 768px) {
+        
     }
 </style>

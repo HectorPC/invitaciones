@@ -69,6 +69,7 @@
         }
     
         input {
+            opacity:0.4;
             font-size: 18px;
             padding: 10px 10px 10px 5px;
             display: block;
