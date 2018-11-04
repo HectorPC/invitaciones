@@ -74,6 +74,7 @@
 
             &.color-2+label span {
                 background-color: $color-2;
+                opacity: 0.7;
             }
 
             &.custom-radios+label span {

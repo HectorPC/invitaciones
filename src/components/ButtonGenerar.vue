@@ -1,5 +1,5 @@
 <template>
-	<div id="buttonGenerar">
+	<div id="generateButton">
 		<a href="#" class="myButton">
 			<slot></slot>
 		</a>
@@ -13,7 +13,7 @@
 </script>
 
 <style scoped>
-	#buttonGenerar {
+	#generateButton {
 		display: inline-block;
 	}
 

@@ -26,8 +26,7 @@
             </panel> -->
 
             <h2>Elige el diseño de tu invitación</h2>
-            <panel id="design">
-                
+            <div class="design">
                 <div class="design-selection">
                     <radio :id="radio1">Radio 1</radio>
                     <img :src="img1">
@@ -40,23 +39,24 @@
                     <radio :id="radio3">Radio 3</radio>
                     <img :src="img3">
                 </div>
-            </panel>
+            </div>
             <h2>Introduce los datos de tu invitación</h2>
-            <panel id="data">
+            <div class="data">
                 <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
                 <date></date>
                 <hour></hour>
                 <app-textarea>Textarea</app-textarea>
-            </panel>
+            </div>
             <h2>Copia y comparte tu invitación</h2>
-            <panel id="url">
+            <div class="url">
+                <div class="button-generate">
+                    <app-button-generar>Generar URL</app-button-generar>
+                    <app-button-previsualizar>Previsualizar</app-button-previsualizar>
+                </div>
                 <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
                 <buttonCopy @click.native="copyUrl"></buttonCopy>
-            </panel>
-            <panel id="submit">
-                <app-button-generar>Generar URL</app-button-generar>
-                <app-button-previsualizar>Previsualizar</app-button-previsualizar>
-            </panel>
+            </div>
+
 
         </main-panel>
     </div>
@@ -64,7 +64,6 @@
 
 <script>
     import MainPanel from '../components/MainPanel.vue'
-    import Panel from '../components/Panel.vue'
     import InputText from '../components/InputText.vue'
     import Radio from '../components/Radio.vue'
     import ButtonCopy from '../components/ButtonCopy.vue'
@@ -100,7 +99,6 @@
         },
         components: {
             MainPanel,
-            Panel,
             InputText,
             Radio,
             ButtonCopy,
@@ -140,7 +138,7 @@
         display: block;
     }
 
-    #design {
+    .design {
         display: flex;
         justify-content: space-around;
         text-align: center;
@@ -152,6 +150,28 @@
         width: 300px;
         border: 1px solid green;
     }
+
+    .design, .data, .url, .submit {
+        border: 2px solid #9fafc712;
+        border-radius: 5px;
+        padding: 45px 50px;
+    }
+
+    .url .button-generate {
+        text-align:  center;
+        padding-bottom: 20px;
+    }
+    .url #inputText {
+        width: 90%;
+        display: inline-block;
+    }
+
+    .url #buttonCopy {
+        width: auto;
+        display: inline-block;
+    }
+
+
 
     @media (min-width: 768px) {
         
