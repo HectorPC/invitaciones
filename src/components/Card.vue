@@ -24,7 +24,7 @@
     $color-tertiary-dark: #5643FA;
 
     .card {
-        // display: inline-block;
+        /* display: inline-block; */
         width: 25%;
         position: relative;
         height: 250px;
@@ -75,7 +75,14 @@
             font-size: 5em;
             padding: 1em 0;
             text-align: center;
+        }
 
+        .stop-rotate-front {
+            transform: rotateY(-180deg);
+        }
+
+        .stop-rotate-back {
+            transform: rotate(0);
         }
     }
 </style>

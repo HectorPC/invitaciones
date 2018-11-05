@@ -1,54 +1,13 @@
 <template>
     <div id="home">
         <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
-           <!--  <panel>
-                <input-text :type="type" :label="label" :id="id" :name="name" :isError="isError"></input-text>
-                <radio :id="radio1">Radio 1</radio>
-                <radio :id="radio2">Radio 2</radio>
-                <buttonCopy @click.native="copyUrl"></buttonCopy>
-                <card>
-                    <span slot="front">1</span>
-                    <span slot="back">IMG</span>
-                </card>
-                <card>
-                    <span slot="front">2</span>
-                    <span slot="back">IMG</span>
-                </card>
-                <card>
-                    <span slot="front">3</span>
-                    <span slot="back">IMG</span>
-                </card>
-                <app-textarea>Textarea</app-textarea>
-                <date></date>
-                <hour></hour>
-                <app-button-generar>Generar URL</app-button-generar>
-                <app-button-previsualizar>Previsualizar</app-button-previsualizar>
-            </panel> -->
-
             <p>Elige el diseño de tu invitación</p>
             <div class="design">
-                <div class="design-selection">
-                    <radio :id="radio1"></radio>
-                    <!-- <img :src="img1"> -->
+                <div class="design-selection" v-for="design in designs">
+                   <radio :id="design.id"></radio> 
                     <card>
-                        <span slot="front">1</span>
-                        <span slot="back">IMG</span>
-                    </card>
-                </div>
-                <div class="design-selection">
-                    <radio :id="radio2"></radio>
-                    <!-- <img :src="img2"> -->
-                    <card>
-                        <span slot="front">2</span>
-                        <span slot="back">IMG</span>
-                    </card>
-                </div>
-                <div class="design-selection">
-                    <radio :id="radio3"></radio>
-                    <!-- <img :src="img3"> -->
-                    <card>
-                        <span slot="front">3</span>
-                        <span slot="back">IMG</span>
+                        <span slot="front">{{ design.frontDesign }}</span>
+                        <span slot="back">{{ design.backDesign }}</span>
                     </card>
                 </div>
             </div>
@@ -101,16 +60,19 @@
                 id2: 'url',
                 name2: 'url',
                 isError: false,
-                radio1: 'design1',
-                radio2: 'design2',
-                radio3: 'design3',
+                designs: [
+                    {id: 'radio1', frontDesign: '1', backDesign: 'IMG1'},
+                    {id: 'radio2', frontDesign: '2', backDesign: 'IMG2'},
+                    {id: 'radio3', frontDesign: '3', backDesign: 'IMG3'}
+                ],
                 radioChecked: '',
                 backgroundImage: 'src/assets/backgrounds/up2.png',
                 img1: '',
                 img2: '',
                 img3: '',
                 dateId: 'date',
-                hourId: 'hour'
+                hourId: 'hour',
+                noShow: true
             }
         },
         components: {
