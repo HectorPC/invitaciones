@@ -25,41 +25,53 @@
                 <app-button-previsualizar>Previsualizar</app-button-previsualizar>
             </panel> -->
 
-            <h2>Elige el diseño de tu invitación</h2>
+            <p>Elige el diseño de tu invitación</p>
             <div class="design">
                 <div class="design-selection">
-                    <radio :id="radio1">Radio 1</radio>
-                    <img :src="img1">
+                    <radio :id="radio1"></radio>
+                    <!-- <img :src="img1"> -->
+                    <card>
+                        <span slot="front">1</span>
+                        <span slot="back">IMG</span>
+                    </card>
                 </div>
                 <div class="design-selection">
-                    <radio :id="radio2">Radio 2</radio>
-                    <img :src="img2">
+                    <radio :id="radio2"></radio>
+                    <!-- <img :src="img2"> -->
+                    <card>
+                        <span slot="front">2</span>
+                        <span slot="back">IMG</span>
+                    </card>
                 </div>
                 <div class="design-selection">
-                    <radio :id="radio3">Radio 3</radio>
-                    <img :src="img3">
+                    <radio :id="radio3"></radio>
+                    <!-- <img :src="img3"> -->
+                    <card>
+                        <span slot="front">3</span>
+                        <span slot="back">IMG</span>
+                    </card>
                 </div>
             </div>
-            <h2>Introduce los datos de tu invitación</h2>
+            <p>Introduce los datos de tu invitación</p>
             <div class="data">
                 <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
                 <div class="time">
-                    <date></date>
-                    <hour></hour>
+                    <date :idDate="dateId"></date>
+                    <hour :idHour="hourId"></hour>
                 </div>
                 <app-textarea>Textarea</app-textarea>
             </div>
-            <h2>Copia y comparte tu invitación</h2>
+            <p>Copia y comparte tu invitación</p>
             <div class="url">
                 <div class="button-generate">
-                    <app-button-generar>Generar URL</app-button-generar>
-                    <app-button-previsualizar>Previsualizar</app-button-previsualizar>
+                    <app-button-generar @click.native="urlGenerator">Generar URL</app-button-generar>
+                    <app-button-previsualizar @click.native="preview">Previsualizar</app-button-previsualizar>
                 </div>
-                <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
-                <buttonCopy @click.native="copyUrl"></buttonCopy>
+                <div class="copy">
+                    <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
+                    <buttonCopy @click.native="copyUrl"></buttonCopy>
+                </div>
             </div>
-
-
         </main-panel>
     </div>
 </template>
@@ -97,6 +109,8 @@
                 img1: '',
                 img2: '',
                 img3: '',
+                dateId: 'date',
+                hourId: 'hour'
             }
         },
         components: {
@@ -113,9 +127,36 @@
         },
         methods: {
             copyUrl() {
-                var urlInput = document.querySelector('#nombre');
+                var urlInput = document.querySelector('#url');
                 urlInput.select();
                 document.execCommand("copy");
+            },
+            urlGenerator() {
+                var title = document.querySelector('#title').value;
+                var date = document.querySelector('#date').value;
+                var hour = document.querySelector('#hour').value;
+                var description = document.querySelector('#description').value;
+
+                var urlData = title + "/" + date + "/" + hour + "/" + description;
+                var url = this.$route.path + urlData;
+                document.querySelector('#url').value = url;
+
+                console.log("title: " + title + " date: " + date + " hour: " + hour + " description: " + description);
+
+                return url;
+            },
+            formatDate(notFormatDate) {
+                return date;
+            },
+            formatDescription(notFormatDescription) {
+                return description;
+            },
+            encriptUrl(url) {
+                return encriptUrl;
+            },
+            preview() {
+                var url = this.urlGenerator();
+                this.$router.push(url);
             }
         },
         created() {
@@ -136,10 +177,6 @@
         padding: 20px;
     }
 
-    h2 {
-        display: block;
-    }
-
     .design, .time {
         display: flex;
         justify-content: space-around;
@@ -151,19 +188,21 @@
         flex-grow: .5;
     }
 
-    .time:nth-child {
-        padding-right: 60px;
-    }
-
-    .time:nth-child {
-        padding-left: 60px;
+    .time :nth-child(1) {
+        padding-right: 5%;
     }
 
     .design-selection {
-        display: inline-block;
         height: 300px;
         width: 300px;
         border: 1px solid green;
+    }
+
+    .design-selection .custom-radios {
+        display: block;
+        position: relative;
+        float: left;
+        z-index: 1;
     }
 
     .design, .data, .url, .submit {
@@ -186,7 +225,9 @@
         display: inline-block;
     }
 
-
+    .copy {
+        display: flex;
+    }
 
     @media (min-width: 768px) {
         

@@ -1,6 +1,6 @@
 <template>
         <div id="inputText" class="group" :type="type">
-            <input type="date" :id="id" :name="name" required @blur="validation(type)" @focus="persistError" v-model="inputValue" :class="{'error-mark': isFormError}">
+            <input type="date" :id="idDate" :name="name" required @blur="validation(type)" @focus="persistError" v-model="inputValue" :class="{'error-mark': isFormError}">
             <span class="bar">
                 <span v-if="isFormError" class="error-text">Invalid {{ label }}</span>
             </span>
@@ -14,7 +14,7 @@
             props: {
                 label: {default: '', type: String},
                 type: {default: '', type: String},
-                id: {default: '', type: String},
+                idDate: {default: '', type: String},
                 name: {default: '', type: String},
                 isError: {default: false, type: Boolean}
             },

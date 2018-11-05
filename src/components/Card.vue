@@ -24,7 +24,7 @@
     $color-tertiary-dark: #5643FA;
 
     .card {
-        display: inline-block;
+        // display: inline-block;
         width: 25%;
         position: relative;
         height: 250px;
@@ -34,7 +34,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 250px;
+            width: 300px;
             height: 250px;
             backface-visibility: hidden;
             transition: all .6s ease;
