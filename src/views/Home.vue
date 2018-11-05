@@ -5,7 +5,7 @@
             <div class="design">
                 <div class="design-selection" v-for="design in designs">
                    <radio :id="design.id"></radio> 
-                    <card>
+                    <card  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
                         <span slot="front">{{ design.frontDesign }}</span>
                         <span slot="back">{{ design.backDesign }}</span>
                     </card>
@@ -72,7 +72,8 @@
                 img3: '',
                 dateId: 'date',
                 hourId: 'hour',
-                noShow: true
+                selected: '',
+                isSelected: false
             }
         },
         components: {
@@ -119,6 +120,10 @@
             preview() {
                 var url = this.urlGenerator();
                 this.$router.push(url);
+            },
+            activeCard(active,idRadio) {
+                this.isSelected = active;
+                document.querySelector('#'+idRadio).checked = true;
             }
         },
         created() {

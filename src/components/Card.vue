@@ -1,9 +1,10 @@
 <template>
     <div id="card" class="card">
-        <div class="card__side card__side--front card__side--front-1">
+        <div class="card__side card__side--front card__side--front-1" :class="{'stop-rotate-front': isSelected}">
+        
             <div class="card__description"><slot name="front"></slot></div>
         </div>
-        <div class="card__side card__side--back card__side--back-1">
+        <div class="card__side card__side--back card__side--back-1" :class="{'stop-rotate-back': isSelected}">
             <div class="card__description"><slot name="back"></slot></div>
         </div>
     </div>
@@ -11,7 +12,10 @@
 
 <script>
     export default {
-        name: 'Card'
+        name: 'Card',
+        props: {
+            isSelected: {default: false}
+        }
     }
 </script>
 
