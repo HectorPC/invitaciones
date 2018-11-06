@@ -24,16 +24,12 @@
 <script>
     import NavLink from './NavLink.vue'
     import EventBus from '../event-bus'
+    import InvitationTypes from '../data/headerData.js'
     export default {
         data() {
             return {
                 selected: 'Cumpleaños',
-                invitationTypes: [
-                    {name: 'Cumpleaños'},
-                    {name: 'Boda'},
-                    {name: 'Bautizo'},
-                    {name: 'Comunión'}
-                ]
+                invitationTypes: InvitationTypes.invitationTypes
             }
         },
         methods: {

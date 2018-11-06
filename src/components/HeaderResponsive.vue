@@ -2,31 +2,15 @@
     <div>
 <!-- https://codepen.io/erikterwan/pen/EVzeRP -->
 
-<!--    Made by Erik Terwan    -->
-<!--   24th of November 2015   -->
-<!--        MIT License        -->
 <nav role="navigation">
         <div id="menuToggle">
-          <!--
-          A fake / hidden checkbox is used as click reciever,
-          so you can use the :checked selector on it.
-          -->
+
           <input id="closeMenu" type="checkbox" />
-          
-          <!--
-          Some spans to act as a hamburger.
-          
-          They are acting like a real hamburger,
-          not that McDonalds stuff.
-          -->
+
           <span></span>
           <span></span>
           <span></span>
-          
-          <!--
-          Too bad the menu has to be inside of the button
-          but hey, it's pure CSS magic.
-          -->
+
           <ul id="menu">
             <a href="#" v-for="invitation in invitationTypes">
               <li @click="closeMenu($event)">{{ invitation.name }}</li>
@@ -40,23 +24,18 @@
 
 <script>
     import EventBus from '../event-bus'
+    import InvitationTypes from '../data/headerData.js'
     export default {
       data() {
             return {
                 selected: '',
-                invitationTypes: [
-                    {name: 'Section01'},
-                    {name: 'Section02'},
-                    {name: 'Section03'},
-                    {name: 'Section04'}
-                ]
+                invitationTypes: InvitationTypes.invitationTypes
             }
         },
         methods: {
           closeMenu() {
-            document.querySelector("#closeMenu").checked = true;
+            document.querySelector("#closeMenu").checked = false;
             EventBus.$emit('changeInvitationType', event.target);
-            
           }
         }
     }
@@ -107,9 +86,6 @@ a:hover
   -webkit-touch-callout: none;
 }
 
-/*
- * Just a quick hamburger
- */
 #menuToggle span
 {
   display: block;
@@ -140,10 +116,7 @@ a:hover
   transform-origin: 0% 100%;
 }
 
-/* 
- * Transform all the slices of hamburger
- * into a crossmark.
- */
+
 #menuToggle input:checked ~ span
 {
   opacity: 1;
@@ -151,18 +124,14 @@ a:hover
   background: #232323;
 }
 
-/*
- * But let's hide the middle one.
- */
+
 #menuToggle input:checked ~ span:nth-last-child(3)
 {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-/*
- * Ohyeah and the last one should go the other direction
- */
+
 #menuToggle input:checked ~ span:nth-last-child(2)
 {
   transform: rotate(-45deg) translate(0, -1px);
@@ -197,9 +166,7 @@ a:hover
   font-size: 22px;
 }
 
-/*
- * And let's slide it in from the left
- */
+
 #menuToggle input:checked ~ ul
 {
   transform: none;

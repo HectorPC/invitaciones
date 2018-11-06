@@ -47,6 +47,7 @@
     import ButtonGenerar from '../components/ButtonGenerar.vue'
     import ButtonPrevisualizar from '../components/ButtonPrevisualizar.vue'
     import EventBus from '../event-bus'
+    import Designs from '../data/designsData.js'
 
     export default {
         name: 'Home',
@@ -61,11 +62,7 @@
                 id2: 'url',
                 name2: 'url',
                 isError: false,
-                designs: [
-                    {id: 'radio1', frontDesign: '1', backDesign: 'IMG1'},
-                    {id: 'radio2', frontDesign: '2', backDesign: 'IMG2'},
-                    {id: 'radio3', frontDesign: '3', backDesign: 'IMG3'}
-                ],
+                designs: Designs.designs,
                 radioChecked: '',
                 backgroundImage: 'src/assets/backgrounds/up2.png',
                 img1: '',
