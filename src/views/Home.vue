@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
-            <p>Elige el diseño de tu invitación</p>
+            <p>Elige el diseño de la invitación</p>
             <div class="design">
                 <div class="design-selection" v-for="design in designs">
                    <radio :id="design.id"></radio> 
@@ -11,7 +11,7 @@
                     </card>
                 </div>
             </div>
-            <p>Introduce los datos de tu invitación</p>
+            <p>Introduce el contenido de la invitación</p>
             <div class="data">
                 <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
                 <div class="time">
