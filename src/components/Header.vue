@@ -5,11 +5,11 @@
 
             <div class="row">
                 <div class="content">
-                    <a class="logo" href="#">HPC</a>
+                    <a class="logo" href="#">Tu invitación online</a>
                     <nav>
                         <ul>
                             <li v-for="invitation in invitationTypes">
-                                <nav-link :class="{active : invitation.name == selected}" @click.native="activeLink(invitation.name)">{{ invitation.name }}</nav-link>
+                                <nav-link :class="{active : invitation.name == selected}" @click.native="activeLink($event,invitation.name)">{{ invitation.name }}</nav-link>
                             </li>
                         </ul>
                     </nav>
@@ -23,21 +23,23 @@
 
 <script>
     import NavLink from './NavLink.vue'
+    import EventBus from '../event-bus'
     export default {
         data() {
             return {
-                selected: '',
+                selected: 'Cumpleaños',
                 invitationTypes: [
-                    {name: 'Section01'},
-                    {name: 'Section02'},
-                    {name: 'Section03'},
-                    {name: 'Section04'}
+                    {name: 'Cumpleaños'},
+                    {name: 'Boda'},
+                    {name: 'Bautizo'},
+                    {name: 'Comunión'}
                 ]
             }
         },
         methods: {
-            activeLink(active) {
+            activeLink(event,active) {
                 this.selected = active;
+                EventBus.$emit('changeInvitationType', event.target);
             }
         },
         components: {
@@ -68,7 +70,6 @@
     }
 
     .content {
-        max-width: 940px;
         width: 100%;
         margin: 0 auto;
         padding: 50px 2% 50px;
@@ -93,7 +94,7 @@
     }
 
     .logo {
-        width: 50px;
+        width: 300px;
         font-size: 25px;
         color: #8f8f8f;
         text-transform: uppercase;
@@ -106,7 +107,6 @@
 
     nav {
         float: right;
-        width: 60%;
     }
 
     nav ul {
@@ -114,11 +114,12 @@
         overflow: hidden;
         text-align: right;
         float: right;
+        padding: 0px;
     }
 
     nav ul li {
         display: inline-block;
-        margin-left: 35px;
+        margin-left: 25px;
         line-height: 1.5;
     }
 

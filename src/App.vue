@@ -14,11 +14,6 @@
   import EventBus from './event-bus';
   export default {
     name: 'App',
-    data() {
-      return {
-        isVisibleResponsive: false
-      }
-    },
     components: {
       'app-header': Header,
       'app-header-responsive': HeaderResponsive,
@@ -43,9 +38,8 @@
     .header-responsive {
       display: block;
       position: relative;
-      top: -30px;
-      left: -30px;
       height: 80px;
+      z-index: 2;
       }
   
   }

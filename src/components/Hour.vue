@@ -1,8 +1,8 @@
 <template>
         <div id="inputText" class="group" :type="type">
-            <input type="time" :id="idHour" :name="name" required @blur="validation(type)" @focus="persistError" v-model="inputValue" :class="{'error-mark': isFormError}">
+            <input type="time" :id="idHour" :name="name" @blur="validation" @focus="persistError" v-model="inputValue" :class="{'error-mark': isFormError}">
             <span class="bar">
-                <span v-if="isFormError" class="error-text">Invalid {{ label }}</span>
+                <span v-if="isFormError" class="error-text">{{ label }} no insertada</span>
             </span>
             <label :label="label">{{ label }}</label>
         </div>
@@ -25,18 +25,10 @@
                 }
             },
             methods: {
-                validation(type) {
-                    var isValid = false;
-                    if (type === 'email' && this.inputValue !== '') {
-                        var email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        isValid = email.test(String(this.inputValue).toLowerCase());
-                    } else if (type === 'tel' && this.inputValue !== '') {
-                        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                        isValid = phoneno.test(this.inputValue);
-                    } else if (this.isFormError == true && this.inputValue === ''){
+               validation() {
+                    var isValid = true;
+                    if (this.inputValue == '') {
                         isValid = false;
-                    } else {
-                        isValid = true;
                     }
                      isValid ? this.isFormError = false : this.isFormError = true;
                 },
@@ -49,7 +41,7 @@
             watch: {
                 isError() {
                     this.isFormError = this.isError;
-                    this.validation(this.type);
+                    this.validation();
                     return this.isFormError;
                 }
             }

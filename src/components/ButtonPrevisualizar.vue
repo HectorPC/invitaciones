@@ -35,7 +35,7 @@
         color: #ffffff;
         font-family: Arial;
         font-size: 18px;
-        padding: 18px 19px;
+        padding: 11px 16px;
         text-decoration: none;
         text-shadow: 1px 1px 0px #5d6628;
     }

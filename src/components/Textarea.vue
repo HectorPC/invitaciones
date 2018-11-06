@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form__group">
-            <textarea id="description" class="form__field" placeholder="Descripción" rows="6"></textarea>
+            <textarea id="description" class="form__field" placeholder="Descripción" rows="6" @blur="validation" v-model="inputValue" :class="{'error-mark': isFormError}"></textarea>
             <label for="message" class="form__label">Descripción</label>
         </div>
     </div>
@@ -10,6 +10,28 @@
 <script>
     export default {
         name: 'Textarea',
+        data() {
+            return {
+                inputValue: '',
+                isFormError: false
+            }
+        },
+        methods: {
+          validation() {
+            var isValid = true;
+            if (this.inputValue == '') {
+                isValid = false;
+            }
+              isValid ? this.isFormError = false : this.isFormError = true;
+          }
+        },
+            watch: {
+                isError() {
+                    this.isFormError = this.isError;
+                    this.validation();
+                    return this.isFormError;
+                }
+            }
     
     }
 </script>
@@ -62,5 +84,12 @@ label,
 .form__field:focus {
   padding-bottom: 6px;
   border-bottom: 2px solid #202020;
+}
+
+.error-text {
+    color: #dd2c00;
+    font-size: 0.65em;
+    font-weight: 500;
+    float: left;
 }
 </style>

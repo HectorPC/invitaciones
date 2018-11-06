@@ -29,7 +29,7 @@
 
     .card {
         /* display: inline-block; */
-        width: 25%;
+        width: 100%;
         position: relative;
         height: 250px;
         perspective: 250px;
@@ -38,7 +38,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 300px;
+            width: 100%;
             height: 250px;
             backface-visibility: hidden;
             transition: all .6s ease;

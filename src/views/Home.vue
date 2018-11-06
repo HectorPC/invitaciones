@@ -15,8 +15,8 @@
             <div class="data">
                 <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
                 <div class="time">
-                    <date :idDate="dateId"></date>
-                    <hour :idHour="hourId"></hour>
+                    <date :idDate="dateId" :label="labelDate"></date>
+                    <hour :idHour="hourId" :label="labelHour"></hour>
                 </div>
                 <app-textarea>Textarea</app-textarea>
             </div>
@@ -52,6 +52,7 @@
         name: 'Home',
         data() {
             return {
+                invitationType: 'Cumpleaños',
                 type: 'text',
                 label1: 'Título',
                 id1: 'title',
@@ -73,7 +74,9 @@
                 dateId: 'date',
                 hourId: 'hour',
                 selected: '',
-                isSelected: ''
+                isSelected: '',
+                labelDate: 'Fecha',
+                labelHour: 'Hora'
             }
         },
         components: {
@@ -95,12 +98,17 @@
                 document.execCommand("copy");
             },
             urlGenerator() {
+                var invitationType = this.invitationType;
+                var design = this.radioChecked;
+                if(design == "") {
+                    design = 'radio1';
+                }
                 var title = document.querySelector('#title').value;
                 var date = document.querySelector('#date').value;
                 var hour = document.querySelector('#hour').value;
                 var description = document.querySelector('#description').value;
 
-                var urlData = title + "/" + date + "/" + hour + "/" + description;
+                var urlData = invitationType + "/" + design + "/" + title + "/" + date + "/" + hour + "/" + description;
                 var url = this.$route.path + urlData;
                 document.querySelector('#url').value = url;
 
@@ -136,6 +144,9 @@
                 this.clearMoveCard();
                 this.radioChecked = radioChecked.id;
             });
+            EventBus.$on('changeInvitationType', (invitation) => {
+                this.invitationType = invitation.innerText;
+            });
         }
     }
 </script>
@@ -166,8 +177,8 @@
     }
 
     .design-selection {
-        height: 300px;
-        width: 300px;
+        height: 100%;
+        width: 100%;
         border: 1px solid green;
     }
 

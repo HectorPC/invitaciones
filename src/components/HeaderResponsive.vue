@@ -29,7 +29,7 @@
           -->
           <ul id="menu">
             <a href="#" v-for="invitation in invitationTypes">
-              <li @click="closeMenu">{{ invitation.name }}</li>
+              <li @click="closeMenu($event)">{{ invitation.name }}</li>
             </a>
           </ul>
         </div>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+    import EventBus from '../event-bus'
     export default {
       data() {
             return {
@@ -54,25 +55,14 @@
         methods: {
           closeMenu() {
             document.querySelector("#closeMenu").checked = true;
+            EventBus.$emit('changeInvitationType', event.target);
+            
           }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-
-    /*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
-
-
 
 a
 {
