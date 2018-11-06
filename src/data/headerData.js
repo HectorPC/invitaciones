@@ -1,10 +1,11 @@
 export default {
 
     invitationTypes: [
-        {name: 'Cumpleaños'},
         {name: 'Boda'},
+        {name: 'Comunión'},
         {name: 'Bautizo'},
-        {name: 'Comunión'}
+        {name: 'Cumpleaños'},
+        {name: 'Evento'}
     ]
 
 }

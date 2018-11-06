@@ -7,7 +7,11 @@
                    <radio :id="design.id"></radio> 
                     <card  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
                         <span slot="front">{{ design.frontDesign }}</span>
-                        <span slot="back">{{ design.backDesign }}</span>
+                        <img v-if="invitationType=='Boda'" slot="back" :src="design.backDesign[backDesignNumberArray].boda"/>
+                        <img v-if="invitationType=='Comunión'" slot="back" :src="design.backDesign[backDesignNumberArray].comunion"/>
+                        <img v-if="invitationType=='Bautizo'" slot="back" :src="design.backDesign[backDesignNumberArray].bautizo"/>
+                        <img v-if="invitationType=='Cumpleaños'" slot="back" :src="design.backDesign[backDesignNumberArray].cumpleanos"/>
+                        <img v-if="invitationType=='Evento'" slot="back" :src="design.backDesign[backDesignNumberArray].evento"/>
                     </card>
                 </div>
             </div>
@@ -48,12 +52,13 @@
     import ButtonPrevisualizar from '../components/ButtonPrevisualizar.vue'
     import EventBus from '../event-bus'
     import Designs from '../data/designsData.js'
+    import InvitationTypes from '../data/headerData.js'
 
     export default {
         name: 'Home',
         data() {
             return {
-                invitationType: 'Cumpleaños',
+                invitationType: InvitationTypes.invitationTypes[0]['name'],
                 type: 'text',
                 label1: 'Título',
                 id1: 'title',
@@ -73,8 +78,15 @@
                 selected: '',
                 isSelected: '',
                 labelDate: 'Fecha',
-                labelHour: 'Hora'
+                labelHour: 'Hora',
+                backDesignNumberArray: 0
             }
+        },
+        conputed: {
+            // designs() {
+            //     var invitation = this.invitationType;
+            //     return Designsinvitation;
+            // }
         },
         components: {
             MainPanel,
@@ -109,8 +121,6 @@
                 var url = this.$route.path + urlData;
                 document.querySelector('#url').value = url;
 
-                console.log("title: " + title + " date: " + date + " hour: " + hour + " description: " + description);
-
                 return url;
             },
             formatDate(notFormatDate) {
@@ -143,6 +153,26 @@
             });
             EventBus.$on('changeInvitationType', (invitation) => {
                 this.invitationType = invitation.innerText;
+                switch (invitation.innerText) {
+                    case 'Boda':
+                        this.backDesignNumberArray = 0;
+                        break;
+                    case 'Comunión':
+                        this.backDesignNumberArray = 1;
+                        break;
+                    case 'Bautizo':
+                        this.backDesignNumberArray = 2;
+                        break;
+                    case 'Cumpleaños':
+                        this.backDesignNumberArray = 3;
+                    break;
+                    case 'Evento':
+                        this.backDesignNumberArray = 4;
+                    break;
+                    default:
+                        this.backDesignNumberArray = 0;
+                        break;
+                }
             });
         }
     }
@@ -176,7 +206,6 @@
     .design-selection {
         height: 100%;
         width: 100%;
-        border: 1px solid green;
     }
 
     .design-selection .custom-radios {
@@ -210,7 +239,9 @@
         display: flex;
     }
 
-    @media (min-width: 768px) {
-        
+    @media (max-width: 768px) {
+        .design {
+            flex-direction: column;
+        }
     }
 </style>
