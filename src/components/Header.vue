@@ -115,7 +115,7 @@
 
     nav ul li {
         display: inline-block;
-        margin-left: 25px;
+        margin-left: 8px;
         line-height: 1.5;
     }
 
