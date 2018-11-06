@@ -88,5 +88,16 @@
         .stop-rotate-back {
             transform: rotate(0);
         }
+
+
+        .card__side--back .card__description{
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .card__side--back .card__description *{
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>

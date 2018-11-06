@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="content">
-                    <a class="logo" href="#">Tu invitación online</a>
+                    <p class="logo">Invitación Online</p>
                     <nav>
                         <ul>
                             <li v-for="invitation in invitationTypes">
@@ -28,7 +28,7 @@
     export default {
         data() {
             return {
-                selected: 'Cumpleaños',
+                selected: 'Boda',
                 invitationTypes: InvitationTypes.invitationTypes
             }
         },
@@ -93,7 +93,7 @@
         width: 300px;
         font-size: 25px;
         color: #8f8f8f;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         float: left;
         display: block;
         margin-top: 0;

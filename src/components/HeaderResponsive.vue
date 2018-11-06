@@ -3,8 +3,8 @@
 <!-- https://codepen.io/erikterwan/pen/EVzeRP -->
 
 <nav role="navigation">
+  <span class="header-text">Invitación Online</span>
         <div id="menuToggle">
-
           <input id="closeMenu" type="checkbox" />
 
           <span></span>
@@ -137,10 +137,6 @@ a:hover
   transform: rotate(-45deg) translate(0, -1px);
 }
 
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
 #menu
 {
   position: fixed;
@@ -170,6 +166,14 @@ a:hover
 #menuToggle input:checked ~ ul
 {
   transform: none;
+}
+
+
+.header-text {
+    position: relative;
+    top: 18px;
+    left: 95px;
+    font-size: 25px;
 }
 
 </style>
