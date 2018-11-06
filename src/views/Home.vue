@@ -73,7 +73,7 @@
                 dateId: 'date',
                 hourId: 'hour',
                 selected: '',
-                isSelected: false
+                isSelected: ''
             }
         },
         components: {
@@ -122,13 +122,19 @@
                 this.$router.push(url);
             },
             activeCard(active,idRadio) {
+                this.clearMoveCard();
                 this.isSelected = active;
                 document.querySelector('#'+idRadio).checked = true;
+            },
+            clearMoveCard() {
+                this.isSelected = '';
+                this.radioChecked = '';
             }
         },
         created() {
             EventBus.$on('changeRadioEvent', (radioChecked) => {
-                this.radioChecked = radioChecked;
+                this.clearMoveCard();
+                this.radioChecked = radioChecked.id;
             });
         }
     }
