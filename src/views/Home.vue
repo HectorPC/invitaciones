@@ -206,6 +206,7 @@
     .design-selection {
         height: 100%;
         width: 100%;
+        padding: 10px;
     }
 
     .design-selection .custom-radios {
