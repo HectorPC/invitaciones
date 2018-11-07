@@ -27,7 +27,7 @@
             methods: {
                 validation() {
                     var isValid = true;
-                    if (this.inputValue == '') {
+                    if (this.inputValue == '' && this.label != '') {
                         isValid = false;
                     }
                      isValid ? this.isFormError = false : this.isFormError = true;
