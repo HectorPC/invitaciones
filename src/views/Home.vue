@@ -7,11 +7,11 @@
                    <radio :id="design.id"></radio> 
                     <card  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
                         <span slot="front">{{ design.frontDesign }}</span>
-                        <img v-if="invitationType=='Boda'" slot="back" :src="design.backDesign[backDesignNumberArray].boda"/>
-                        <img v-if="invitationType=='Comunión'" slot="back" :src="design.backDesign[backDesignNumberArray].comunion"/>
-                        <img v-if="invitationType=='Bautizo'" slot="back" :src="design.backDesign[backDesignNumberArray].bautizo"/>
-                        <img v-if="invitationType=='Cumpleaños'" slot="back" :src="design.backDesign[backDesignNumberArray].cumpleanos"/>
-                        <img v-if="invitationType=='Evento'" slot="back" :src="design.backDesign[backDesignNumberArray].evento"/>
+                        <img class="imgDesign" v-if="invitationType=='Boda'" slot="back" :src="design.backDesign[backDesignNumberArray].boda"/>
+                        <img class="imgDesign" v-if="invitationType=='Comunión'" slot="back" :src="design.backDesign[backDesignNumberArray].comunion"/>
+                        <img class="imgDesign" v-if="invitationType=='Bautizo'" slot="back" :src="design.backDesign[backDesignNumberArray].bautizo"/>
+                        <img class="imgDesign" v-if="invitationType=='Cumpleaños'" slot="back" :src="design.backDesign[backDesignNumberArray].cumpleanos"/>
+                        <img class="imgDesign" v-if="invitationType=='Evento'" slot="back" :src="design.backDesign[backDesignNumberArray].evento"/>
                     </card>
                 </div>
             </div>
@@ -82,12 +82,6 @@
                 backDesignNumberArray: 0
             }
         },
-        conputed: {
-            // designs() {
-            //     var invitation = this.invitationType;
-            //     return Designsinvitation;
-            // }
-        },
         components: {
             MainPanel,
             InputText,
@@ -117,7 +111,10 @@
                 var hour = document.querySelector('#hour').value;
                 var description = document.querySelector('#description').value;
 
-                var urlData = invitationType + "/" + design + "/" + title + "/" + date + "/" + hour + "/" + description;
+                 var srcImg = this.formatSrcImg(document.querySelector('.imgDesign').src);
+                // var srcImg = document.querySelector('.imgDesign')[this.backDesignNumberArray].src; <<<---
+
+                var urlData = "/" + invitationType + "/" + design + "/" +srcImg + "/" + title + "/" + date + "/" + hour + "/" + description;
                 var url = this.$route.path + urlData;
                 document.querySelector('#url').value = url;
 
@@ -128,6 +125,10 @@
             },
             formatDescription(notFormatDescription) {
                 return description;
+            },
+            formatSrcImg(src) {
+                var partsSrc = src.split('/');
+                return partsSrc[partsSrc.length-1];
             },
             encriptUrl(url) {
                 return encriptUrl;
