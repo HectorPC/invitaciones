@@ -5,7 +5,7 @@
             <div class="design">
                 <div class="design-selection" v-for="design in designs">
                    <radio :id="design.id"></radio> 
-                    <card  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
+                    <card :class="{activeCard : design.frontDesign == isSelected}"  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
                         <span slot="front">{{ design.frontDesign }}</span>
                         <img class="imgDesign" v-if="invitationType=='Boda'" slot="back" :src="design.backDesign[backDesignNumberArray].boda"/>
                         <img class="imgDesign" v-if="invitationType=='Comunión'" slot="back" :src="design.backDesign[backDesignNumberArray].comunion"/>
@@ -111,8 +111,11 @@
                 var hour = document.querySelector('#hour').value;
                 var description = document.querySelector('#description').value;
 
-                 var srcImg = this.formatSrcImg(document.querySelector('.imgDesign').src);
-                // var srcImg = document.querySelector('.imgDesign')[this.backDesignNumberArray].src; <<<---
+                try{
+                    var srcImg = this.formatSrcImg(document.querySelector('.activeCard .imgDesign').src);
+                }catch (e){
+                    var srcImg = 'no-image-design';
+                }
 
                 var urlData = "/" + invitationType + "/" + design + "/" +srcImg + "/" + title + "/" + date + "/" + hour + "/" + description;
                 var url = this.$route.path + urlData;
