@@ -54,8 +54,9 @@
             }
         },
         methods: {
-            getInvitationType() {
-
+            getInvitationType(path) {
+                var invitationArray = path.split('/');
+                var invitationType = invitationArray[0];
             },
             getDesignType() {
 
