@@ -1,33 +1,33 @@
 <template>
     <div id="invitation">
 
-        <div class="front-type-1">
-            <h2> {{title}} </h2>
+        <div v-if="getDesignType(path) == 'radio1'" class="wrapper front-type-1">
+            <h2> {{ getTitle(path) }} </h2>
             <div class="date">
-                <span>{{ date }}</span><span>{{ hour }}</span>
+                <span>{{ getDate(path) }}</span><span>{{ getHour(path) }}</span>
             </div>
             <div class="description">
-                {{ description }}
+                {{ getDescription(path) }}
             </div>
         </div>
 
-        <div class="front-type-2">
+        <div v-if="getDesignType(path) == 'radio2'" class="wrapper front-type-2">
             <div class="date">
-                <span>{{ date }}</span><span>{{ hour }}</span>
+                <span>{{ getDate(path) }}</span><span>{{ getHour(path) }}</span>
             </div>
-            <h2> {{title}} </h2>
+            <h2> {{ getTitle(path) }} </h2>
             <div class="description">
-                {{ description }}
+                {{ getDescription(path) }}
             </div>
         </div>
 
-        <div class="front-type-3">
-            <h2> {{title}} </h2>
+        <div v-if="getDesignType(path) == 'radio3'" class="wrapper front-type-3">
+            <h2> {{ getTitle(path) }} </h2>
             <div class="description">
-                {{ description }}
+                {{ getDescription(path) }}
             </div>
             <div class="date">
-                <span>{{ date }}</span><span>{{ hour }}</span>
+                <span>{{ getDate(path) }}</span><span>{{ getHour(path) }}</span>
             </div>
         </div>
 
@@ -50,31 +50,37 @@
         },
         computed: {
             path() {
-                return this.$router.fullPath;
+                return this.$route.path;
             }
         },
         methods: {
             getInvitationType(path) {
                 var invitationArray = path.split('/');
-                var invitationType = invitationArray[0];
+                return invitationArray[2]
             },
-            getDesignType() {
-
+            getDesignType(path) {
+                var invitationArray = path.split('/');
+                return invitationArray[3]
             },
-            getSrcImg() {
-
+            getSrcImg(path) {
+                var invitationArray = path.split('/');
+                return invitationArray[4]
             },
-            getTitle() {
-
+            getTitle(path) {
+                var invitationArray = path.split('/');
+                return invitationArray[5]
             },
-            getDate() {
-
+            getDate(path) {
+                var invitationArray = path.split('/');
+                return invitationArray[6]
             },
-            getHour() {
-
+            getHour(path) {
+                var invitationArray = path.split('/');
+                return invitationArray[7]
             },
-            getDescription() {
-
+            getDescription(path) {
+                var invitationArray = path.split('/');
+                return invitationArray[8]
             }
         }
         
@@ -83,5 +89,9 @@
 </script>
 
 <style scoped>
+
+.wrapper {
+    border: 1px solid green;
+}
 
 </style>

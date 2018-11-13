@@ -16,7 +16,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/invitation/:invitationType/design/srcImg/title/date/hour/description',
+      path: '/invitation/:invitationType/:design/:srcImg/:title/:date/:hour/:description',
       name: 'Invitation',
       component: Invitation,
       props: true

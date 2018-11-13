@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <app-header class="header"></app-header>
-    <app-header-responsive class="header-responsive"></app-header-responsive>
+    <app-header  v-if="!checkRouteInvitation" class="header"></app-header>
+    <app-header-responsive v-if="!checkRouteInvitation" class="header-responsive"></app-header-responsive>
     <router-view></router-view>
     <app-footer></app-footer>
   </div>
@@ -18,6 +18,15 @@
       'app-header': Header,
       'app-header-responsive': HeaderResponsive,
       'app-footer': Footer
+    },
+    computed: {
+      checkRouteInvitation() {
+        var routeArray = this.$route.path.split('/');
+        if(routeArray[1] == 'invitation') {
+          return true;
+        }
+        return false;
+      }
     }
   }
 </script>
