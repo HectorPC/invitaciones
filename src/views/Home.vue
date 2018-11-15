@@ -103,13 +103,13 @@
             urlGenerator() {
                 var invitationType = this.invitationType;
                 var design = this.radioChecked;
-                if(design == "") {
+                if(design === "") {
                     design = 'radio1';
                 }
                 var title = document.querySelector('#title').value;
                 var date = document.querySelector('#date').value;
                 var hour = document.querySelector('#hour').value;
-                var description = document.querySelector('#description').value;
+                var description = this.formatDescription(document.querySelector('#description').value)
 
                 try{
                     var srcImg = this.formatSrcImg(document.querySelector('.activeCard .imgDesign').src);
@@ -117,8 +117,8 @@
                     var srcImg = 'no-image-design';
                 }
 
-                var urlData = "/" + invitationType + "/" + design + "/" +srcImg + "/" + title + "/" + date + "/" + hour + "/" + description;
-                var url = this.$route.path + urlData;
+                var urlData = this.getDomainUrl() + "/invitation/" + invitationType + "/" + design + "/" +srcImg + "/" + title + "/" + date + "/" + hour + "/" + description;
+                var url = urlData;
                 document.querySelector('#url').value = url;
 
                 return url;
@@ -127,6 +127,8 @@
                 return date;
             },
             formatDescription(notFormatDescription) {
+                var description = notFormatDescription.replace(/\r|\n|\r\n/g, 'breaklLine');
+                description = description.split(' ').join('+')
                 return description;
             },
             formatSrcImg(src) {
@@ -138,16 +140,22 @@
             },
             preview() {
                 var url = this.urlGenerator();
-                this.$router.push(url);
+                // this.$router.push(url);
+                var win = window.open(url, '_blank');
+                win.focus();
             },
             activeCard(active,idRadio) {
                 this.clearMoveCard();
                 this.isSelected = active;
+                this.radioChecked = idRadio;
                 document.querySelector('#'+idRadio).checked = true;
             },
             clearMoveCard() {
                 this.isSelected = '';
                 this.radioChecked = '';
+            },
+            getDomainUrl() {
+                return window.location.protocol + "//" + window.location.host
             }
         },
         created() {
