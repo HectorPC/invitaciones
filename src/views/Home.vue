@@ -111,6 +111,19 @@
                 var hour = document.querySelector('#hour').value;
                 var description = this.formatDescription(document.querySelector('#description').value)
 
+                if(title === '') {
+                    title = '-';
+                }
+                if(date === '') {
+                    date = '-';
+                }
+                if(hour === '') {
+                    hour = '-';
+                }
+                if(description === '') {
+                    description = '-';
+                }
+
                 try{
                     var srcImg = this.formatSrcImg(document.querySelector('.activeCard .imgDesign').src);
                 }catch (e){
