@@ -47,7 +47,7 @@
                 return this.$route.path;
             },
             background() {
-                return this.setBackground();
+                return `${this.getDomainUrl()}/${this.setBackground()}`;
             },
             srcImg() {
                 var invitationArray = this.path.split('/');
@@ -63,11 +63,6 @@
                 var invitationArray = path.split('/');
                 return invitationArray[3]
             },
-            // getSrcImg(path) {
-            //     var invitationArray = path.split('/');
-            //     this.srcImg = invitationArray[4];
-            //     return invitationArray[4]
-            // },
             getTitle(path) {
                 var invitationArray = path.split('/');
                 return this.decodeUrl(invitationArray[5])
@@ -94,6 +89,9 @@
             },
             setBackground() {
                 return `src/assets/backgrounds/${this.srcImg}`;
+            },
+            getDomainUrl() {
+                return window.location.protocol + "//" + window.location.host
             }
 
         }
@@ -105,45 +103,35 @@
 
 #invitation {
     text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .wrapper {
-    border: 2px solid green;
-
     height: 98vh;
 }
 
 h2 {
-    border: 1px dotted pink;
-
     height: 10vh;
     position: relative;
     top: 10px;
 }
 
 .date-hour {
-    border: 1px solid red;
-
     display: flex;
     justify-content: space-around;
     height: 10vh;
 }
 
 .date {
-    border: 1px solid black;
-
     padding: 20px;
 }
 
 .hour {
-    border: 1px solid black;
-
     padding: 20px;
 }
 
 .description {
-    border: 3px solid orange;
-
     padding: 20px;
     height: 50vh;
 }
