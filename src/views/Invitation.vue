@@ -1,5 +1,5 @@
 <template>
-    <div id="invitation">
+    <div id="invitation" :style="{ 'background-image' : 'url(\'' + background + '\')' }">
 
         <div v-if="getDesignType(path) == 'radio1'" class="wrapper front-type-1">
             <h2> {{ getTitle(path) }} </h2>
@@ -12,8 +12,8 @@
         </div>
 
         <div v-if="getDesignType(path) == 'radio2'" class="wrapper front-type-2">
-            <div class="date-hour">
-                <span class="date">{{ getDate(path) }}</span><span class="hour">{{ getHour(path) }}</span>
+             <div class="date-hour">
+                <span class="date">Fecha {{ getInvitationType(path) }}: <b>{{ getDate(path) }}</b></span><span class="hour">Hora: <b>{{ getHour(path) }}</b></span>
             </div>
             <h2> {{ getTitle(path) }} </h2>
             <div class="description">
@@ -26,8 +26,8 @@
             <div class="description">
                 <p v-html="getDescription(path)"></p>
             </div>
-            <div class="date-hour">
-                <span class="date">{{ getDate(path) }}</span><span class="hour">{{ getHour(path) }}</span>
+             <div class="date-hour">
+                <span class="date">Fecha {{ getInvitationType(path) }}: <b>{{ getDate(path) }}</b></span><span class="hour">Hora: <b>{{ getHour(path) }}</b></span>
             </div>
         </div>
 
@@ -37,20 +37,21 @@
 <script>
     export default {
         name: 'Invitation',
-        data() {
-            return {
-                invitationType: '',
-                designType: '',
-                srcImg: '',
-                title: '',
-                date: '',
-                hour: '',
-                description: ''
-            }
-        },
+        // data() {
+        //     return {
+        //         // srcImg: ''
+        //     }
+        // },
         computed: {
             path() {
                 return this.$route.path;
+            },
+            background() {
+                return this.setBackground();
+            },
+            srcImg() {
+                var invitationArray = this.path.split('/');
+                return invitationArray[4]
             }
         },
         methods: {
@@ -62,10 +63,11 @@
                 var invitationArray = path.split('/');
                 return invitationArray[3]
             },
-            getSrcImg(path) {
-                var invitationArray = path.split('/');
-                return invitationArray[4]
-            },
+            // getSrcImg(path) {
+            //     var invitationArray = path.split('/');
+            //     this.srcImg = invitationArray[4];
+            //     return invitationArray[4]
+            // },
             getTitle(path) {
                 var invitationArray = path.split('/');
                 return this.decodeUrl(invitationArray[5])
@@ -89,6 +91,9 @@
                 var formatDescription = notFormatDescription.split('breaklLine').join('<br>');
                 formatDescription = formatDescription.split('+').join(' ');
                 return formatDescription
+            },
+            setBackground() {
+                return `src/assets/backgrounds/${this.srcImg}`;
             }
 
         }

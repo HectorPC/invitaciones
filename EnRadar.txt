@@ -1,6 +1,6 @@
 ******Incidencias -  temas pendientes*******
 
-- Si se queda algún dato sin rellenar la url no funciona en invitation
+- 
 - 
 
 

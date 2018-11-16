@@ -153,7 +153,6 @@
             },
             preview() {
                 var url = this.urlGenerator();
-                // this.$router.push(url);
                 var win = window.open(url, '_blank');
                 win.focus();
             },
