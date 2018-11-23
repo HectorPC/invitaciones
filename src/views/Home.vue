@@ -40,233 +40,258 @@
 </template>
 
 <script>
-    import MainPanel from '../components/MainPanel.vue'
-    import InputText from '../components/InputText.vue'
-    import Radio from '../components/Radio.vue'
-    import ButtonCopy from '../components/ButtonCopy.vue'
-    import Card from '../components/Card.vue'
-    import Textarea from '../components/Textarea.vue'
-    import Date from '../components/Date.vue'
-    import Hour from '../components/Hour.vue'
-    import ButtonGenerar from '../components/ButtonGenerar.vue'
-    import ButtonPrevisualizar from '../components/ButtonPrevisualizar.vue'
-    import EventBus from '../event-bus'
-    import Designs from '../data/designsData.js'
-    import InvitationTypes from '../data/headerData.js'
+import MainPanel from "../components/MainPanel.vue";
+import InputText from "../components/InputText.vue";
+import Radio from "../components/Radio.vue";
+import ButtonCopy from "../components/ButtonCopy.vue";
+import Card from "../components/Card.vue";
+import Textarea from "../components/Textarea.vue";
+import Date from "../components/Date.vue";
+import Hour from "../components/Hour.vue";
+import ButtonGenerar from "../components/ButtonGenerar.vue";
+import ButtonPrevisualizar from "../components/ButtonPrevisualizar.vue";
+import EventBus from "../event-bus";
+import Designs from "../data/designsData.js";
+import InvitationTypes from "../data/headerData.js";
 
-    export default {
-        name: 'Home',
-        data() {
-            return {
-                invitationType: InvitationTypes.invitationTypes[0]['name'],
-                type: 'text',
-                label1: 'Título',
-                id1: 'title',
-                name1: 'title',
-                label2: '',
-                id2: 'url',
-                name2: 'url',
-                isError: false,
-                designs: Designs.designs,
-                radioChecked: '',
-                backgroundImage: 'src/assets/backgrounds/up2.png',
-                img1: '',
-                img2: '',
-                img3: '',
-                dateId: 'date',
-                hourId: 'hour',
-                selected: '',
-                isSelected: '',
-                labelDate: 'Fecha',
-                labelHour: 'Hora',
-                backDesignNumberArray: 0
-            }
-        },
-        components: {
-            MainPanel,
-            InputText,
-            Radio,
-            ButtonCopy,
-            Card,
-            Date,
-            Hour,
-            appButtonGenerar: ButtonGenerar,
-            appButtonPrevisualizar: ButtonPrevisualizar,
-            appTextarea: Textarea
-        },
-        methods: {
-            copyUrl() {
-                var urlInput = document.querySelector('#url');
-                urlInput.select();
-                document.execCommand("copy");
-            },
-            urlGenerator() {
-                var invitationType = this.invitationType;
-                var design = this.radioChecked;
-                if(design === "") {
-                    design = 'radio1';
-                }
-                var title = document.querySelector('#title').value;
-                var date = document.querySelector('#date').value;
-                var hour = document.querySelector('#hour').value;
-                var description = this.formatDescription(document.querySelector('#description').value)
+export default {
+  name: "Home",
+  data() {
+    return {
+      invitationType: InvitationTypes.invitationTypes[0]["name"],
+      type: "text",
+      label1: "Título",
+      id1: "title",
+      name1: "title",
+      label2: "",
+      id2: "url",
+      name2: "url",
+      isError: false,
+      designs: Designs.designs,
+      radioChecked: "",
+      backgroundImage: "./assets/backgrounds/up2.png",
+      img1: "",
+      img2: "",
+      img3: "",
+      dateId: "date",
+      hourId: "hour",
+      selected: "",
+      isSelected: "",
+      labelDate: "Fecha",
+      labelHour: "Hora",
+      backDesignNumberArray: 0
+    };
+  },
+  components: {
+    MainPanel,
+    InputText,
+    Radio,
+    ButtonCopy,
+    Card,
+    Date,
+    Hour,
+    appButtonGenerar: ButtonGenerar,
+    appButtonPrevisualizar: ButtonPrevisualizar,
+    appTextarea: Textarea
+  },
+  methods: {
+    copyUrl() {
+      var urlInput = document.querySelector("#url");
+      urlInput.select();
+      document.execCommand("copy");
+    },
+    urlGenerator() {
+      var invitationType = this.invitationType;
+      var design = this.radioChecked;
+      if (design === "") {
+        design = "radio1";
+      }
+      var title = document.querySelector("#title").value;
+      var date = this.formatDate(document.querySelector("#date").value);
+      var hour = document.querySelector("#hour").value;
+      var description = this.formatDescription(
+        document.querySelector("#description").value
+      );
 
-                if(title === '') {
-                    title = '-';
-                }
-                if(date === '') {
-                    date = '-';
-                }
-                if(hour === '') {
-                    hour = '-';
-                }
-                if(description === '') {
-                    description = '-';
-                }
+      if (title === "") {
+        title = "-";
+      }
+      if (date === "") {
+        date = "-";
+      }
+      if (hour === "") {
+        hour = "-";
+      }
+      if (description === "") {
+        description = "-";
+      }
 
-                try{
-                    var srcImg = this.formatSrcImg(document.querySelector('.activeCard .imgDesign').src);
-                }catch (e){
-                    var srcImg = 'no-image-design';
-                }
+      try {
+        var srcImg = this.formatSrcImg(
+          document.querySelector(".activeCard .imgDesign").src
+        );
+      } catch (e) {
+         srcImg = "no-image-design";
+      }
 
-                var urlData = this.getDomainUrl() + "/invitation/" + invitationType + "/" + design + "/" +srcImg + "/" + title + "/" + date + "/" + hour + "/" + description;
-                var url = urlData;
-                document.querySelector('#url').value = url;
+      var urlData =
+        this.getDomainUrl() +
+        "/invitation/" +
+        invitationType +
+        "/" +
+        design +
+        "/" +
+        srcImg +
+        "/" +
+        title +
+        "/" +
+        date +
+        "/" +
+        hour +
+        "/" +
+        description;
+      var url = urlData;
+      document.querySelector("#url").value = url;
 
-                return url;
-            },
-            formatDate(notFormatDate) {
-                return date;
-            },
-            formatDescription(notFormatDescription) {
-                var description = notFormatDescription.replace(/\r|\n|\r\n/g, 'breaklLine');
-                description = description.split(' ').join('+')
-                return description;
-            },
-            formatSrcImg(src) {
-                var partsSrc = src.split('/');
-                return partsSrc[partsSrc.length-1];
-            },
-            encriptUrl(url) {
-                return encriptUrl;
-            },
-            preview() {
-                var url = this.urlGenerator();
-                var win = window.open(url, '_blank');
-                win.focus();
-            },
-            activeCard(active,idRadio) {
-                this.clearMoveCard();
-                this.isSelected = active;
-                this.radioChecked = idRadio;
-                document.querySelector('#'+idRadio).checked = true;
-            },
-            clearMoveCard() {
-                this.isSelected = '';
-                this.radioChecked = '';
-            },
-            getDomainUrl() {
-                return window.location.protocol + "//" + window.location.host
-            }
-        },
-        created() {
-            EventBus.$on('changeRadioEvent', (radioChecked) => {
-                this.clearMoveCard();
-                this.radioChecked = radioChecked.id;
-            });
-            EventBus.$on('changeInvitationType', (invitation) => {
-                this.invitationType = invitation.innerText;
-                switch (invitation.innerText) {
-                    case 'Boda':
-                        this.backDesignNumberArray = 0;
-                        break;
-                    case 'Comunión':
-                        this.backDesignNumberArray = 1;
-                        break;
-                    case 'Bautizo':
-                        this.backDesignNumberArray = 2;
-                        break;
-                    case 'Cumpleaños':
-                        this.backDesignNumberArray = 3;
-                    break;
-                    case 'Evento':
-                        this.backDesignNumberArray = 4;
-                    break;
-                    default:
-                        this.backDesignNumberArray = 0;
-                        break;
-                }
-            });
-        }
+      return url;
+    },
+    formatDate(notFormatDate) {
+        // var date = notFormatDate.split('-').reverse().join('-');
+    //   var date = notFormatDate;
+      return notFormatDate.split('-').reverse().join('-');
+    },
+    formatDescription(notFormatDescription) {
+      var description = notFormatDescription.replace(
+        /\r|\n|\r\n/g,
+        "breaklLine"
+      );
+      description = description.split(" ").join("+");
+      return description;
+    },
+    formatSrcImg(src) {
+      var partsSrc = src.split("/");
+      return partsSrc[partsSrc.length - 1];
+    },
+    preview() {
+      var url = this.urlGenerator();
+      var win = window.open(url, "_blank");
+      win.focus();
+    },
+    activeCard(active, idRadio) {
+      this.clearMoveCard();
+      this.isSelected = active;
+      this.radioChecked = idRadio;
+      document.querySelector("#" + idRadio).checked = true;
+    },
+    clearMoveCard() {
+      this.isSelected = "";
+      this.radioChecked = "";
+    },
+    getDomainUrl() {
+      return window.location.protocol + "//" + window.location.host;
     }
+  },
+  created() {
+    EventBus.$on("changeRadioEvent", radioChecked => {
+      this.clearMoveCard();
+      this.radioChecked = radioChecked.id;
+    });
+    EventBus.$on("changeInvitationType", invitation => {
+      this.invitationType = invitation.innerText;
+      switch (invitation.innerText) {
+        case "Boda":
+          this.backDesignNumberArray = 0;
+          break;
+        case "Comunión":
+          this.backDesignNumberArray = 1;
+          break;
+        case "Bautizo":
+          this.backDesignNumberArray = 2;
+          break;
+        case "Cumpleaños":
+          this.backDesignNumberArray = 3;
+          break;
+        case "Evento":
+          this.backDesignNumberArray = 4;
+          break;
+        default:
+          this.backDesignNumberArray = 0;
+          break;
+      }
+    });
+  }
+};
 </script>
 
 <style scoped>
-    #home {
-        max-width: 1440px;
-        margin: 0 auto;
-        overflow: auto;
-        max-height: 100vh;
-        margin-bottom: 20px;
-        padding: 20px;
-    }
+#home {
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: auto;
+  max-height: 100vh;
+  margin-bottom: 20px;
+  padding: 20px;
+}
 
-    .design, .time {
-        display: flex;
-        justify-content: space-around;
-        text-align: center;
-        flex-direction: row;
-    }
+.design,
+.time {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: row;
+}
 
-    .time * {
-        flex-grow: .5;
-    }
+.time * {
+  flex-grow: 0.5;
+}
 
-    .time :nth-child(1) {
-        padding-right: 5%;
-    }
+.time :nth-child(1) {
+  padding-right: 5%;
+}
 
-    .design-selection {
-        height: 100%;
-        width: 100%;
-        padding: 10px;
-    }
+.design-selection {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
 
-    .design-selection .custom-radios {
-        display: block;
-        position: relative;
-        float: left;
-        z-index: 1;
-    }
+.design-selection .custom-radios {
+  display: block;
+  position: relative;
+  float: left;
+  z-index: 1;
+}
 
-    .design, .data, .url, .submit {
-        border: 2px solid #9fafc712;
-        border-radius: 5px;
-        padding: 45px 50px;
-    }
+.design,
+.data,
+.url,
+.submit {
+  border: 2px solid #9fafc712;
+  border-radius: 5px;
+  padding: 45px 50px;
+}
 
-    .url .button-generate {
-        text-align:  center;
-        padding-bottom: 20px;
-    }
-    .url #inputText {
-        width: 90%;
-        display: inline-block;
-    }
+.url .button-generate {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.url #inputText {
+  width: 90%;
+  display: inline-block;
+}
 
-    .url #buttonCopy {
-        width: auto;
-        display: inline-block;
-    }
+.url #buttonCopy {
+  width: auto;
+  display: inline-block;
+}
 
-    .copy {
-        display: flex;
-    }
+.copy {
+  display: flex;
+}
 
-    @media (max-width: 768px) {
-        .design {
-            flex-direction: column;
-        }
-    }
+@media (max-width: 768px) {
+  .design {
+    flex-direction: column;
+  }
+}
 </style>
