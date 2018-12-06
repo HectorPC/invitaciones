@@ -2,7 +2,8 @@
   <div id="app">
     <app-header  v-if="!checkRouteInvitation" class="header"></app-header>
     <app-header-responsive v-if="!checkRouteInvitation" class="header-responsive"></app-header-responsive>
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
+    <home></home>
     <app-footer></app-footer>
   </div>
 </template>
@@ -10,12 +11,14 @@
 <script>
   import Header from './components/Header.vue'
   import HeaderResponsive from './components/HeaderResponsive.vue'
+  import Home from './views/Home.vue'
   import Footer from './components/Footer.vue'
   export default {
     name: 'App',
     components: {
       'app-header': Header,
       'app-header-responsive': HeaderResponsive,
+      'home': Home,
       'app-footer': Footer
     },
     computed: {
