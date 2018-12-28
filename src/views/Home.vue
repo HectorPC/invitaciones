@@ -135,7 +135,7 @@ export default {
       }
 
       var urlData =
-        this.getDomainUrl() +
+        // this.getDomainUrl() +
         "/invitation/" +
         invitationType +
         "/" +
@@ -174,8 +174,9 @@ export default {
     },
     preview() {
       var url = this.urlGenerator();
-      var win = window.open(url, "_blank");
-      win.focus();
+      // var win = window.open(url, "_blank");
+      // win.focus();
+      this.$router.push(url)
     },
     activeCard(active, idRadio) {
       this.clearMoveCard();
