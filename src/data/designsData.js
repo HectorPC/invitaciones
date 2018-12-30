@@ -4,19 +4,19 @@ export default {
             id: 'radio1',
             frontDesign: '1',
             backDesign: [{
-                    boda: './assets/backgrounds/boda/weddingFree.png'
+                    boda: './assets/backgrounds/weddingFree.png'
                 },
                 {
-                    comunion: './assets/backgrounds/comunion/manos.jpg'
+                    comunion: './assets/backgrounds/manos.jpg'
                 },
                 {
-                    bautizo: './assets/backgrounds/bautizo/bordeChupetes.jpg'
+                    bautizo: './assets/backgrounds/bordeChupetes.jpg'
                 },
                 {
-                    cumpleanos: './assets/backgrounds/cumple/velasTarta1.jpg'
+                    cumpleanos: './assets/backgrounds/velasTarta1.jpg'
                 },
                 {
-                    evento: './assets/backgrounds/evento/multitud.jpg'
+                    evento: './assets/backgrounds/multitud.jpg'
                 }
             ]
         },
@@ -24,19 +24,19 @@ export default {
             id: 'radio2',
             frontDesign: '2',
             backDesign: [{
-                    boda: './assets/backgrounds/boda/globosCorazon.jpg'
+                    boda: './assets/backgrounds/globosCorazon.jpg'
                 },
                 {
-                    comunion: './assets/backgrounds/comunion/comunionFree.jpg'
+                    comunion: './assets/backgrounds/comunionFree.jpg'
                 },
                 {
-                    bautizo: './assets/backgrounds/bautizo/nubes.jpg'
+                    bautizo: './assets/backgrounds/nubes.jpg'
                 },
                 {
-                    cumpleanos: './assets/backgrounds/cumple/globosColores1.jpg'
+                    cumpleanos: './assets/backgrounds/globosColores1.jpg'
                 },
                 {
-                    evento: './assets/backgrounds/evento/alfombraFree.png'
+                    evento: './assets/backgrounds/alfombraFree.png'
                 }
             ]
         },
@@ -44,19 +44,19 @@ export default {
             id: 'radio3',
             frontDesign: '3',
             backDesign: [{
-                    boda: './assets/backgrounds/boda/copas.jpg'
+                    boda: './assets/backgrounds/copas.jpg'
                 },
                 {
-                    comunion: './assets/backgrounds/comunion/rezar.jpg'
+                    comunion: './assets/backgrounds/rezar.jpg'
                 },
                 {
-                    bautizo: './assets/backgrounds/bautizo/BabyFeet.jpg'
+                    bautizo: './assets/backgrounds/BabyFeet.jpg'
                 },
                 {
-                    cumpleanos: './assets/backgrounds/cumple/velasTarta2.jpg'
+                    cumpleanos: './assets/backgrounds/velasTarta2.jpg'
                 },
                 {
-                    evento: './assets/backgrounds/evento/fuegosArtificiales.jpg'
+                    evento: './assets/backgrounds/fuegosArtificiales.jpg'
                 }
             ]
         }
