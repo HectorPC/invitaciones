@@ -3,7 +3,7 @@
         <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
             <p>Elige el diseño de la invitación</p>
             <div class="design">
-                <div class="design-selection" v-for="design in designs">
+                <div class="design-selection" v-for="(design, key) in designs" :key="key">
                    <radio :id="design.id"></radio> 
                     <card :class="{activeCard : design.frontDesign == isSelected}"  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
                         <span slot="front">{{ design.frontDesign }}</span>
@@ -135,7 +135,7 @@ export default {
       }
 
       var urlData =
-        // this.getDomainUrl() +
+        this.getDomainUrl() +
         "/invitation/" +
         invitationType +
         "/" +
@@ -156,8 +156,6 @@ export default {
       return url;
     },
     formatDate(notFormatDate) {
-        // var date = notFormatDate.split('-').reverse().join('-');
-    //   var date = notFormatDate;
       return notFormatDate.split('-').reverse().join('-');
     },
     formatDescription(notFormatDescription) {
@@ -174,9 +172,9 @@ export default {
     },
     preview() {
       var url = this.urlGenerator();
-      // var win = window.open(url, "_blank");
-      // win.focus();
-      this.$router.push(url)
+       var win = window.open(url, "_blank");
+        win.focus();
+      //  this.$router.push(url)
     },
     activeCard(active, idRadio) {
       this.clearMoveCard();
