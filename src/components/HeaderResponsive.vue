@@ -3,7 +3,7 @@
 <!-- https://codepen.io/erikterwan/pen/EVzeRP -->
 
 <nav role="navigation">
-  <span class="header-text">Invitación Online</span>
+  <span class="header-text">Mi Invitación Online</span>
         <div id="menuToggle">
           <input id="closeMenu" type="checkbox" />
 

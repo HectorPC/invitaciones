@@ -232,6 +232,10 @@ export default {
   padding: 20px;
 }
 
+#home p {
+  font-size: 1.5em;
+}
+
 .design,
 .time {
   display: flex;

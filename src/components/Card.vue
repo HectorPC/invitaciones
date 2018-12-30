@@ -20,8 +20,8 @@
 </script>
 
 <style lang="scss" scoped>
-    $color-primary-light: #7ed56f;
-    $color-primary-dark: #28b485;
+    $color-primary-light: white;
+    $color-primary-dark: white;
     $color-secondary-light: #FFB900;
     $color-secondary-dark: #FF7730;
     $color-tertiary-light: #2998FF;

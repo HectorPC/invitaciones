@@ -30,7 +30,7 @@ export default {
                     comunion: './assets/backgrounds/comunion/comunionFree.jpg'
                 },
                 {
-                    bautizo: './assets/backgrounds/nubes.jpg'
+                    bautizo: './assets/backgrounds/bautizo/nubes.jpg'
                 },
                 {
                     cumpleanos: './assets/backgrounds/cumple/globosColores1.jpg'

@@ -5,10 +5,10 @@
 
             <div class="row">
                 <div class="content">
-                    <p class="logo">Invitación Online</p>
+                   <img src="assets/backgrounds/logoV01.png"/><span class="logo">Mi Invitación Online</span>
                     <nav>
                         <ul>
-                            <li v-for="invitation in invitationTypes">
+                            <li v-for="(invitation, key) in invitationTypes" :key="key">
                                 <nav-link :class="{active : invitation.name == selected}" @click.native="activeLink($event,invitation.name)">{{ invitation.name }}</nav-link>
                             </li>
                         </ul>
@@ -71,6 +71,13 @@
         padding: 50px 2% 50px;
     }
 
+      .content img {
+        width: 60px;
+        height: 60px;
+        float: left;
+        margin-top: -13px;
+    }
+
     .main_header .row .content {
         padding: 0;
     }
@@ -92,13 +99,14 @@
     .logo {
         width: 300px;
         font-size: 25px;
-        color: #8f8f8f;
+        color: white;
         // text-transform: uppercase;
         float: left;
         display: block;
         margin-top: 0;
-        line-height: 1;
         margin-bottom: 10px;
+        margin-left: 14px;
+        font-size: 35px;
     }
 
     nav {
