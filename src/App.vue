@@ -14,7 +14,6 @@
   import HeaderResponsive from './components/HeaderResponsive.vue'
   import Home from './views/Home.vue'
   import Invitation from './views/Invitation.vue'
-  import NotFound from './views/NotFound.vue'
   import Footer from './components/Footer.vue'
   export default {
     name: 'App',
@@ -23,7 +22,6 @@
       'app-header-responsive': HeaderResponsive,
       'home': Home,
       'invitation': Invitation,
-      'notFound': NotFound,
       'app-footer': Footer
     },
     computed: {
