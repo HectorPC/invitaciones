@@ -106,6 +106,7 @@ export default {
   text-align: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: x-large;
 }
 
 .wrapper {

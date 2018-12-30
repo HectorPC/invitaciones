@@ -1,18 +1,21 @@
 <template>
     <div class="footer">
-        <a :href="hrefLink">Made by Vuejs</a>
-        <div class="demo-label">DEMO ONLY</div>
+        <a :href="hrefLink" target="_blank">Free App</a>
+        <div class="demo-label"><a :href="hrefLink" target="_blank">{{ domain }}</a></div>
     </div>
 </template>
 
 <script>
     export default {
         name:'Footer',
-        props: {
-            hrefLink: {default:'', type: String}
+        data() {
+            return {
+            hrefLink: window.location.protocol + '//' + window.location.host,
+            domain: window.location.host
+         }
         }
-
     }
+
 </script>
 
 <style lang="scss" scoped>
@@ -22,14 +25,17 @@
         padding: 6px;
         margin: 8px auto 0;
         background-color: #202020;
-        color: white;
-        text-transform: uppercase;
+        a{
+          color: white;
+          text-transform: uppercase;
+        }   
     }
     a {
         color: #757575;
         text-decoration: none;
           &:hover {
-            text-decoration: underline;
+            text-decoration: none;
+            font-weight: bold;
             cursor: pointer;
         }
     }

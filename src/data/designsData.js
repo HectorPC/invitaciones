@@ -4,19 +4,19 @@ export default {
             id: 'radio1',
             frontDesign: '1',
             backDesign: [{
-                    boda: './assets/backgrounds/weddingFree.png'
+                    boda: './assets/backgrounds/boda/weddingFree.png'
                 },
                 {
-                    comunion: './assets/backgrounds/sol.jpg'
+                    comunion: './assets/backgrounds/comunion/manos.jpg'
                 },
                 {
-                    bautizo: './assets/backgrounds/bordeChupetes.jpg'
+                    bautizo: './assets/backgrounds/bautizo/bordeChupetes.jpg'
                 },
                 {
-                    cumpleanos: './assets/backgrounds/balloons-background.png'
+                    cumpleanos: './assets/backgrounds/cumple/velasTarta1.jpg'
                 },
                 {
-                    evento: './assets/backgrounds/alfombraFree.png'
+                    evento: './assets/backgrounds/evento/multitud.jpg'
                 }
             ]
         },
@@ -24,19 +24,19 @@ export default {
             id: 'radio2',
             frontDesign: '2',
             backDesign: [{
-                    boda: './assets/backgrounds/sol.jpg'
+                    boda: './assets/backgrounds/boda/globosCorazon.jpg'
                 },
                 {
-                    comunion: './assets/backgrounds/comunionFree.jpg'
+                    comunion: './assets/backgrounds/comunion/comunionFree.jpg'
                 },
                 {
                     bautizo: './assets/backgrounds/nubes.jpg'
                 },
                 {
-                    cumpleanos: './assets/backgrounds/baloon-image-17.jpg'
+                    cumpleanos: './assets/backgrounds/cumple/globosColores1.jpg'
                 },
                 {
-                    evento: './assets/backgrounds/conferencia.jpg'
+                    evento: './assets/backgrounds/evento/alfombraFree.png'
                 }
             ]
         },
@@ -44,19 +44,19 @@ export default {
             id: 'radio3',
             frontDesign: '3',
             backDesign: [{
-                    boda: './assets/backgrounds/corazonFree.jpg'
+                    boda: './assets/backgrounds/boda/copas.jpg'
                 },
                 {
-                    comunion: './assets/backgrounds/rezar.jpg'
+                    comunion: './assets/backgrounds/comunion/rezar.jpg'
                 },
                 {
-                    bautizo: './assets/backgrounds/BabyFeet.jpg'
+                    bautizo: './assets/backgrounds/bautizo/BabyFeet.jpg'
                 },
                 {
-                    cumpleanos: './assets/backgrounds/baloon-image-47.jpg'
+                    cumpleanos: './assets/backgrounds/cumple/velasTarta2.jpg'
                 },
                 {
-                    evento: './assets/backgrounds/La-Alfombra-Roja.jpg'
+                    evento: './assets/backgrounds/evento/fuegosArtificiales.jpg'
                 }
             ]
         }
