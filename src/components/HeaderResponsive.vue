@@ -12,7 +12,7 @@
           <span></span>
 
           <ul id="menu">
-            <a href="#" v-for="invitation in invitationTypes">
+            <a href="#" v-for="(invitation, key) in invitationTypes" :key="key">
               <li @click="closeMenu($event)">{{ invitation.name }}</li>
             </a>
           </ul>
