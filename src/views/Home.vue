@@ -292,8 +292,8 @@ export default {
   display: flex;
 }
 
-@media (max-width: 768px) {
-  .design {
+@media screen and (max-width: 768px) {
+  .design, .time {
     flex-direction: column;
   }
 }

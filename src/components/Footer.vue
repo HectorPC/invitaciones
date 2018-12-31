@@ -21,7 +21,7 @@
 <style lang="scss" scoped>
     .demo-label {
         box-sizing: border-box;
-        width: 120px;
+        width: 130px;
         padding: 6px;
         margin: 8px auto 0;
         background-color: #202020;
