@@ -1,0 +1,3 @@
+nvm use 8.11.4 ---> para utilizar esta versión de node, si no no funcionará
+npm install ---> descarga todas las dependencias que necesita
+npm run serve ---> arranca la aplicación
