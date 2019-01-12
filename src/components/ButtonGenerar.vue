@@ -58,4 +58,10 @@
 		position: relative;
 		top: 1px;
 	}
+
+	@media screen and (max-width: 768px) {
+		.myButton {
+			border-radius: 28px 28px 28px 28px;
+		}
+	}
 </style>

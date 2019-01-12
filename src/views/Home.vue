@@ -27,8 +27,8 @@
             <p>Copia y comparte tu invitación</p>
             <div class="url">
                 <div class="button-generate">
-                    <app-button-generar @click.native="urlGenerator">Generar URL</app-button-generar>
-                    <app-button-previsualizar @click.native="preview">Previsualizar</app-button-previsualizar>
+                    <app-button-generar id="generar" @click.native="urlGenerator">Generar URL</app-button-generar>
+                    <app-button-previsualizar id="previsualizar" @click.native="preview">Previsualizar</app-button-previsualizar>
                 </div>
                 <div class="copy">
                     <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
@@ -278,6 +278,10 @@ export default {
   text-align: center;
   padding-bottom: 20px;
 }
+
+#generar, #previsualizar {
+display: inline-block;
+}
 .url #inputText {
   width: 90%;
   display: inline-block;
@@ -295,6 +299,9 @@ export default {
 @media screen and (max-width: 768px) {
   .design, .time {
     flex-direction: column;
+  }
+  #previsualizar {
+    display: none;
   }
 }
 </style>
