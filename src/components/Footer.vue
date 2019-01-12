@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <a :href="hrefLink" target="_blank">Free App</a>
+        <a :href="playStoreApp" target="_blank">Free App</a>
         <div class="demo-label"><a :href="hrefLink" target="_blank">{{ domain }}</a></div>
     </div>
 </template>
@@ -11,7 +11,8 @@
         data() {
             return {
             hrefLink: window.location.protocol + '//' + window.location.host,
-            domain: window.location.host
+            domain: window.location.host,
+            playStoreApp: 'https://play.google.com/store/apps/details?id=invitaciononline.net.invitaciononline'
          }
         }
     }
