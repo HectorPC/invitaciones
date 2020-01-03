@@ -167,12 +167,14 @@ export default {
       var title = document.querySelector("#title").value;
       var date = this.formatDate(document.querySelector("#date").value);
       var hour = document.querySelector("#hour").value;
-      var description = this.formatDescription(
+      var description = this.formatText(
         document.querySelector("#description").value
       );
 
       if (title === "") {
         title = "-";
+      }else {
+        title = this.formatText(title)
       }
       if (date === "") {
         date = "-";
@@ -219,8 +221,8 @@ export default {
         .reverse()
         .join("-");
     },
-    formatDescription(notFormatDescription) {
-      var description = notFormatDescription.replace(
+    formatText(notFormatText) {
+      var description = notFormatText.replace(
         /\r|\n|\r\n/g,
         "breaklLine"
       );

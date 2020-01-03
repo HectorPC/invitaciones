@@ -67,7 +67,7 @@ export default {
     },
     getTitle(path) {
       var invitationArray = path.split("/");
-      return this.decodeUrl(invitationArray[5]);
+      return this.formatText(this.decodeUrl(invitationArray[5]));
     },
     getDate(path) {
       var invitationArray = path.split("/");
@@ -79,17 +79,17 @@ export default {
     },
     getDescription(path) {
       var invitationArray = path.split("/");
-      return this.formatDescription(this.decodeUrl(invitationArray[8]));
+      return this.formatText(this.decodeUrl(invitationArray[8]));
     },
     decodeUrl(urlEncode) {
       return decodeURI(urlEncode);
     },
-    formatDescription(notFormatDescription) {
-      var formatDescription = notFormatDescription
+    formatText(notFormatText) {
+      var formatText = notFormatText
         .split("breaklLine")
         .join("<br>");
-      formatDescription = formatDescription.split("+").join(" ");
-      return formatDescription;
+      formatText = formatText.split("+").join(" ");
+      return formatText;
     },
     setBackground() {
       return `./assets/backgrounds/${this.srcImg}`;
