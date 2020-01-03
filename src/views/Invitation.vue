@@ -3,7 +3,7 @@
     id="invitation"
     :style="{ 'background-image' : 'url(\'' + background + '\')' }"
   >
-    <div v-if="getDesignType(path) == 'radio1'" class="wrapper front-type-1">
+    <div class="wrapper front-type-1">
       <h2>{{ getTitle(path) }}</h2>
       <div class="date-hour">
         <span class="date"
@@ -15,7 +15,7 @@
       <div class="description"><p v-html="getDescription(path)"></p></div>
     </div>
 
-    <div v-if="getDesignType(path) == 'radio2'" class="wrapper front-type-2">
+    <!-- <div v-if="getDesignType(path) == 'radio2'" class="wrapper front-type-2">
       <div class="date-hour">
         <span class="date"
           >Fecha {{ getInvitationType(path) }}: <b>{{ getDate(path) }}</b></span
@@ -37,7 +37,7 @@
           >Hora: <b>{{ getHour(path) }}</b></span
         >
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -107,16 +107,12 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   font-size: x-large;
+  overflow: auto;
 }
 
 .wrapper {
   height: 98vh;
-}
-
-h2 {
-  height: 10vh;
-  position: relative;
-  top: 10px;
+  padding: 50px;
 }
 
 .date-hour {

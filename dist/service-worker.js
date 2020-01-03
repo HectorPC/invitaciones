@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.ed94e8aac9b9c6e3c2de37a76dae8647.js"
+  "/precache-manifest.cb6b35eb3156f33175f0be550c7f5608.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "invita"});
