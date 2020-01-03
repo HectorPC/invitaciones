@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <a :href="playStoreApp" target="_blank">Free App</a>
+        <!-- <a :href="playStoreApp" target="_blank">Free App</a> -->
         <div class="demo-label"><a :href="hrefLink" target="_blank">{{ domain }}</a></div>
     </div>
 </template>

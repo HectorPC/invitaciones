@@ -1,42 +1,82 @@
 <template>
-    <div id="home">
-        <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
-            <p>Elige el diseño de la invitación</p>
-            <div class="design">
-                <div class="design-selection" v-for="(design, key) in designs" :key="key">
-                   <radio :id="design.id"></radio> 
-                    <card :class="{activeCard : design.frontDesign == isSelected}"  @click.native="activeCard(design.frontDesign,design.id)" :isSelected="design.frontDesign == isSelected || radioChecked == design.id">
-                        <span slot="front">{{ design.frontDesign }}</span>
-                        <img class="imgDesign" v-if="invitationType=='Boda'" slot="back" :src="design.backDesign[backDesignNumberArray].boda"/>
-                        <img class="imgDesign" v-if="invitationType=='Comunión'" slot="back" :src="design.backDesign[backDesignNumberArray].comunion"/>
-                        <img class="imgDesign" v-if="invitationType=='Bautizo'" slot="back" :src="design.backDesign[backDesignNumberArray].bautizo"/>
-                        <img class="imgDesign" v-if="invitationType=='Cumpleaños'" slot="back" :src="design.backDesign[backDesignNumberArray].cumpleanos"/>
-                        <img class="imgDesign" v-if="invitationType=='Evento'" slot="back" :src="design.backDesign[backDesignNumberArray].evento"/>
-                    </card>
-                </div>
-            </div>
-            <p>Introduce el contenido de la invitación</p>
-            <div class="data">
-                <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
-                <div class="time">
-                    <date :idDate="dateId" :label="labelDate"></date>
-                    <hour :idHour="hourId" :label="labelHour"></hour>
-                </div>
-                <app-textarea>Textarea</app-textarea>
-            </div>
-            <p>Copia y comparte tu invitación</p>
-            <div class="url">
-                <div class="button-generate">
-                    <app-button-generar id="generar" @click.native="urlGenerator">Generar URL</app-button-generar>
-                    <app-button-previsualizar id="previsualizar" @click.native="preview">Previsualizar</app-button-previsualizar>
-                </div>
-                <div class="copy">
-                    <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
-                    <buttonCopy @click.native="copyUrl"></buttonCopy>
-                </div>
-            </div>
-        </main-panel>
-    </div>
+  <div id="home">
+    <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
+      <p>Elige el diseño de la invitación</p>
+      <div class="design">
+        <div class="design-selection" v-for="(design, key) in designs" :key="key">
+          <radio :id="design.id"></radio>
+          <card
+            :class="{activeCard : design.frontDesign == isSelected}"
+            @click.native="activeCard(design.frontDesign,design.id)"
+            :isSelected="design.frontDesign == isSelected || radioChecked == design.id"
+          >
+            <span slot="front">{{ design.frontDesign }}</span>
+            <img
+              class="imgDesign"
+              v-if="invitationType=='Boda'"
+              slot="back"
+              :src="design.backDesign[backDesignNumberArray].boda"
+            />
+            <img
+              class="imgDesign"
+              v-if="invitationType=='Comunión'"
+              slot="back"
+              :src="design.backDesign[backDesignNumberArray].comunion"
+            />
+            <img
+              class="imgDesign"
+              v-if="invitationType=='Bautizo'"
+              slot="back"
+              :src="design.backDesign[backDesignNumberArray].bautizo"
+            />
+            <img
+              class="imgDesign"
+              v-if="invitationType=='Cumpleaños'"
+              slot="back"
+              :src="design.backDesign[backDesignNumberArray].cumpleanos"
+            />
+            <img
+              class="imgDesign"
+              v-if="invitationType=='Evento'"
+              slot="back"
+              :src="design.backDesign[backDesignNumberArray].evento"
+            />
+          </card>
+        </div>
+      </div>
+      <p>Introduce el contenido de la invitación</p>
+      <div class="data">
+        <input-text :type="type" :label="label1" :id="id1" :name="name1" :isError="isError"></input-text>
+        <div class="time">
+          <date :idDate="dateId" :label="labelDate"></date>
+          <hour :idHour="hourId" :label="labelHour"></hour>
+        </div>
+        <app-textarea>Textarea</app-textarea>
+      </div>
+      <p>Copia y comparte tu invitación</p>
+      <div class="url">
+        <div class="button-generate">
+          <app-button-generar id="generar" @click.native="urlGenerator">Generar URL</app-button-generar>
+          <app-button-previsualizar id="previsualizar" @click.native="preview">Previsualizar</app-button-previsualizar>
+        </div>
+        <div class="copy">
+          <input-text :type="type" :label="label2" :id="id2" :name="name2" :isError="isError"></input-text>
+          <buttonCopy @click.native="copyUrl"></buttonCopy>
+        </div>
+      </div>
+      <div class="share">
+        <h4>Share</h4>
+        <vue-goodshare-facebook :page_url="urlGenerated" title_social="Facebook" has_icon></vue-goodshare-facebook>
+        <vue-goodshare-twitter :page_url="urlGenerated" title_social="Twitter" has_icon></vue-goodshare-twitter>
+        <vue-goodshare-pinterest :page_url="urlGenerated" title_social="Pinterest" has_icon></vue-goodshare-pinterest>
+        <vue-goodshare-reddit :page_url="urlGenerated" title_social="Reddit" has_icon></vue-goodshare-reddit>
+        <vue-goodshare-linkedIn :page_url="urlGenerated" title_social="LinkedIn" has_icon></vue-goodshare-linkedIn>
+        <vue-goodshare-email :page_url="urlGenerated" title_social="email" has_icon></vue-goodshare-email>
+        <vue-goodshare-whatsApp :page_url="urlGenerated" title_social="WhatsApp" has_icon></vue-goodshare-whatsApp>
+        <vue-goodshare-telegram :page_url="urlGenerated" title_social="Telegram" has_icon></vue-goodshare-telegram>
+      </div>
+    </main-panel>
+  </div>
 </template>
 
 <script>
@@ -53,6 +93,15 @@ import ButtonPrevisualizar from "../components/ButtonPrevisualizar.vue";
 import EventBus from "../event-bus";
 import Designs from "../data/designsData.js";
 import InvitationTypes from "../data/headerData.js";
+// Import vue-goodshare single elements
+import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue";
+import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter.vue";
+import VueGoodsharePinterest from "vue-goodshare/src/providers/Pinterest.vue";
+import VueGoodshareReddit from "vue-goodshare/src/providers/Reddit.vue";
+import VueGoodshareLinkedIn from "vue-goodshare/src/providers/LinkedIn.vue";
+import VueGoodshareEmail from "vue-goodshare/src/providers/Email.vue"
+import VueGoodshareWhatsApp from "vue-goodshare/src/providers/WhatsApp.vue";
+import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue";
 
 export default {
   name: "Home",
@@ -79,7 +128,8 @@ export default {
       isSelected: "",
       labelDate: "Fecha",
       labelHour: "Hora",
-      backDesignNumberArray: 0
+      backDesignNumberArray: 0,
+      urlGenerated: window.location.protocol + "//" + window.location.host
     };
   },
   components: {
@@ -92,7 +142,15 @@ export default {
     Hour,
     appButtonGenerar: ButtonGenerar,
     appButtonPrevisualizar: ButtonPrevisualizar,
-    appTextarea: Textarea
+    appTextarea: Textarea,
+    VueGoodshareFacebook,
+    VueGoodshareTwitter,
+    VueGoodsharePinterest,
+    VueGoodshareReddit,
+    VueGoodshareLinkedIn,
+    VueGoodshareEmail,
+    VueGoodshareWhatsApp,
+    VueGoodshareTelegram
   },
   methods: {
     copyUrl() {
@@ -131,7 +189,7 @@ export default {
           document.querySelector(".activeCard .imgDesign").src
         );
       } catch (e) {
-         srcImg = "no-image-design";
+        srcImg = "no-image-design";
       }
 
       var urlData =
@@ -152,11 +210,14 @@ export default {
         description;
       var url = urlData;
       document.querySelector("#url").value = url;
-
+      this.urlGenerated = url;
       return url;
     },
     formatDate(notFormatDate) {
-      return notFormatDate.split('-').reverse().join('-');
+      return notFormatDate
+        .split("-")
+        .reverse()
+        .join("-");
     },
     formatDescription(notFormatDescription) {
       var description = notFormatDescription.replace(
@@ -172,8 +233,8 @@ export default {
     },
     preview() {
       var url = this.urlGenerator();
-       var win = window.open(url, "_blank");
-        win.focus();
+      var win = window.open(url, "_blank");
+      win.focus();
       //  this.$router.push(url)
     },
     activeCard(active, idRadio) {
@@ -279,8 +340,9 @@ export default {
   padding-bottom: 20px;
 }
 
-#generar, #previsualizar {
-display: inline-block;
+#generar,
+#previsualizar {
+  display: inline-block;
 }
 .url #inputText {
   width: 90%;
@@ -296,8 +358,16 @@ display: inline-block;
   display: flex;
 }
 
+.share {
+  text-align: center;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-bottom: 100px;
+}
+
 @media screen and (max-width: 768px) {
-  .design, .time {
+  .design,
+  .time {
     flex-direction: column;
   }
   #previsualizar {
