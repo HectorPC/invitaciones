@@ -75,6 +75,28 @@
         <vue-goodshare-whatsApp :page_url="urlGenerated" title_social="WhatsApp" has_icon></vue-goodshare-whatsApp>
         <vue-goodshare-telegram :page_url="urlGenerated" title_social="Telegram" has_icon></vue-goodshare-telegram>
       </div>
+      <!--  -->
+      <div class="suggestions" @click="onToggle()">
+        <div>
+          <span>Buzón de sugerencias</span>
+        </div>
+        <div>
+          <img src="../../public/assets/img/email-open.png" />
+        </div>
+      
+      <transition name="fade">
+        <div class="form-style-6" v-if="show">
+          <h1>Sugerencias</h1>
+          <form action="https://formspree.io/xknollol" method="POST">
+            <input type="text" name="name" placeholder="Tu nombre" />
+            <input type="email" name="email" placeholder="Tu email" />
+            <textarea name="text" placeholder="Escribe tu sugerencia"></textarea>
+            <input type="submit" value="Enviar sugerencia" />
+          </form>
+        </div>
+      </transition>
+</div>
+      <!--  -->
     </main-panel>
   </div>
 </template>
@@ -99,7 +121,7 @@ import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter.vue";
 import VueGoodsharePinterest from "vue-goodshare/src/providers/Pinterest.vue";
 import VueGoodshareReddit from "vue-goodshare/src/providers/Reddit.vue";
 import VueGoodshareLinkedIn from "vue-goodshare/src/providers/LinkedIn.vue";
-import VueGoodshareEmail from "vue-goodshare/src/providers/Email.vue"
+import VueGoodshareEmail from "vue-goodshare/src/providers/Email.vue";
 import VueGoodshareWhatsApp from "vue-goodshare/src/providers/WhatsApp.vue";
 import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue";
 
@@ -129,7 +151,8 @@ export default {
       labelDate: "Fecha",
       labelHour: "Hora",
       backDesignNumberArray: 0,
-      urlGenerated: window.location.protocol + "//" + window.location.host
+      urlGenerated: window.location.protocol + "//" + window.location.host,
+      show: false
     };
   },
   components: {
@@ -173,8 +196,8 @@ export default {
 
       if (title === "") {
         title = "-";
-      }else {
-        title = this.formatText(title)
+      } else {
+        title = this.formatText(title);
       }
       if (date === "") {
         date = "-";
@@ -222,10 +245,7 @@ export default {
         .join("-");
     },
     formatText(notFormatText) {
-      var description = notFormatText.replace(
-        /\r|\n|\r\n/g,
-        "breaklLine"
-      );
+      var description = notFormatText.replace(/\r|\n|\r\n/g, "breaklLine");
       description = description.split(" ").join("+");
       return description;
     },
@@ -251,6 +271,9 @@ export default {
     },
     getDomainUrl() {
       return window.location.protocol + "//" + window.location.host;
+    },
+    onToggle() {
+      this.show = !this.show;
     }
   },
   created() {
@@ -332,7 +355,7 @@ export default {
 .data,
 .url,
 .submit {
-  border: 2px solid #9fafc712;
+  border: 2px solid #617fab26;
   border-radius: 5px;
   padding: 45px 50px;
 }
@@ -366,6 +389,98 @@ export default {
   padding-left: 100px;
   padding-bottom: 100px;
 }
+
+.suggestions {
+  height: 430px;
+  text-align: center;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+/* Contact form */
+
+.form-style-6 {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 16px;
+  background: #f7f7f7;
+}
+.form-style-6 h1 {
+  background: var(--contact-background);
+  padding: 20px 0;
+  font-size: 140%;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  margin: -16px -16px 16px -16px;
+}
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="number"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 3%;
+  color: #555;
+}
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="number"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus {
+  box-shadow: 0 0 5px var(--contact-background);
+  padding: 3%;
+  border: 1px solid var(--contact-background);
+  resize: vertical;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  padding: 3%;
+  background: var(--contact-background);
+  border-bottom: 2px solid var(--contact-background);
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  color: #fff;
+  font-size: 12px;
+}
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover {
+  background: #083c9ced;
+}
+/* End contact form */
 
 @media screen and (max-width: 768px) {
   .design,

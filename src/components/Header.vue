@@ -52,6 +52,7 @@
     #header {
         height: 70px;
         opacity: .9;
+        z-index: 3;
     }
 
     a {
