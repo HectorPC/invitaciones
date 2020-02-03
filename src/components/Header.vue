@@ -5,14 +5,14 @@
 
             <div class="row">
                 <div class="content">
-                   <img src="assets/backgrounds/logoV01.png"/><span class="logo">Mi Invitación Online</span>
-                    <nav>
+                   <img src="assets/backgrounds/logoV01.png"/><span class="logo">Ahorro tiempo</span>
+                    <!-- <nav>
                         <ul>
                             <li v-for="(invitation, key) in invitationTypes" :key="key">
                                 <nav-link :class="{active : invitation.name == selected}" @click.native="activeLink($event,invitation.name)">{{ invitation.name }}</nav-link>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> -->
                 </div>
             </div>
 
@@ -20,29 +20,6 @@
 
     </div>
 </template>
-
-<script>
-    import NavLink from './NavLink.vue'
-    import EventBus from '../event-bus'
-    import InvitationTypes from '../data/headerData.js'
-    export default {
-        data() {
-            return {
-                selected: 'Boda',
-                invitationTypes: InvitationTypes.invitationTypes
-            }
-        },
-        methods: {
-            activeLink(event,active) {
-                this.selected = active;
-                EventBus.$emit('changeInvitationType', event.target);
-            }
-        },
-        components: {
-            NavLink
-        }
-    }
-</script>
 
 <style lang="scss" scoped>
     * {
@@ -93,7 +70,6 @@
         overflow: hidden;
         transition: all 0.3s;
         padding-bottom: 6px;
-        /* font-family: "Oswald", sans-serif; */
         background: black;
     }
 
@@ -101,7 +77,6 @@
         width: 300px;
         font-size: 25px;
         color: white;
-        // text-transform: uppercase;
         float: left;
         display: block;
         margin-top: 0;
@@ -109,29 +84,4 @@
         margin-left: 14px;
         font-size: 35px;
     }
-
-    nav {
-        float: right;
-    }
-
-    nav ul {
-        list-style: none;
-        overflow: hidden;
-        text-align: right;
-        float: right;
-        padding: 0px;
-    }
-
-    nav ul li {
-        display: inline-block;
-        margin-left: 8px;
-        line-height: 1.5;
-    }
-
-    .active {
-        background: white;
-        font-weight: bold;
-        border-radius: 3px;
-    }
-    
 </style>

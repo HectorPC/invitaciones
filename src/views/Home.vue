@@ -1,6 +1,15 @@
 <template>
   <div id="home">
     <main-panel :style="{ 'background-image' : 'url(\'' + backgroundImage + '\')' }">
+
+    <nav>
+        <ul>
+            <li v-for="(invitation, key) in invitationTypes" :key="key">
+                <nav-link :class="{active : invitation.name == selectedNav}" @click.native="activeLink($event,invitation.name)">{{ invitation.name }}</nav-link>
+            </li>
+        </ul>
+    </nav>
+
       <p>Elige el diseño de la invitación</p>
       <div class="design">
         <div class="design-selection" v-for="(design, key) in designs" :key="key">
@@ -115,7 +124,8 @@ import ButtonPrevisualizar from "../components/ButtonPrevisualizar.vue";
 import EventBus from "../event-bus";
 import Designs from "../data/designsData.js";
 import InvitationTypes from "../data/headerData.js";
-// Import vue-goodshare single elements
+import NavLink from '../components/NavLink.vue'
+
 import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue";
 import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter.vue";
 import VueGoodsharePinterest from "vue-goodshare/src/providers/Pinterest.vue";
@@ -152,7 +162,9 @@ export default {
       labelHour: "Hora",
       backDesignNumberArray: 0,
       urlGenerated: window.location.protocol + "//" + window.location.host,
-      show: false
+      show: false,
+      selectedNav: 'Boda',
+      invitationTypes: InvitationTypes.invitationTypes
     };
   },
   components: {
@@ -173,9 +185,14 @@ export default {
     VueGoodshareLinkedIn,
     VueGoodshareEmail,
     VueGoodshareWhatsApp,
-    VueGoodshareTelegram
+    VueGoodshareTelegram,
+    NavLink
   },
   methods: {
+    activeLink(event,active) {
+      this.selected = active;
+      EventBus.$emit('changeInvitationType', event.target);
+    },
     copyUrl() {
       var urlInput = document.querySelector("#url");
       urlInput.select();
@@ -321,6 +338,32 @@ export default {
 #home p {
   font-size: 1.5em;
 }
+
+/* Nav */
+
+nav {
+      float: right;
+  }
+
+  nav ul {
+      list-style: none;
+      overflow: hidden;
+      text-align: right;
+      float: right;
+      padding: 0px;
+  }
+
+  nav ul li {
+      display: inline-block;
+      margin-left: 8px;
+      line-height: 1.5;
+  }
+
+  .active {
+      background: white;
+      font-weight: bold;
+      border-radius: 3px;
+  }
 
 .design,
 .time {

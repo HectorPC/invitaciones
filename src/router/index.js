@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Invitation from '../views/Invitation.vue'
 import NotFound from '../views/NotFound.vue'
+import ChoiceHome from '../views/ChoiceHome.vue'
 
 Vue.use(Router)
 
@@ -12,6 +13,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'ChoiceHome',
+      component: ChoiceHome
+    },
+    {
+      path: '/home',
       name: 'Home',
       component: Home
     },
