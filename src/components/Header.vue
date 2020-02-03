@@ -6,13 +6,6 @@
             <div class="row">
                 <div class="content">
                    <img src="assets/backgrounds/logoV01.png"/><span class="logo">Ahorro tiempo</span>
-                    <!-- <nav>
-                        <ul>
-                            <li v-for="(invitation, key) in invitationTypes" :key="key">
-                                <nav-link :class="{active : invitation.name == selected}" @click.native="activeLink($event,invitation.name)">{{ invitation.name }}</nav-link>
-                            </li>
-                        </ul>
-                    </nav> -->
                 </div>
             </div>
 
