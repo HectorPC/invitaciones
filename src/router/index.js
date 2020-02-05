@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
+import HomeInvitation from '../views/HomeInvitation.vue'
+import HomeList from '../views/HomeList.vue'
 import Invitation from '../views/Invitation.vue'
 import NotFound from '../views/NotFound.vue'
 import ChoiceHome from '../views/ChoiceHome.vue'
@@ -17,15 +18,20 @@ export default new Router({
       component: ChoiceHome
     },
     {
-      path: '/home',
-      name: 'Home',
-      component: Home
+      path: '/homeInvitation',
+      name: 'HomeInvitation',
+      component: HomeInvitation
     },
     {
       path: '/invitation/:invitationType/:design/:srcImg/:title/:date/:hour/:description',
       name: 'Invitation',
       component: Invitation,
       props: true
+    },
+    {
+      path: '/homeList',
+      name: 'HomeList',
+      component: HomeList
     },
     {
       path: '/notfound',

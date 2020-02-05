@@ -1,10 +1,12 @@
 <template>
     <div class="content">
         <div class="choice">¿Qué necesito?</div>
-        <router-link class="router-link" to="/home">
+        <router-link class="router-link" to="/homeInvitation">
             <div class="invitation-generator">Generar Invitación</div>
         </router-link>
-        <div class="list-generator">Generar Lista</div>
+        <router-link class="router-link" to="/homeList">
+            <div class="list-generator">Generar Lista</div>
+        </router-link>
     </div>
 </template>
 

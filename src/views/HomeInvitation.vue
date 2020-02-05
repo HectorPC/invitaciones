@@ -136,7 +136,7 @@ import VueGoodshareWhatsApp from "vue-goodshare/src/providers/WhatsApp.vue";
 import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue";
 
 export default {
-  name: "Home",
+  name: "HomeInvitation",
   data() {
     return {
       invitationType: InvitationTypes.invitationTypes[0]["name"],
