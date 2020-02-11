@@ -24,13 +24,13 @@ export default {
             category: 'Tipo 2',
             items: [
                 {
-                name: 'Item 1',
-                idItem: 1,
+                name: 'Item 11',
+                idItem: 11,
                 checked: false
                 },
                 {
-                name: 'Item 2',
-                idItem: 2,
+                name: 'Item 22',
+                idItem: 22,
                 checked: false
                 } 
             ]

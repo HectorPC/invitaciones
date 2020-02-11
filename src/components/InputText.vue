@@ -4,6 +4,7 @@
       type="text"
       :id="id"
       :name="name"
+      :placeholder="placeholder"
       required
       @blur="validation"
       @focus="persistError"
@@ -25,6 +26,7 @@ export default {
     type: { default: "", type: String },
     id: { default: "", type: String },
     name: { default: "", type: String },
+    placeholder: { default: "", type: String },
     isError: { default: false, type: Boolean }
   },
   data() {
@@ -91,6 +93,9 @@ input {
   &:focus ~ .bar:before,
   &:focus ~ .bar:after {
     width: 50%;
+  }
+  &::placeholder {
+    font-size: 14px;
   }
 }
 

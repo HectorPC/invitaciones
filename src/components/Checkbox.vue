@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input type="checkbox" id="checkBoxShop" @change="onChangeCheck($event)"/>
-        <label for="checkBoxShop">
+        <input type="checkbox" id="id" name="name" @change="onChangeCheck($event)"/>
+        <label for="checkbox">
             <div><i class="fa fa-check"></i></div>
             <slot></slot>
         </label>
@@ -10,8 +10,14 @@
 
 <script>
     import EventBus from '../event-bus';
+
+
     export default {
-        name: 'CheckboxShop',
+        name: 'CheckboxCustom',
+        props: {
+            id: String,
+            name: String
+        },
         methods: {
             onChangeCheck(event) {
                 EventBus.$emit('changeCheckEvent', event.target.checked);
