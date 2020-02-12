@@ -129,8 +129,11 @@ export default {
     //     : 0;
     // },
     deleteItem(item) {
-      const index = this.items.indexOf(item.id);
-      this.items.splice(index, 1);
+      this.items.forEach((element, index)=> {
+        if(element.name === item.name) {
+          this.items.splice(index, 1);
+        }
+      });
     },
     print() {
       this.beforePrint();
