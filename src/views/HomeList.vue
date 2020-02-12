@@ -15,12 +15,18 @@
       <div class="body-table">
         <div class="block-item" v-for="(item,key) in items" :key="key">
           <div class="row check">
-            <Checkbox
-              :id="item.name"
-              v-model="item.checked"
-              :value="item.name"
-              @change="handleChange()"
-            >{{item.name}}</Checkbox>
+            <div class="custom-checkbox">
+              <!-- <Checkbox
+                :id="item.name"
+                v-model="item.checked"
+                :value="item.name"
+                @change="handleChange()"
+              >{{item.name}}</Checkbox> -->
+            </div>
+            <div class="simple-checkbox">
+              <input class="larger-checkbox" type="checkbox" name :id="item.name" v-model="item.checked" :value="item.name" />
+              {{item.name}}
+            </div>
 
             <div class="edit-delete">
               <!-- <div class="edit">
@@ -118,13 +124,25 @@ export default {
       this.items.splice(index, 1);
     },
     print() {
+      this.beforePrint();
+      window.print();
+      this.afterPrint();
+    },
+    beforePrint() {
       document.querySelector(".add-item").style.display = "none";
       document.querySelector(".list-type-container").style.display = "none";
-
-      window.print();
-
+      const deleteItemsHidden = document.querySelectorAll(".delete");
+      deleteItemsHidden.forEach(deleteItem => {
+        deleteItem.style.display = "none";
+      });
+    },
+    afterPrint() {
       document.querySelector(".add-item").style.display = "inherit";
       document.querySelector(".list-type-container").style.display = "flex";
+      const deleteItemsShow = document.querySelectorAll(".delete");
+      deleteItemsShow.forEach(deleteItem => {
+        deleteItem.style.display = "table-cell";
+      });
     }
   }
 };
@@ -176,6 +194,14 @@ export default {
   cursor: pointer;
 }
 
+.simple-checkbox {
+  width: -webkit-fill-available;
+input.larger-checkbox {
+  transform : scale(1.5);
+  
+}
+}
+
 .edit,
 .delete {
   display: table-cell;
@@ -210,8 +236,5 @@ export default {
       box-shadow: 3px 3px 5px grey;
     }
   }
-}
-
-.hidden-item {
 }
 </style>
