@@ -5,12 +5,15 @@
         class="list-type"
         v-for="(list,key) in options"
         :key="key"
+        :class="{'active': listSelected === list}"
         @click="selectList(list)"
       >{{list}}</div>
     </div>
     <div id="table" class="table" v-if="listSelected!== ''">
       <div class="header-table">
-        <div class="header">{{listSelected}}</div>
+        <div class="header">
+          <span>{{listSelected}}</span>
+        </div>
       </div>
       <div class="body-table">
         <div class="block-item" v-for="(item,key) in items" :key="key">
@@ -21,11 +24,18 @@
                 v-model="item.checked"
                 :value="item.name"
                 @change="handleChange()"
-              >{{item.name}}</Checkbox> -->
+              >{{item.name}}</Checkbox>-->
             </div>
             <div class="simple-checkbox">
-              <input class="larger-checkbox" type="checkbox" name :id="item.name" v-model="item.checked" :value="item.name" />
-              {{item.name}}
+              <input
+                class="larger-checkbox"
+                type="checkbox"
+                name
+                :id="item.name"
+                v-model="item.checked"
+                :value="item.name"
+              />
+              <span class="item-name">{{item.name}}</span>
             </div>
 
             <div class="edit-delete">
@@ -35,7 +45,7 @@
               </div>-->
               <div class="delete">
                 <i class="material-icons" @click="deleteItem(item)">delete_forever</i>
-                <div class="icon-text">Borrar</div>
+                <!-- <div class="icon-text">Borrar</div> -->
               </div>
             </div>
           </div>
@@ -60,14 +70,14 @@
           </div>
         </div>
       </div>
+      <button class="print" @click="print">Imprimir</button>
     </div>
-    <div class="print" @click="print">Print</div>
   </div>
 </template>
 
 <script>
 import ListData from "../data/listData.js";
-import Checkbox from "vue-material-checkbox";
+// import Checkbox from "vue-material-checkbox";
 import InputText from "../components/InputText.vue";
 
 export default {
@@ -82,7 +92,6 @@ export default {
     };
   },
   components: {
-    Checkbox,
     InputText
   },
   computed: {
@@ -131,6 +140,7 @@ export default {
     beforePrint() {
       document.querySelector(".add-item").style.display = "none";
       document.querySelector(".list-type-container").style.display = "none";
+      document.querySelector(".print").style.display = "none";
       const deleteItemsHidden = document.querySelectorAll(".delete");
       deleteItemsHidden.forEach(deleteItem => {
         deleteItem.style.display = "none";
@@ -139,6 +149,7 @@ export default {
     afterPrint() {
       document.querySelector(".add-item").style.display = "inherit";
       document.querySelector(".list-type-container").style.display = "flex";
+      document.querySelector(".print").style.display = "block";
       const deleteItemsShow = document.querySelectorAll(".delete");
       deleteItemsShow.forEach(deleteItem => {
         deleteItem.style.display = "table-cell";
@@ -163,8 +174,20 @@ export default {
 }
 
 .list-type {
-  border: 1px solid red;
-  padding: 40px;
+  border: 2px solid #29668f;
+  padding: 20px;
+  &:hover {
+    background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+    background-color: #408c99;
+    color:white;
+    font-weight: bold;
+  }
+  &.active {
+    background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+    background-color: #408c99;
+    color:white;
+    font-weight: bold;
+  }
 }
 
 .table {
@@ -176,6 +199,9 @@ export default {
   border: 1px solid black;
   padding: 10px;
   text-align: center;
+  span {
+    font-size: 20px;
+  }
 }
 
 .row {
@@ -192,35 +218,57 @@ export default {
 .material-icons {
   display: inline;
   cursor: pointer;
+  font-size: 22px;
+  &.check-text {
+    position: relative;
+    top: 2px;
+    left: 4px;
+  }
+}
+
+.add-text {
+  position: relative;
+  top: 2px;
 }
 
 .simple-checkbox {
   width: -webkit-fill-available;
-input.larger-checkbox {
-  transform : scale(1.5);
-  
-}
+  padding-left: 10px;
+  padding-top: 3px;
+  input.larger-checkbox {
+    transform: scale(1.5);
+    margin-right: 5px;
+  }
+  .item-name {
+    padding-left: 5px;
+  }
 }
 
 .edit,
 .delete {
   display: table-cell;
-  padding: 17px;
   text-align: center;
+  padding-top: 4px;
+  .icon-text {
+    font-size: 11px;
+  }
 }
 
 .add-item {
   display: inherit;
   border-top: 2px dotted grey;
+  padding-left: 17px;
 }
 
 .add-text {
   padding: 10px;
   vertical-align: super;
+  font-size: 14px;
 }
 
 .insert-text {
   display: flex;
+  height: 55px;
   .input-text-add {
     width: 83%;
     padding: 5px 16px 0px 5px;
@@ -236,5 +284,31 @@ input.larger-checkbox {
       box-shadow: 3px 3px 5px grey;
     }
   }
+}
+
+.print {
+  float: right;
+  margin-top: 10px;
+  box-shadow: 1px 17px 13px -13px #276873;
+  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+  background-color: #599bb3;
+  border-radius: 30px;
+  border: 2px solid #29668f;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: inherit;
+  padding: 8px 15px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #3d768a;
+}
+.print:hover {
+  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  background-color: #408c99;
+}
+.print:active {
+  position: relative;
+  top: 1px;
 }
 </style>
