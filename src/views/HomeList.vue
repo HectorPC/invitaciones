@@ -12,7 +12,7 @@
     <div id="table" class="table" v-if="listSelected!== ''">
       <div class="header-table">
         <div class="header">
-          <span>{{listSelected}}</span>
+          <span>- {{listSelected}} -</span>
         </div>
       </div>
       <div class="body-table">
@@ -191,14 +191,15 @@ export default {
 }
 
 .table {
-  padding: 50px 15% 160px 15%;
+  padding: 50px 17% 160px 17%;
 }
 
 .header {
   display: inline-block;
   border: 1px solid black;
-  padding: 10px;
+  padding: 13px;
   text-align: center;
+  border-radius: 5px 5px 0px 0px;
   span {
     font-size: 20px;
   }
@@ -256,8 +257,9 @@ export default {
 
 .add-item {
   display: inherit;
-  border-top: 2px dotted grey;
+  border: 2px dotted grey;
   padding-left: 17px;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .add-text {
