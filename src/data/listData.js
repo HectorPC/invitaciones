@@ -2,34 +2,34 @@ export default {
 
     lists: [
         {
-            name: 'Lista 1',
+            name: 'Lista de la compra',
             id: 1,
-            category: 'Tipo 1',
+            category: 'alimentacion',
             items: [
                 {
-                name: 'Item 1',
+                name: 'Aceite',
                 idItem: 1,
                 checked: false
                 },
                 {
-                name: 'Item 2',
+                name: 'Tomate frito',
                 idItem: 2,
                 checked: false
                 } 
             ]
         },
         {
-            name: 'Lista 2',
+            name: 'Lista de la maleta',
             id: 2,
-            category: 'Tipo 2',
+            category: 'viaje',
             items: [
                 {
-                name: 'Item 11',
+                name: 'Bolsa de aseo',
                 idItem: 11,
                 checked: false
                 },
                 {
-                name: 'Item 22',
+                name: 'Cepillo de dientes',
                 idItem: 22,
                 checked: false
                 } 

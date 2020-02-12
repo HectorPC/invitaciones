@@ -8,7 +8,7 @@
         @click="selectList(list)"
       >{{list}}</div>
     </div>
-    <div class="table" v-if="listSelected!== ''">
+    <div id="table" class="table" v-if="listSelected!== ''">
       <div class="header-table">
         <div class="header">{{listSelected}}</div>
       </div>
@@ -26,7 +26,7 @@
               <!-- <div class="edit">
                 <i class="material-icons">edit</i>
                 <div class="icon-text">Editar</div>
-              </div> -->
+              </div>-->
               <div class="delete">
                 <i class="material-icons" @click="deleteItem(item)">delete_forever</i>
                 <div class="icon-text">Borrar</div>
@@ -35,6 +35,7 @@
           </div>
           <!-- <div class="row item">{{item.name}}</div> -->
         </div>
+
         <div class="row add-item">
           <i class="material-icons" @click="newItem">library_add</i>
           <span class="add-text">Nuevo item</span>
@@ -54,6 +55,7 @@
         </div>
       </div>
     </div>
+    <div class="print" @click="print">Print</div>
   </div>
 </template>
 
@@ -91,29 +93,38 @@ export default {
       this.items = itemsSelected[0];
       this.listSelected = selectedList;
     },
-    handleChange() {
-      console.log("Nueva selección: ", this.items);
-    },
+    handleChange() {},
     newItem() {
       this.isNew = !this.isNew;
     },
     addItem() {
-       this.isNew = false;
-       const newItemValue = document.querySelector("#insertText").value
-       if(newItemValue !== ''){
-       this.items.push({
-         name: newItemValue,
-         idItem: this.getLastId(),
-         checked: false
-       })
-    }
+      this.isNew = false;
+      const newItemValue = document.querySelector("#insertText").value;
+      if (newItemValue !== "") {
+        this.items.push({
+          name: newItemValue,
+          idItem: this.getLastId(),
+          checked: false
+        });
+      }
     },
     getLastId() {
-      return this.items[this.items.length -1] !== undefined ? this.items[this.items.length -1].idItem : 0
+      return this.items[this.items.length - 1] !== undefined
+        ? this.items[this.items.length - 1].idItem
+        : 0;
     },
     deleteItem(item) {
       const index = this.items.indexOf(item.id);
-      this.items.splice(index, 1)
+      this.items.splice(index, 1);
+    },
+    print() {
+      document.querySelector(".add-item").style.display = "none";
+      document.querySelector(".list-type-container").style.display = "none";
+
+      window.print();
+
+      document.querySelector(".add-item").style.display = "inherit";
+      document.querySelector(".list-type-container").style.display = "flex";
     }
   }
 };
@@ -199,5 +210,8 @@ export default {
       box-shadow: 3px 3px 5px grey;
     }
   }
+}
+
+.hidden-item {
 }
 </style>
