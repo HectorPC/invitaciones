@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-header  v-if="!checkRouteInvitation" class="header"/>
-    <app-header-responsive v-if="!checkRouteInvitation" class="header-responsive"/>
+    <!-- <app-header-responsive v-if="!checkRouteInvitation" class="header-responsive"/> -->
     <router-view></router-view>
     <!-- <choice-home v-if="!checkRouteInvitation"/>
     <invitation v-if="checkRouteInvitation"/> -->
@@ -11,7 +11,7 @@
 
 <script>
   import Header from './components/Header.vue'
-  import HeaderResponsive from './components/HeaderResponsive.vue'
+  // import HeaderResponsive from './components/HeaderResponsive.vue'
   // import Home from './views/Home.vue'
   // import ChoiceHome from './views/ChoiceHome.vue'
   // import Invitation from './views/Invitation.vue'
@@ -20,7 +20,7 @@
     name: 'App',
     components: {
       'app-header': Header,
-      'app-header-responsive': HeaderResponsive,
+      // 'app-header-responsive': HeaderResponsive,
       // 'ChoiceHome': ChoiceHome,
       // 'invitation': Invitation,
       'app-footer': Footer
@@ -47,9 +47,9 @@
   }
 
   @media (max-width: 768px) {
-    .header {
-      display: none;
-    }
+    // .header {
+    //   display: none;
+    // }
     .header-responsive {
       display: block;
       position: relative;

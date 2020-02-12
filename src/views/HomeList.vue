@@ -12,7 +12,7 @@
     <div id="table" class="table" v-if="listSelected!== ''">
       <div class="header-table">
         <div class="header">
-          <span>- {{listSelected}} -</span>
+          <span>~ {{listSelected}} ~</span>
         </div>
       </div>
       <div class="body-table">
@@ -118,16 +118,16 @@ export default {
       if (newItemValue !== "") {
         this.items.push({
           name: newItemValue,
-          idItem: this.getLastId(),
+          // idItem: this.getLastId(),
           checked: false
         });
       }
     },
-    getLastId() {
-      return this.items[this.items.length - 1] !== undefined
-        ? this.items[this.items.length - 1].idItem
-        : 0;
-    },
+    // getLastId() {
+    //   return this.items[this.items.length - 1] !== undefined
+    //     ? this.items[this.items.length - 1].idItem
+    //     : 0;
+    // },
     deleteItem(item) {
       const index = this.items.indexOf(item.id);
       this.items.splice(index, 1);
@@ -141,6 +141,9 @@ export default {
       document.querySelector(".add-item").style.display = "none";
       document.querySelector(".list-type-container").style.display = "none";
       document.querySelector(".print").style.display = "none";
+      document.querySelector(".home-list").style.marginTop = "-390px";
+      document.querySelector(".home-list").style.transform = "scale(0.7)";
+      document.querySelector(".home-list").style.padding = "0px";
       const deleteItemsHidden = document.querySelectorAll(".delete");
       deleteItemsHidden.forEach(deleteItem => {
         deleteItem.style.display = "none";
@@ -150,6 +153,9 @@ export default {
       document.querySelector(".add-item").style.display = "inherit";
       document.querySelector(".list-type-container").style.display = "flex";
       document.querySelector(".print").style.display = "block";
+      document.querySelector(".home-list").style.marginTop = "70px";
+      document.querySelector(".home-list").style.transform = "scale(1)";
+      document.querySelector(".home-list").style.padding = "40px";
       const deleteItemsShow = document.querySelectorAll(".delete");
       deleteItemsShow.forEach(deleteItem => {
         deleteItem.style.display = "table-cell";
@@ -162,7 +168,7 @@ export default {
 
 <style lang="scss" scoped>
 .home-list {
-  margin-top: 30px;
+  margin-top: 70px;
   padding: 40px;
 }
 
