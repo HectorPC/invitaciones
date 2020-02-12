@@ -206,7 +206,7 @@ export default {
         },
         {
             name: 'Lista compra-limpieza',
-            id: 1,
+            id: 2,
             category: 'limpieza',
             items: [
                 {
@@ -289,7 +289,7 @@ export default {
         },
         {
             name: 'Lista de la maleta',
-            id: 2,
+            id: 3,
             category: 'viaje',
             items: [
                 {
@@ -500,7 +500,7 @@ export default {
         },
         {
             name: 'Lista para ir al trabajo',
-            id: 1,
+            id: 4,
             category: 'trabajo',
             items: [
                 {
@@ -568,6 +568,11 @@ export default {
                 checked: false
                 }
             ]
+        },        {
+            name: 'Personalizada',
+            id: 5,
+            category: 'vacio',
+            items: []
         },
     ]
 
