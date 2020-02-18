@@ -19,12 +19,14 @@
         <div class="recover-save">
           <div class="button-list">
             <button class="recover-list" @click="recover">
-              <span v-if="(listType === listSelected) && !isOverwritten">Recuperar lista compartida</span>
-              <span v-else>Recuperar lista guardada</span>
+              <span>Recuperar última lista guardada</span>
             </button>
           </div>
           <div class="button-list">
-            <button class="save-list" @click="save(items, '')">Guardar lista</button>
+            <button class="save-list" @click="save(items, '')">
+              <span v-if="isOverwritten()">Sobreescribir lista</span>
+              <span v-else>Guardar lista</span>
+            </button>
           </div>
         </div>
         <div class="block-item" v-for="(item,key) in items" :key="key">
@@ -73,7 +75,13 @@
 
     <modal v-if="showModal" @close="showModal=false">
       <div slot="body" class="copy">
-        <input-text type="text" label="Copiar para compartir" id="copyUrl" name="copyUrl" class="copyUrl"></input-text>
+        <input-text
+          type="text"
+          label="Copiar para compartir"
+          id="copyUrl"
+          name="copyUrl"
+          class="copyUrl"
+        ></input-text>
         <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
       </div>
     </modal>
@@ -86,7 +94,7 @@ import ListData from "../data/listData.js";
 import InputText from "../components/InputText.vue";
 import Modal from "../components/Modal.vue";
 import ButtonCopy from "../components/ButtonCopy.vue";
-import GoTop from '@inotom/vue-go-top';
+import GoTop from "@inotom/vue-go-top";
 
 export default {
   name: "HomeList",
@@ -98,7 +106,6 @@ export default {
       listSelected: "",
       isNew: false,
       listType: "",
-      isOverwritten: Boolean,
       showModal: false
     };
   },
@@ -118,7 +125,8 @@ export default {
   },
   created() {
     this.save(this.getDataUrl(), this.listType);
-    this.isOverwritten = false;
+    this.selectList(this.listType);
+    this.recover();
   },
   methods: {
     getDataUrl() {
@@ -151,8 +159,12 @@ export default {
         .map(listToShow => listToShow.items);
       this.items = itemsSelected[0];
       this.listSelected = selectedList;
+      this.isOverwritten()
     },
-    handleChange() {},
+    isOverwritten() {
+      const listSaved = localStorage.getItem(this.listSelected);
+      return listSaved !== null;
+    },
     newItem() {
       this.isNew = !this.isNew;
     },
@@ -234,9 +246,6 @@ export default {
         list = this.listSelected;
       }
       localStorage.setItem(list, JSON.stringify(listToSave));
-      if (list === this.listType) {
-        this.isOverwritten = true;
-      }
     },
     share() {
       const url = this.generateUrl();
@@ -444,22 +453,22 @@ export default {
 
   &.print {
     float: right;
-    box-shadow: 1px 17px 13px -13px #1C57BF;
-    background: linear-gradient(to bottom, #599bb3 5%, #1C57BF 100%);
-    background-color: #1C57BF;
-    border: 2px solid #1C57BF;
-    text-shadow: 0px 0px 0px #1C57BF;
+    box-shadow: 1px 17px 13px -13px #1c57bf;
+    background: linear-gradient(to bottom, #599bb3 5%, #1c57bf 100%);
+    background-color: #1c57bf;
+    border: 2px solid #1c57bf;
+    text-shadow: 0px 0px 0px #1c57bf;
     &:hover {
       background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
       background-color: #408c99;
     }
   }
   &.share {
-    box-shadow: 1px 17px 13px -13px #1C57BF;
-    background: linear-gradient(to bottom, #599bb3 5%, #1C57BF 100%);
-    background-color: #1C57BF;
-    border: 2px solid #1C57BF;
-    text-shadow: 0px 0px 0px #1C57BF;
+    box-shadow: 1px 17px 13px -13px #1c57bf;
+    background: linear-gradient(to bottom, #599bb3 5%, #1c57bf 100%);
+    background-color: #1c57bf;
+    border: 2px solid #1c57bf;
+    text-shadow: 0px 0px 0px #1c57bf;
     &:hover {
       background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
       background-color: #408c99;
