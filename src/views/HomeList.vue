@@ -77,6 +77,7 @@
         <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
       </div>
     </modal>
+    <go-top bg-color="#FFDC1A" :size="40" :has-outline="false" title="Volver arriba"></go-top>
   </div>
 </template>
 
@@ -85,6 +86,7 @@ import ListData from "../data/listData.js";
 import InputText from "../components/InputText.vue";
 import Modal from "../components/Modal.vue";
 import ButtonCopy from "../components/ButtonCopy.vue";
+import GoTop from '@inotom/vue-go-top';
 
 export default {
   name: "HomeList",
@@ -103,7 +105,8 @@ export default {
   components: {
     InputText,
     Modal,
-    ButtonCopy
+    ButtonCopy,
+    GoTop
   },
   computed: {
     options() {
@@ -441,24 +444,22 @@ export default {
 
   &.print {
     float: right;
-    box-shadow: 1px 17px 13px -13px #276873;
-    background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-    background-color: #599bb3;
-    border: 2px solid #29668f;
-    text-shadow: 0px 0px 0px #3d768a;
-
+    box-shadow: 1px 17px 13px -13px #1C57BF;
+    background: linear-gradient(to bottom, #599bb3 5%, #1C57BF 100%);
+    background-color: #1C57BF;
+    border: 2px solid #1C57BF;
+    text-shadow: 0px 0px 0px #1C57BF;
     &:hover {
       background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
       background-color: #408c99;
     }
   }
   &.share {
-    box-shadow: 1px 17px 13px -13px #276873;
-    background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-    background-color: #599bb3;
-    border: 2px solid #29668f;
-    text-shadow: 0px 0px 0px #3d768a;
-
+    box-shadow: 1px 17px 13px -13px #1C57BF;
+    background: linear-gradient(to bottom, #599bb3 5%, #1C57BF 100%);
+    background-color: #1C57BF;
+    border: 2px solid #1C57BF;
+    text-shadow: 0px 0px 0px #1C57BF;
     &:hover {
       background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
       background-color: #408c99;
