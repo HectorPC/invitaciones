@@ -29,7 +29,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/homeList',
+      path: '/homeList/:jsonData?/:listType?',
       name: 'HomeList',
       component: HomeList
     },
