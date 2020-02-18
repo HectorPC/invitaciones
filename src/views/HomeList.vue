@@ -70,12 +70,21 @@
       <button class="button print" @click="print">Imprimir</button>
       <button class="button share" @click="share">Compartir</button>
     </div>
+
+    <modal v-if="showModal" @close="showModal=false">
+      <div slot="body" class="copy">
+        <input-text type="text" label="Copiar para compartir" id="copyUrl" name="copyUrl" class="copyUrl"></input-text>
+        <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
 import ListData from "../data/listData.js";
 import InputText from "../components/InputText.vue";
+import Modal from "../components/Modal.vue";
+import ButtonCopy from "../components/ButtonCopy.vue";
 
 export default {
   name: "HomeList",
@@ -87,11 +96,14 @@ export default {
       listSelected: "",
       isNew: false,
       listType: "",
-      isOverwritten: Boolean
+      isOverwritten: Boolean,
+      showModal: false
     };
   },
   components: {
-    InputText
+    InputText,
+    Modal,
+    ButtonCopy
   },
   computed: {
     options() {
@@ -131,7 +143,6 @@ export default {
       return decodeURI(urlEncode);
     },
     selectList(selectedList) {
-      // this.items = [];
       const itemsSelected = this.listData
         .filter(list => list.name === selectedList)
         .map(listToShow => listToShow.items);
@@ -148,7 +159,6 @@ export default {
       if (newItemValue !== "") {
         this.items.push({
           name: newItemValue,
-          // idItem: this.getLastId(),
           checked: false
         });
       }
@@ -227,6 +237,21 @@ export default {
     },
     share() {
       const url = this.generateUrl();
+      this.showModal = true;
+
+      setTimeout(() => {
+        if (
+          document.querySelector("#copyUrl").value !== null &&
+          this.urlHasJson(url)
+        ) {
+          document.querySelector("#copyUrl").value = url;
+        } else {
+          document.querySelector("#copyUrl").value = "Lista vacía";
+        }
+      }, 50);
+    },
+    urlHasJson(url) {
+      return url.indexOf("{") !== -1;
     },
     generateUrl() {
       const itemsToString = JSON.stringify(this.items);
@@ -236,6 +261,11 @@ export default {
     },
     getDomainUrl() {
       return window.location.protocol + "//" + window.location.host;
+    },
+    copyUrl() {
+      var urlInput = document.querySelector("#copyUrl");
+      urlInput.select();
+      document.execCommand("copy");
     }
   }
 };
@@ -433,6 +463,14 @@ export default {
       background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
       background-color: #408c99;
     }
+  }
+}
+
+.copy {
+  display: flex;
+  justify-content: space-between;
+  .copyUrl {
+    width: 100%;
   }
 }
 </style>
