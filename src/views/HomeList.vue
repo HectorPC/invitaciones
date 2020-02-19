@@ -198,9 +198,6 @@ export default {
         document.querySelector("#insertText").value
       );
 
-      console.log("newCategoryValue: ", newCategoryValue);
-      console.log("newItemValue: ", newItemValue);
-
       if (newItemValue !== "") {
         if (newCategoryValue !== "" && this.exitsCategory(newCategoryValue)) {
           this.items

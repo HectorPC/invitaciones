@@ -1,208 +1,482 @@
 export default {
   lists: [
-    // {
-    //     name: 'Lista compra-alimentos',
-    //     id: 1,
-    //     category: 'alimentacion',
-    //     items: [
-    //         {
-    //         name: 'Aceite',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Vinagre',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tomate frito',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tomate natural',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Lechuga',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Sal',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pimienta',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Mostaza',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Salsa barbacoa',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Mayonesa',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Queso',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Jamón',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Chorizo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Zanahoria',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Papata',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Patatas fritas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Aceitunas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Frutos secos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Fruta',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Verdura',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Carne',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pescado',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Lentejas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Garbanzos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Galletas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Batidos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Leche',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Atún aceite',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Atún en escabeche',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Maíz',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Guisantes',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Congelados',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Helado',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Hielo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Yogourt',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Flan',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Natillas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Chocolate',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pan de molde',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pan',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Vino',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Refrescos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Cerveza',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Agua',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Huevos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pasta',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Gazpacho',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Salmorejo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Sopa-caldo',
-    //         checked: false
-    //         }
-    //     ]
-    // },
+    {
+      name: "Lista compra-alimentos",
+      id: 1,
+      category: "alimentacion",
+      items: [
+        {
+          itemCategory: "esenciales",
+          itemsCategory: [
+            {
+              name: "Carne",
+              checked: false
+            },
+            {
+              name: "Pescado",
+              checked: false
+            },
+            {
+              name: "Pollo",
+              checked: false
+            },
+            {
+              name: "Huevos",
+              checked: false
+            },
+            {
+              name: "Pasta",
+              checked: false
+            },
+            {
+              name: "Pan",
+              checked: false
+            },
+            {
+              name: "Arroz",
+              checked: false
+            },
+            {
+              name: "Garbanzos",
+              checked: false
+            },
+            {
+              name: "Lemtejas",
+              checked: false
+            },
+            {
+              name: "Judías",
+              checked: false
+            },
+            {
+              name: "Embutidos",
+              checked: false
+            },
+            {
+              name: "Azúcar",
+              checked: false
+            },
+            {
+              name: "Sal",
+              checked: false
+            },
+            {
+              name: "Harina",
+              checked: false
+            },
+            {
+              name: "Pan rallado",
+              checked: false
+            },
+            {
+              name: "Marisco",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "bebidas",
+          itemsCategory: [
+            {
+              name: "Agua",
+              checked: false
+            },
+            {
+              name: "Refrescos",
+              checked: false
+            },
+            {
+              name: "Cerveza",
+              checked: false
+            },
+            {
+              name: "Vino",
+              checked: false
+            },
+            {
+              name: "Energéticas",
+              checked: false
+            },
+            {
+              name: "Batidos",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "lacteos",
+          itemsCategory: [
+            {
+              name: "Leche",
+              checked: false
+            },
+            {
+              name: "Yogourt",
+              checked: false
+            },
+            {
+              name: "Queso",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "desayuno",
+          itemsCategory: [
+            {
+              name: "Galletas",
+              checked: false
+            },
+            {
+              name: "Pan de molde",
+              checked: false
+            },
+            {
+              name: "Mantequilla-margarina",
+              checked: false
+            },
+            {
+              name: "Mermelada",
+              checked: false
+            },
+            {
+              name: "Magdalenas",
+              checked: false
+            },
+            {
+              name: "Sobaos",
+              checked: false
+            },
+            {
+              name: "Pan tostado",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "verduras",
+          itemsCategory: [
+            {
+              name: "Pimiento",
+              checked: false
+            },
+            {
+              name: "Cebolla",
+              checked: false
+            },
+            {
+              name: "Tomate",
+              checked: false
+            },
+            {
+              name: "Lechuga",
+              checked: false
+            },
+            {
+              name: "Ajo",
+              checked: false
+            },
+            {
+              name: "Cebolla",
+              checked: false
+            },
+            {
+              name: "Judías verdes",
+              checked: false
+            },
+            {
+              name: "Guisantes",
+              checked: false
+            },
+            {
+              name: "Patata",
+              checked: false
+            },
+            {
+              name: "Calabacín",
+              checked: false
+            },
+            {
+              name: "Berenjena",
+              checked: false
+            },
+            {
+              name: "Lombarda",
+              checked: false
+            },
+            {
+              name: "Coliflor",
+              checked: false
+            },
+            {
+              name: "Apio",
+              checked: false
+            },
+            {
+              name: "Nabo",
+              checked: false
+            },
+            {
+              name: "Puerro",
+              checked: false
+            },
+            {
+              name: "Zanahoria",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "conservas",
+          itemsCategory: [
+            {
+              name: "Atún en eceite",
+              checked: false
+            },
+            {
+              name: "Mejillones",
+              checked: false
+            },
+            {
+              name: "Berberechos",
+              checked: false
+            },
+            {
+              name: "Guisantes",
+              checked: false
+            },
+            {
+              name: "Maíz dulce",
+              checked: false
+            },
+            {
+              name: "Pimientos piquillo",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "frutas",
+          itemsCategory: [
+            {
+              name: "Manzana",
+              checked: false
+            },
+            {
+              name: "Mandarina",
+              checked: false
+            },
+            {
+              name: "Melocotón",
+              checked: false
+            },
+            {
+              name: "Melón",
+              checked: false
+            },
+            {
+              name: "Sandía",
+              checked: false
+            },
+            {
+              name: "Fresas",
+              checked: false
+            },
+            {
+              name: "Cerezas",
+              checked: false
+            },
+            {
+              name: "Peras",
+              checked: false
+            },
+            {
+              name: "Uvas",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "salsas-aliños",
+          itemsCategory: [
+            {
+              name: "Aceite",
+              checked: false
+            },
+            {
+              name: "Vinagre",
+              checked: false
+            },
+            {
+              name: "Tomate-kepchup",
+              checked: false
+            },
+            {
+              name: "Salsa barbacoa",
+              checked: false
+            },
+            {
+              name: "Mostaza",
+              checked: false
+            },
+            {
+              name: "Mayonesa",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "congelados",
+          itemsCategory: [
+            {
+              name: "Hielo",
+              checked: false
+            },
+            {
+              name: "Helado",
+              checked: false
+            },
+            {
+              name: "Verduras",
+              checked: false
+            },
+            {
+              name: "Pescado",
+              checked: false
+            },
+            {
+              name: "Carnes",
+              checked: false
+            },
+            {
+              name: "Pizza",
+              checked: false
+            },
+            {
+              name: "Marisco",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "aperitivos",
+          itemsCategory: [
+            {
+              name: "Aceitunas",
+              checked: false
+            },
+            {
+              name: "Patatas fritas",
+              checked: false
+            },
+            {
+              name: "Nachos",
+              checked: false
+            },
+            {
+              name: "Guacamole",
+              checked: false
+            },
+            {
+              name: "Frutos secos",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "mascotas",
+          itemsCategory: [
+            {
+              name: "Comida húmeda",
+              checked: false
+            },
+            {
+              name: "Comida seca",
+              checked: false
+            },
+            {
+              name: "Arena gato",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "preparados",
+          itemsCategory: [
+            {
+              name: "Sopa de sobre",
+              checked: false
+            },
+            {
+              name: "Yakisoba",
+              checked: false
+            },
+            {
+              name: "Gazpacho",
+              checked: false
+            },
+            {
+              name: "Salmorejo",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "postres",
+          itemsCategory: [
+            {
+              name: "Flan",
+              checked: false
+            },
+            {
+              name: "Tarta",
+              checked: false
+            },
+            {
+              name: "Chocolate",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "especias",
+          itemsCategory: [
+            {
+              name: "Pimienta",
+              checked: false
+            },
+            {
+              name: "Orégano",
+              checked: false
+            },
+            {
+              name: "Pimentón",
+              checked: false
+            },
+            {
+              name: "Tomillo",
+              checked: false
+            },
+            {
+              name: "Cúrcuma",
+              checked: false
+            },
+            {
+              name: "Ajo en polvo",
+              checked: false
+            },
+            {
+              name: "Clavo",
+              checked: false
+            },
+            {
+              name: "Perejil",
+              checked: false
+            }
+          ]
+        }
+      ]
+    },
     // {
     //     name: 'Lista compra-limpieza',
     //     id: 2,
@@ -574,63 +848,6 @@ export default {
     //     category: 'vacio',
     //     items: []
     // },
-    {
-      name: "Prueba",
-      id: 5,
-      category: "vacio",
-      items: [
-        {
-          itemCategory: "bebidas",
-          itemsCategory: [
-            {
-              name: "agua",
-              checked: false
-            },
-            {
-              name: "vino",
-              checked: false
-            },
-            {
-              name: "cola",
-              checked: false
-            }
-          ]
-        },
-        {
-          itemCategory: "postres",
-          itemsCategory: [
-            {
-              name: "yogourt",
-              checked: false
-            },
-            {
-              name: "flan",
-              checked: false
-            },
-            {
-              name: "chocolate",
-              checked: false
-            }
-          ]
-        },
-        {
-            itemCategory: "aperitivo",
-            itemsCategory: [
-              {
-                name: "aceitunas",
-                checked: false
-              },
-              {
-                name: "patatas",
-                checked: false
-              },
-              {
-                name: "mejillones",
-                checked: false
-              }
-            ]
-          }
-      ]
-    }
+    
   ]
 };
