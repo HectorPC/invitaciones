@@ -29,32 +29,52 @@
             </button>
           </div>
         </div>
+
         <div class="block-item" v-for="(item,key) in items" :key="key">
           <div class="row check">
-            <div class="custom-checkbox"></div>
-            <div class="simple-checkbox">
-              <input
-                class="larger-checkbox"
-                type="checkbox"
-                name
-                :id="item.name"
-                v-model="item.checked"
-                :value="item.name"
-              />
-              <span class="item-name">{{item.name}}</span>
-            </div>
+            <div class="block-item-category">
+              <span class="item-category">{{item.itemCategory}}</span>
+              <div
+                class="simple-checkbox"
+                v-for="(itemCateg,index) in item.itemsCategory"
+                :key="index"
+              >
+                <div class="block-ckeckbox">
+                  <input
+                    class="larger-checkbox"
+                    type="checkbox"
+                    name
+                    :id="itemCateg.name"
+                    v-model="itemCateg.checked"
+                    :value="itemCateg.name"
+                  />
+                  <span class="item-name">{{itemCateg.name}}</span>
+                </div>
 
-            <div class="edit-delete">
-              <div class="delete">
-                <i class="material-icons" @click="deleteItem(item)">delete_forever</i>
+                <div class="edit-delete">
+                  <div class="delete">
+                    <i
+                      class="material-icons"
+                      @click="deleteItem(itemCateg)"
+                    >delete_forever</i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div class="row add-item">
           <i class="material-icons" @click="newItem">library_add</i>
           <span class="add-text">Nuevo item</span>
           <div class="insert-text" v-if="isNew">
+            <input-text
+              class="input-text-add"
+              type="input"
+              id="categoryText"
+              name="categoryText"
+              placeholder="Categoría"
+            ></input-text>
             <input-text
               class="input-text-add"
               type="input"
@@ -85,7 +105,7 @@
         <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
       </div>
     </modal>
-    <go-top bg-color="#FFDC1A" :size="40" :has-outline="false" title="Volver arriba"></go-top>
+    <go-top class="go-top" bg-color="#FFDC1A" :size="40" :has-outline="false" title="Volver arriba"></go-top>
   </div>
 </template>
 
@@ -134,10 +154,11 @@ export default {
       if (urlArray.length >= 3 && urlArray[urlArray.length - 1].length) {
         const dataEncode = urlArray[2];
         const dataDecode = this.decodeUrl(dataEncode);
+
         let newStringJson = dataDecode.replace(/([a-zA-Z0-9]+?):/g, '"$1":');
         newStringJson = newStringJson.replace(/'/g, '"');
 
-        const arrayNewJson = newStringJson.split("]");
+        const arrayNewJson = newStringJson.split("}]}]");
         const listType = arrayNewJson[1];
         this.listType = listType;
 
@@ -159,7 +180,7 @@ export default {
         .map(listToShow => listToShow.items);
       this.items = itemsSelected[0];
       this.listSelected = selectedList;
-      this.isOverwritten()
+      this.isOverwritten();
     },
     isOverwritten() {
       const listSaved = localStorage.getItem(this.listSelected);
@@ -170,17 +191,56 @@ export default {
     },
     addItem() {
       this.isNew = false;
-      const newItemValue = document.querySelector("#insertText").value;
+      const newCategoryValue = this.toLowerCase(
+        document.querySelector("#categoryText").value
+      );
+      const newItemValue = this.toLowerCase(
+        document.querySelector("#insertText").value
+      );
+
+      console.log("newCategoryValue: ", newCategoryValue);
+      console.log("newItemValue: ", newItemValue);
+
       if (newItemValue !== "") {
-        this.items.push({
-          name: newItemValue,
-          checked: false
-        });
+        if (newCategoryValue !== "" && this.exitsCategory(newCategoryValue)) {
+          this.items
+            .filter(item => item.itemCategory === newCategoryValue)
+            .forEach(element => {
+              element.itemsCategory.push({
+                name: newItemValue,
+                checked: false
+              });
+            });
+        } else {
+          this.items.push({
+            itemCategory: newCategoryValue,
+            itemsCategory: [
+              {
+                name: newItemValue,
+                checked: false
+              }
+            ]
+          });
+        }
       }
+    },
+    toLowerCase(text) {
+      return text.toLowerCase();
+    },
+    exitsCategory(category) {
+      return (
+        this.items.find(item => item.itemCategory === category) !== undefined
+      );
     },
     deleteItem(item) {
       this.items.forEach((element, index) => {
-        if (element.name === item.name) {
+        element.itemsCategory.forEach((itemCategory,indexCategory)=> {
+          if (itemCategory.name === item.name) {
+            element.itemsCategory.splice(indexCategory, 1);
+          }
+        });
+
+        if (element.itemsCategory.length === 0) {
           this.items.splice(index, 1);
         }
       });
@@ -197,6 +257,8 @@ export default {
       document.querySelector(".header").style.display = "none";
       document.querySelector(".footer").style.display = "none";
       document.querySelector(".print").style.display = "none";
+      document.querySelector(".share").style.display = "none";
+      document.querySelector(".go-top").style.display = "none";
       document.querySelector(".home-list").style.transform = "scale(0.7)";
       document.querySelector(".home-list").style.padding = "0px";
       const deleteItemsHidden = document.querySelectorAll(".delete");
@@ -223,6 +285,8 @@ export default {
       document.querySelector(".header").style.display = "block";
       document.querySelector(".footer").style.display = "block";
       document.querySelector(".print").style.display = "block";
+      document.querySelector(".share").style.display = "block";
+      document.querySelector(".go-top").style.display = "block";
       document.querySelector(".home-list").style.marginTop = "70px";
       document.querySelector(".home-list").style.transform = "scale(1)";
       document.querySelector(".home-list").style.padding = "40px";
@@ -361,6 +425,14 @@ export default {
 .header-table,
 .block-item {
   display: grid;
+  .block-item-category {
+    width: 100%;
+    .item-category {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: grey;
+    }
+  }
 }
 
 .material-icons {
@@ -383,12 +455,20 @@ export default {
   width: -webkit-fill-available;
   padding-left: 10px;
   padding-top: 3px;
-  input.larger-checkbox {
-    transform: scale(1.5);
-    margin-right: 5px;
-  }
-  .item-name {
-    padding-left: 5px;
+  display: inline-flex;
+  justify-content: space-between;
+  border: 1px dotted grey;
+  .block-ckeckbox {
+    position: relative;
+    top: 1px;
+    input.larger-checkbox {
+      transform: scale(1.5);
+      margin-right: 5px;
+    }
+    .item-name {
+      padding-left: 8px;
+      text-transform: capitalize;
+    }
   }
 }
 
@@ -396,7 +476,6 @@ export default {
 .delete {
   display: table-cell;
   text-align: center;
-  padding-top: 4px;
   .icon-text {
     font-size: 11px;
   }
@@ -423,7 +502,6 @@ export default {
     padding: 5px 16px 0px 5px;
   }
   .check-add {
-    border: 1px solid green;
     height: 25px;
     border-radius: 5px;
     padding: 3px;
