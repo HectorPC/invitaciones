@@ -477,377 +477,499 @@ export default {
         }
       ]
     },
-    // {
-    //     name: 'Lista compra-limpieza',
-    //     id: 2,
-    //     category: 'limpieza',
-    //     items: [
-    //         {
-    //         name: 'Estropajo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Bayeta',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Fregona',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Escoba',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Bolsas de basura',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Guantes',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Limpia-cristales',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Limpia-muebles',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Lejía',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Amoniaco',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Limpia-WC',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Limpia-suelos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Papel higiénico',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Mopa',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Toallas húmedas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Papel cocina',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Jabón lavadora',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Suavizante lavadora',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Ambientador',
-    //         checked: false
-    //         }
-    //     ]
-    // },
-    // {
-    //     name: 'Lista de la maleta',
-    //     id: 3,
-    //     category: 'viaje',
-    //     items: [
-    //         {
-    //         name: 'Bolsa de aseo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Cepillo de dientes',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Desodorante',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Colonia',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Limpieza oídos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Utensilios afeitado',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Utensilios depilación',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Toalla ducha',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Toalla playa-piscina',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Crema de dientes',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Productos para el pelo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Champú',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Gel',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Peine-cepillo pelo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Utensilios lentillas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Gafas ver',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Funda gafas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Gafas sol',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pijama',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Zapatillas estar por casa',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Chanclas playa-piscina',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Camisetas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Camisas-blusas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Zapatos/zapatillas',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Cinturón',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Calcetines',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Ropa interior',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Bañador-bikini',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Documentos viaje',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'DNI',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tarjeta médico',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Carnet conducir',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pasaporte',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Mochila',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Riñonera',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tarjeta banco',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Dinero',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Botiquín',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Jersey-sudadera',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Abrigo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pantalones',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Crema sol',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Crema aftersun',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Gorra',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Agenda',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Móvil',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Cargadores',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Cámara',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Libro-revista-música',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Bolsa para ropa sucia',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Pañuelos papel',
-    //         checked: false
-    //         }
-    //     ]
-    // },
-    // {
-    //     name: 'Lista para ir al trabajo',
-    //     id: 4,
-    //     category: 'trabajo',
-    //     items: [
-    //         {
-    //         name: 'Cuaderno',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Bolígrafos',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Taper comida',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Ordenador',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tarjeta acceso',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Móvil',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Cargador móvil',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Dinero',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tarjeta comida - tickect gourmet',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Atuendo adecuado',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Llaves del coche',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Tarjeta transporte',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Botella agua',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Desayuno',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Termo',
-    //         checked: false
-    //         },
-    //         {
-    //         name: 'Mochila - maletín - bolsa',
-    //         checked: false
-    //         }
-    //     ]
-    // },
-    // {
-    //     name: 'Personalizada',
-    //     id: 5,
-    //     category: 'vacio',
-    //     items: []
-    // },
-    
+    {
+      name: "Lista compra-limpieza",
+      id: 2,
+      category: "limpieza",
+      items: [
+        {
+          itemCategory: "utensilios",
+          itemsCategory: [
+            {
+              name: "Fregona",
+              checked: false
+            },
+            {
+              name: "Cubo",
+              checked: false
+            },
+            {
+              name: "Escoba",
+              checked: false
+            },
+            {
+              name: "Trapos",
+              checked: false
+            },
+            {
+              name: "Bayetas",
+              checked: false
+            },
+            {
+              name: "Estropajos",
+              checked: false
+            },
+            {
+              name: "Mopa",
+              checked: false
+            },
+            {
+              name: "Guantes",
+              checked: false
+            },
+            {
+              name: "Bolsas basura",
+              checked: false
+            },
+            {
+              name: "Ambientador",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "papel",
+          itemsCategory: [
+            {
+              name: "Papel higiénico",
+              checked: false
+            },
+            {
+              name: "Papel cocina",
+              checked: false
+            },
+            {
+              name: "Toallitas WC húmedo",
+              checked: false
+            },
+            {
+              name: "Pañuelos",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "limpiadores",
+          itemsCategory: [
+            {
+              name: "Lejía",
+              checked: false
+            },
+            {
+              name: "Amoniaco",
+              checked: false
+            },
+            {
+              name: "Limpia-suelos",
+              checked: false
+            },
+            {
+              name: "Limpia-cristales",
+              checked: false
+            },
+            {
+              name: "Limpia-muebles",
+              checked: false
+            },
+            {
+              name: "Limpia-WC",
+              checked: false
+            },
+            {
+              name: "",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "electrodomésticos",
+          itemsCategory: [
+            {
+              name: "Jabón lavadora",
+              checked: false
+            },
+            {
+              name: "Suavizante",
+              checked: false
+            },
+            {
+              name: "Pastillas-gel lavavajillas",
+              checked: false
+            },
+            {
+              name: "Quitamanchas",
+              checked: false
+            },
+            {
+              name: "Limpa hornos",
+              checked: false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: "Lista de la maleta",
+      id: 3,
+      category: "viaje",
+      items: [
+        {
+          itemCategory: "documentación",
+          itemsCategory: [
+            {
+              name: "DNI",
+              checked: false
+            },
+            {
+              name: "Pasaporte",
+              checked: false
+            },
+            {
+              name: "Tarjeta/s médico",
+              checked: false
+            },
+            {
+              name: "Tarjeta/s banco",
+              checked: false
+            },
+            {
+              name: "Documentos hotel",
+              checked: false
+            },
+            {
+              name: "Documentos traslados",
+              checked: false
+            },
+            {
+              name: "Documentación viaje",
+              checked: false
+            },
+            {
+              name: "Dinero",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "aseo",
+          itemsCategory: [
+            {
+              name: "Bolsa de aseo",
+              checked: false
+            },
+            {
+              name: "Cepillo de dientes",
+              checked: false
+            },
+            {
+              name: "Crema de dientes",
+              checked: false
+            },
+            {
+              name: "Desodorante",
+              checked: false
+            },
+            {
+              name: "Colonia",
+              checked: false
+            },
+            {
+              name: "Limpia oídos",
+              checked: false
+            },
+            {
+              name: "Gel",
+              checked: false
+            },
+            {
+              name: "Champú",
+              checked: false
+            },
+            {
+              name: "Peine-cepillo",
+              checked: false
+            },
+            {
+              name: "Utensilios afeitado",
+              checked: false
+            },
+            {
+              name: "Utensilios depilado",
+              checked: false
+            },
+            {
+              name: "Utensilios lentillas",
+              checked: false
+            },
+            {
+              name: "Productos peinado",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "ropa",
+          itemsCategory: [
+            {
+              name: "Ropa interior",
+              checked: false
+            },
+            {
+              name: "Calcetines",
+              checked: false
+            },
+            {
+              name: "Camisetas",
+              checked: false
+            },
+            {
+              name: "Pantalones largos",
+              checked: false
+            },
+            {
+              name: "Pantalones cortos",
+              checked: false
+            },
+            {
+              name: "Jersey-sudadera",
+              checked: false
+            },
+            {
+              name: "Abrigo",
+              checked: false
+            },
+            {
+              name: "Gorro, bufanda, guantes",
+              checked: false
+            },
+            {
+              name: "Pijama",
+              checked: false
+            },
+            {
+              name: "Zapatillas estar por casa",
+              checked: false
+            },
+            {
+              name: "Zapatos-zapatillas",
+              checked: false
+            },
+            {
+              name: "Cinturón",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "playa",
+          itemsCategory: [
+            {
+              name: "Bañador",
+              checked: false
+            },
+            {
+              name: "Toalla",
+              checked: false
+            },
+            {
+              name: "Chanclas",
+              checked: false
+            },
+            {
+              name: "Crema protectora sol",
+              checked: false
+            },
+            {
+              name: "Crema after sun",
+              checked: false
+            },
+            {
+              name: "Gafas bucear",
+              checked: false
+            },
+            {
+              name: "Gorro piscina",
+              checked: false
+            },
+            {
+              name: "Juegos playa",
+              checked: false
+            },
+            {
+              name: "Gorra",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "botiquín",
+          itemsCategory: [
+            {
+              name: "Pastillas dolor cabeza",
+              checked: false
+            },
+            {
+              name: "Tiritas",
+              checked: false
+            },
+            {
+              name: "Pastillas antidiarrea",
+              checked: false
+            },
+            {
+              name: "Paracetamol",
+              checked: false
+            },
+            {
+              name: "Tiras anti-rozaduras",
+              checked: false
+            },
+            {
+              name: "Anti-mosquitos",
+              checked: false
+            },
+            {
+              name: "Desinfectacte",
+              checked: false
+            }
+          ]
+        },
+        {
+          itemCategory: "útiles",
+          itemsCategory: [
+            {
+              name: "Gafas sol",
+              checked: false
+            },
+            {
+              name: "Gafas ver",
+              checked: false
+            },
+            {
+              name: "Funda/s gafas",
+              checked: false
+            },
+            {
+              name: "Mochila",
+              checked: false
+            },
+            {
+              name: "Bolsa ropa sucia",
+              checked: false
+            },
+            {
+              name: "Agenda",
+              checked: false
+            },
+            {
+              name: "Móvil",
+              checked: false
+            },
+            {
+              name: "Cargador/es",
+              checked: false
+            },
+            {
+              name: "Cámara",
+              checked: false
+            },
+            {
+              name: "Libro-revista-música",
+              checked: false
+            }
+          ]
+        }
+      ]
+    },
+    {
+        name: 'Lista para ir al trabajo',
+        id: 4,
+        category: 'trabajo',
+        items: [
+            {
+                itemCategory: "esenciales",
+                itemsCategory: [
+                  {
+                    name: "Gafas sol",
+                    checked: false
+                  },
+                  {
+                    name: "Gafas ver",
+                    checked: false
+                  },
+                  {
+                    name: "Funda/s gafas",
+                    checked: false
+                  },
+                  {
+                    name: "Mochila - maletín - bolsa",
+                    checked: false
+                  },
+                  {
+                    name: "Ordenador",
+                    checked: false
+                  },
+                  {
+                    name: "Llaves coche",
+                    checked: false
+                  },
+                  {
+                    name: "Tarjeta transporte",
+                    checked: false
+                  },
+                  {
+                    name: "Móvil",
+                    checked: false
+                  },
+                  {
+                    name: "Cuaderno",
+                    checked: false
+                  },
+                  {
+                    name: "Bolígrafo",
+                    checked: false
+                  },
+                  {
+                    name: "Móvil",
+                    checked: false
+                  },
+                  {
+                    name: "Cargador móvil",
+                    checked: false
+                  },
+                  {
+                    name: "Botella agua",
+                    checked: false
+                  },
+                  {
+                    name: "Taper comida",
+                    checked: false
+                  },
+                  {
+                    name: "Desayuno",
+                    checked: false
+                  },
+                  {
+                    name: "Termo",
+                    checked: false
+                  },
+                  {
+                    name: "Dinero",
+                    checked: false
+                  },
+                  {
+                    name: "Tarjeta acceso",
+                    checked: false
+                  }
+                ]
+              }
+        ]
+    },
+    {
+        name: 'Personalizada',
+        id: 5,
+        category: 'vacio',
+        items: []
+    },
   ]
 };
