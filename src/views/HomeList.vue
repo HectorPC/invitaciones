@@ -13,9 +13,9 @@
     <div class="block-select">
       <span>Mis listas guardadas</span>
       <div class="list-storaged select">
-        <select name="slct" id="slct">
+        <select name="slct" id="slct" @change="selectList($event.target.value)">
           <option selected>Sin seleccionar</option>
-          <option :value="key" v-for="(list,key) in listStoraged" :key="key">{{list}}</option>
+          <option :value="list" v-for="(list,key) in listStoraged" :key="key">{{list}}</option>
         </select>
       </div>
     </div>
@@ -29,14 +29,13 @@
       <div class="body-table">
         <div class="recover-save">
           <div class="button-list">
-            <button class="recover-list" @click="recover">
-              <span>Recuperar última lista guardada</span>
+            <button class="recover-list" @click="showModalDelete = true">
+              <span>Eliminar lista guardada</span>
             </button>
           </div>
           <div class="button-list">
-            <button class="save-list" @click="save(items, '')">
-              <span v-if="isOverwritten()">Sobreescribir lista</span>
-              <span v-else>Guardar lista</span>
+            <button class="save-list" @click="showModalSave = true">
+              <span>Guardar lista</span>
             </button>
           </div>
         </div>
@@ -127,16 +126,39 @@
       </div>
     </modal>
 
-    <modal v-if="showModalRecover" @close="showModalRecover=false">
-      <div slot="body" class="copy">
-        <input-text
-          type="text"
-          label="Copiar para compartir"
-          id="copyUrl"
-          name="copyUrl"
-          class="copyUrl"
-        ></input-text>
-        <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
+    <modal v-if="showModalDelete" @close="showModalDelete=false">
+      <div slot="header" class="modal-header-delete"><span>Guardado en {{listSelected}}:</span></div>
+      <div slot="body" class="modal-body-delete">
+        <ul>
+          <li>
+            <input-text
+              type="text"
+              label="Label 1"
+              id="listSaved1"
+              name="listSaved1"
+              class="list-saved"
+            ></input-text>
+          </li>
+          <li>
+            <input-text
+              type="text"
+              label="Label 2"
+              id="listSaved2"
+              name="listSaved2"
+              class="list-saved"
+            ></input-text>
+          </li>
+          <li>
+            <input-text
+              type="text"
+              label="Label 3"
+              id="listSaved3"
+              name="listSaved3"
+              class="list-saved"
+            ></input-text>
+          </li>
+        </ul>
+
       </div>
     </modal>
     <go-top class="go-top" bg-color="#FFDC1A" :size="40" :has-outline="false" title="Volver arriba"></go-top>
@@ -161,9 +183,10 @@ export default {
       isNew: false,
       listType: "",
       listStoraged: [],
+      listsSavedOfType: [],
       showModalShare: false,
       showModalSave: false,
-      showModalRecover: false
+      showModalDelete: false
     };
   },
   components: {
@@ -219,7 +242,11 @@ export default {
         .map(listToShow => listToShow.items);
       this.items = itemsSelected[0];
       this.listSelected = selectedList;
-      this.isOverwritten();
+      if (this.isOverwritten()) {
+        this.recover();
+      }
+
+      this.getListsSavedOfType()
     },
     isOverwritten() {
       const listSaved = localStorage.getItem(this.listSelected);
@@ -392,6 +419,10 @@ export default {
       var urlInput = document.querySelector("#copyUrl");
       urlInput.select();
       document.execCommand("copy");
+    },
+    getListsSavedOfType() {
+      const matches = this.listStoraged.filter(s => s.includes(this.listSelected));
+      console.log("matches: ", matches)
     }
   }
 };
@@ -526,6 +557,7 @@ export default {
 .delete {
   display: table-cell;
   text-align: center;
+  padding-right: 10px;
   .icon-text {
     font-size: 11px;
   }
@@ -616,7 +648,7 @@ export default {
   width: 100%;
   text-align: center;
   margin-top: 10px;
-  >span {
+  > span {
     position: relative;
     top: 12px;
   }
@@ -655,6 +687,8 @@ select {
   padding: 4px 1.5em;
   color: #fff;
   cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
 }
 /* Arrow */
 .select::after {
