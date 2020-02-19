@@ -9,6 +9,17 @@
         @click="selectList(list)"
       >{{list}}</div>
     </div>
+
+    <div class="block-select">
+      <span>Mis listas guardadas</span>
+      <div class="list-storaged select">
+        <select name="slct" id="slct">
+          <option selected>Sin seleccionar</option>
+          <option :value="key" v-for="(list,key) in listStoraged" :key="key">{{list}}</option>
+        </select>
+      </div>
+    </div>
+
     <div id="table" class="table" v-if="listSelected!== ''">
       <div class="header-table">
         <div class="header">
@@ -53,10 +64,7 @@
 
                 <div class="edit-delete">
                   <div class="delete">
-                    <i
-                      class="material-icons"
-                      @click="deleteItem(itemCateg)"
-                    >delete_forever</i>
+                    <i class="material-icons" @click="deleteItem(itemCateg)">delete_forever</i>
                   </div>
                 </div>
               </div>
@@ -93,7 +101,33 @@
       <button class="button share" @click="share">Compartir</button>
     </div>
 
-    <modal v-if="showModal" @close="showModal=false">
+    <modal v-if="showModalShare" @close="showModalShare=false">
+      <div slot="body" class="copy">
+        <input-text
+          type="text"
+          label="Copiar para compartir"
+          id="copyUrl"
+          name="copyUrl"
+          class="copyUrl"
+        ></input-text>
+        <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
+      </div>
+    </modal>
+
+    <modal v-if="showModalSave" @close="showModalSave=false">
+      <div slot="body" class="copy">
+        <input-text
+          type="text"
+          label="Copiar para compartir"
+          id="copyUrl"
+          name="copyUrl"
+          class="copyUrl"
+        ></input-text>
+        <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
+      </div>
+    </modal>
+
+    <modal v-if="showModalRecover" @close="showModalRecover=false">
       <div slot="body" class="copy">
         <input-text
           type="text"
@@ -126,7 +160,10 @@ export default {
       listSelected: "",
       isNew: false,
       listType: "",
-      showModal: false
+      listStoraged: [],
+      showModalShare: false,
+      showModalSave: false,
+      showModalRecover: false
     };
   },
   components: {
@@ -147,6 +184,7 @@ export default {
     this.save(this.getDataUrl(), this.listType);
     this.selectList(this.listType);
     this.recover();
+    this.recoverAllLocalStorage();
   },
   methods: {
     getDataUrl() {
@@ -161,6 +199,7 @@ export default {
         const arrayNewJson = newStringJson.split("}]}]");
         const listType = arrayNewJson[1];
         this.listType = listType;
+        console.log("this.listType: ", this.listType);
 
         newStringJson = newStringJson.replace(listType, "");
 
@@ -231,7 +270,7 @@ export default {
     },
     deleteItem(item) {
       this.items.forEach((element, index) => {
-        element.itemsCategory.forEach((itemCategory,indexCategory)=> {
+        element.itemsCategory.forEach((itemCategory, indexCategory) => {
           if (itemCategory.name === item.name) {
             element.itemsCategory.splice(indexCategory, 1);
           }
@@ -292,6 +331,20 @@ export default {
         deleteItem.style.display = "table-cell";
       });
     },
+    recoverAllLocalStorage() {
+      const localStorageItems = Object.entries(localStorage);
+      this.listStoraged = [];
+
+      this.options.forEach(optionList => {
+        localStorageItems.forEach(storageItem => {
+          if (optionList === storageItem[0]) {
+            this.listStoraged.push(optionList);
+          }
+        });
+      });
+
+      console.log("listStoraged: ", this.listStoraged);
+    },
     recover() {
       const listNameToRecover = this.options.find(
         listName => listName === this.listSelected
@@ -310,7 +363,7 @@ export default {
     },
     share() {
       const url = this.generateUrl();
-      this.showModal = true;
+      this.showModalShare = true;
 
       setTimeout(() => {
         if (
@@ -557,5 +610,69 @@ export default {
   .copyUrl {
     width: 100%;
   }
+}
+
+.block-select {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  >span {
+    position: relative;
+    top: 12px;
+  }
+}
+
+// Select dropdown
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #408c99;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 36px;
+  line-height: 3;
+  background: #408c99;
+  overflow: hidden;
+  border-radius: 0.25em;
+  margin: 20px auto;
+}
+select {
+  flex: 1;
+  padding: 4px 1.5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #29668f;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+  font-size: 12px;
+}
+/* Transition */
+.select:hover::after {
+  color: #ffdc39;
 }
 </style>
