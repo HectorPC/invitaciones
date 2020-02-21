@@ -1,5 +1,5 @@
 <template>
-  <div id="inputText" class="group" :type="type">
+  <div :id="id" class="group" :type="type">
     <input
       type="text"
       :id="id"

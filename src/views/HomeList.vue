@@ -120,24 +120,20 @@
           <li v-for="(saved,key) in getListsSavedOfType" :key="key">
             <input-text
               type="text"
-              class="list-saved"
+              class="change-name-saved"
               label="Nombre lista"
-              :id="saved"
+              :id="'input'+key.toString()"
               :name="saved"
             />
-            <span>{{saved}}</span>
+            <span class="list-name-saved" :id="'span'+key.toString()">{{formatListname(saved)}}</span>
             <div class="edit-save">
-              <i class="material-icons" @click="showAddSaved(saved)">edit</i>
-              <i class="material-icons">save</i>
+              <i class="material-icons" @click="showAddSavedNameList(key.toString())">edit</i>
+              <i class="material-icons" @click="replaceNameList(saved,'input'+key.toString())">save</i>
+              <i class="material-icons" @click="restoreSavedNameList(key.toString())">restore_page</i>
             </div>
-            <!-- getListsSavedOfType: {{getListsSavedOfType[index]}} -->
           </li>
         </ul>
-        <i
-          class="material-icons"
-          @click="showAddList = true"
-          v-if="showAddList=false"
-        >add_circle_outline</i>
+        <i class="material-icons" @click="showAddList = true">add_circle_outline</i>
         <div class="show-add-list" v-if="showAddList || getListsSavedOfType.length===0">
           <input-text
             type="text"
@@ -440,7 +436,8 @@ export default {
     },
     saveNewList() {
       const nameList =
-        this.listSelected + "/*" + document.querySelector("#newList").value;
+        this.listSelected + "/*" + document.querySelector("input#newList").value;
+        console.log("nameList: ", nameList)
       localStorage.setItem(nameList, JSON.stringify(this.items));
     },
     share() {
@@ -475,8 +472,36 @@ export default {
       urlInput.select();
       document.execCommand("copy");
     },
-    saveDisable(listDisable) {
-      console.log()
+    formatListname(listName) {
+      const arrayListName = listName.split("/*");
+      return arrayListName[1];
+    },
+    showAddSavedNameList(listId) {
+      const inputSelector = "input" + listId;
+      const spanSelector = "span" + listId;
+
+      const inputElement = document.getElementById(inputSelector);
+      const spanElement = document.getElementById(spanSelector);
+
+      inputElement.style.display = "block";
+      spanElement.style.display = "none";
+    },
+    restoreSavedNameList(listId) {
+      const inputSelector = "input" + listId;
+      const spanSelector = "span" + listId;
+
+      const inputElement = document.getElementById(inputSelector);
+      const spanElement = document.getElementById(spanSelector);
+
+      inputElement.style.display = "none";
+      spanElement.style.display = "block";
+    },
+    replaceNameList(itemList, idNewName) {
+      localStorage.removeItem(itemList);
+      const newListName = document.querySelector(
+        "input#" + idNewName
+      ).value;
+      localStorage.setItem(this.listSelected + "/*" + newListName, JSON.stringify(this.items));
     }
   }
 };
@@ -770,6 +795,12 @@ select {
   h3 {
     position: relative;
     top: -20px;
+  }
+  .list-name-saved {
+    width: 100%;
+  }
+  .change-name-saved {
+    display: none;
   }
   .material-icons {
     padding-right: 30px;
