@@ -5,6 +5,7 @@
       :id="id"
       :name="name"
       :placeholder="placeholder"
+      :disabled="disabled"
       required
       @blur="validation"
       @focus="persistError"
@@ -27,6 +28,7 @@ export default {
     id: { default: "", type: String },
     name: { default: "", type: String },
     placeholder: { default: "", type: String },
+    disabled: { default: false, type: Boolean },
     isError: { default: false, type: Boolean }
   },
   data() {

@@ -113,36 +113,63 @@
       </div>
     </modal>
 
-    <modal v-if="showModalSave" @close="showModalSave=false">
-      <div slot="body" class="copy">
-        <input-text
-          type="text"
-          label="Copiar para compartir"
-          id="copyUrl"
-          name="copyUrl"
-          class="copyUrl"
-        ></input-text>
-        <buttonCopy @click.native="copyUrl" class="buttonCopy"></buttonCopy>
+    <modal v-if="showModalSave" @close="showModalSave=false; showAddList=false">
+      <div slot="body" class="modal-body-save">
+        <h3>Guardado en {{listSelected}}:</h3>
+        <ul>
+          <li v-for="(saved,key) in getListsSavedOfType" :key="key">
+            <input-text
+              type="text"
+              class="list-saved"
+              label="Nombre lista"
+              :id="saved"
+              :name="saved"
+            />
+            <span>{{saved}}</span>
+            <div class="edit-save">
+              <i class="material-icons" @click="showAddSaved(saved)">edit</i>
+              <i class="material-icons">save</i>
+            </div>
+            <!-- getListsSavedOfType: {{getListsSavedOfType[index]}} -->
+          </li>
+        </ul>
+        <i
+          class="material-icons"
+          @click="showAddList = true"
+          v-if="showAddList=false"
+        >add_circle_outline</i>
+        <div class="show-add-list" v-if="showAddList || getListsSavedOfType.length===0">
+          <input-text
+            type="text"
+            label="Nombre de la lista"
+            id="newList"
+            name="newList"
+            class="list-saved"
+          ></input-text>
+          <i class="material-icons ckeck-icon" @click="saveNewList($event)">check</i>
+        </div>
       </div>
     </modal>
 
     <modal v-if="showModalDelete" @close="showModalDelete=false">
-      <div slot="header" class="modal-header-delete"><span>Guardado en {{listSelected}}:</span></div>
-      <div slot="body" class="modal-body-delete">
+      <div slot="body" class="modal-body-delete" v-if="getListsSavedOfType.length > 0">
+        <h3>Guardado en {{listSelected}}:</h3>
         <ul>
-          <li>
+          <li v-for="(saved,key) in getListsSavedOfType" :key="key">
             <input-text
               type="text"
-              label="Label 1"
-              id="listSaved1"
-              name="listSaved1"
+              label="Lista 1"
+              :id="saved"
+              :name="saved"
               class="list-saved"
+              :disabled="true"
+              :v-model="saved"
             ></input-text>
           </li>
-          <li>
+          <!-- <li>
             <input-text
               type="text"
-              label="Label 2"
+              label="Lista 2"
               id="listSaved2"
               name="listSaved2"
               class="list-saved"
@@ -151,14 +178,16 @@
           <li>
             <input-text
               type="text"
-              label="Label 3"
+              label="Lista 3"
               id="listSaved3"
               name="listSaved3"
               class="list-saved"
             ></input-text>
-          </li>
+          </li>-->
         </ul>
-
+      </div>
+      <div v-else slot="body" class="modal-body-delete no-list">
+        <span>No hay listas guardadas</span>
       </div>
     </modal>
     <go-top class="go-top" bg-color="#FFDC1A" :size="40" :has-outline="false" title="Volver arriba"></go-top>
@@ -186,7 +215,8 @@ export default {
       listsSavedOfType: [],
       showModalShare: false,
       showModalSave: false,
-      showModalDelete: false
+      showModalDelete: false,
+      showAddList: false
     };
   },
   components: {
@@ -201,6 +231,19 @@ export default {
     },
     path() {
       return this.$route.path;
+    },
+    getListsSavedOfType() {
+      const storageListNames = [];
+      const lengthOfListSelected = this.listSelected.length;
+      this.listStoraged.forEach(stored => {
+        if (
+          stored[0].substring(0, lengthOfListSelected) === this.listSelected
+        ) {
+          storageListNames.push(stored[0]);
+        }
+      });
+      console.log("storageListNames: ", storageListNames);
+      return storageListNames;
     }
   },
   created() {
@@ -246,7 +289,7 @@ export default {
         this.recover();
       }
 
-      this.getListsSavedOfType()
+      // this.getListsSavedOfType();
     },
     isOverwritten() {
       const listSaved = localStorage.getItem(this.listSelected);
@@ -359,16 +402,14 @@ export default {
       });
     },
     recoverAllLocalStorage() {
-      const localStorageItems = Object.entries(localStorage);
-      this.listStoraged = [];
-
-      this.options.forEach(optionList => {
-        localStorageItems.forEach(storageItem => {
-          if (optionList === storageItem[0]) {
-            this.listStoraged.push(optionList);
-          }
-        });
-      });
+      this.listStoraged = Object.entries(localStorage);
+      // this.options.forEach(optionList => {
+      //   localStorageItems.forEach(storageItem => {
+      //     if (optionList === storageItem[0]) {
+      //       this.listStoraged.push(optionList);
+      //     }
+      //   });
+      // });
 
       console.log("listStoraged: ", this.listStoraged);
     },
@@ -381,12 +422,26 @@ export default {
         this.items = JSON.parse(listSaved);
       }
     },
+    // recover() {
+    //   const listNameToRecover = this.options.find(
+    //     listName => listName === this.listSelected
+    //   );
+    //   const listSaved = localStorage.getItem(listNameToRecover);
+    //   if (listSaved !== undefined) {
+    //     this.items = JSON.parse(listSaved);
+    //   }
+    // },
     save(items, list) {
       const listToSave = items;
       if (list === "") {
         list = this.listSelected;
       }
       localStorage.setItem(list, JSON.stringify(listToSave));
+    },
+    saveNewList() {
+      const nameList =
+        this.listSelected + "/*" + document.querySelector("#newList").value;
+      localStorage.setItem(nameList, JSON.stringify(this.items));
     },
     share() {
       const url = this.generateUrl();
@@ -420,9 +475,8 @@ export default {
       urlInput.select();
       document.execCommand("copy");
     },
-    getListsSavedOfType() {
-      const matches = this.listStoraged.filter(s => s.includes(this.listSelected));
-      console.log("matches: ", matches)
+    saveDisable(listDisable) {
+      console.log()
     }
   }
 };
@@ -708,5 +762,40 @@ select {
 /* Transition */
 .select:hover::after {
   color: #ffdc39;
+}
+
+//Modals
+.modal-body-save {
+  height: 125px;
+  h3 {
+    position: relative;
+    top: -20px;
+  }
+  .material-icons {
+    padding-right: 30px;
+  }
+
+  li {
+    list-style-type: decimal;
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 100%;
+    }
+  }
+
+  .show-add-list {
+    display: inline-flex;
+
+    .list-saved {
+      width: 700px;
+    }
+    .material-icons.ckeck-icon {
+      color: green;
+      &:hover {
+        font-size: 24px;
+      }
+    }
+  }
 }
 </style>
