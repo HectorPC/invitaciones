@@ -133,7 +133,7 @@
             </div>
           </li>
         </ul>
-        <i class="material-icons" @click="showAddList = true">add_circle_outline</i>
+        <i class="material-icons" @click="showAddList = !showAddList">add_circle_outline</i>
         <div class="show-add-list" v-if="showAddList || getListsSavedOfType.length===0">
           <input-text
             type="text"
@@ -432,13 +432,24 @@ export default {
       if (list === "") {
         list = this.listSelected;
       }
-      localStorage.setItem(list, JSON.stringify(listToSave));
+      try{
+        localStorage.setItem(list, JSON.stringify(listToSave));
+      }catch(e) {
+        if (e == QUOTA_EXCEEDED_ERR) {
+            alert('Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada.'); //data wasn't successfully saved due to quota exceed so throw an error
+          }
+      }
     },
     saveNewList() {
       const nameList =
         this.listSelected + "/*" + document.querySelector("input#newList").value;
-        console.log("nameList: ", nameList)
-      localStorage.setItem(nameList, JSON.stringify(this.items));
+      try{
+          localStorage.setItem(nameList, JSON.stringify(this.items));
+      }catch(e) {
+        if (e == QUOTA_EXCEEDED_ERR) {
+            alert('Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada.'); //data wasn't successfully saved due to quota exceed so throw an error
+          }
+      }
     },
     share() {
       const url = this.generateUrl();
@@ -501,7 +512,13 @@ export default {
       const newListName = document.querySelector(
         "input#" + idNewName
       ).value;
-      localStorage.setItem(this.listSelected + "/*" + newListName, JSON.stringify(this.items));
+      try{
+        localStorage.setItem(this.listSelected + "/*" + newListName, JSON.stringify(this.items));
+      }catch(e) {
+        if (e == QUOTA_EXCEEDED_ERR) {
+            alert('Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada.'); //data wasn't successfully saved due to quota exceed so throw an error
+          }
+      }
     }
   }
 };
@@ -791,7 +808,6 @@ select {
 
 //Modals
 .modal-body-save {
-  height: 125px;
   h3 {
     position: relative;
     top: -20px;
@@ -806,6 +822,9 @@ select {
     padding-right: 30px;
   }
 
+  ul {
+overflow: auto;
+max-height: 450px;
   li {
     list-style-type: decimal;
     display: flex;
@@ -813,6 +832,7 @@ select {
     div {
       width: 100%;
     }
+  }
   }
 
   .show-add-list {

@@ -55,7 +55,7 @@ export default {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: inherit;
 }
 
 .modal-header h3 {
@@ -65,8 +65,8 @@ export default {
 
 .modal-body {
   margin: 20px 0;
-  position: relative;
-  top: 27px;
+  /* position: relative;
+  top: 27px; */
 }
 
 .modal-default-button {
