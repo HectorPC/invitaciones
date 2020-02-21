@@ -811,6 +811,7 @@ select {
   h3 {
     position: relative;
     top: -20px;
+    width: 90%;
   }
   .list-name-saved {
     width: 100%;
