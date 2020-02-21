@@ -15,7 +15,7 @@
       <div class="list-storaged select">
         <select name="slct" id="slct" @change="selectList($event.target.value)">
           <option selected>Sin seleccionar</option>
-          <option :value="list" v-for="(list,key) in listStoraged" :key="key">{{list}}</option>
+          <option :value="list" v-for="(list,key) in listStoraged" :key="key">{{formatListname(list[0])}}</option>
         </select>
       </div>
     </div>
