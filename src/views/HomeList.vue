@@ -13,7 +13,7 @@
     <div class="block-select">
       <span>Mis listas guardadas</span>
       <div class="list-storaged select">
-        <select name="slct" id="slct" @change="selectList($event.target.value)">
+        <select name="slct" id="slct" @change="selectCustomList($event.target.value)">
           <option selected>Sin seleccionar</option>
           <option :value="list" v-for="(list,key) in listStoraged" :key="key">{{formatListname(list[0])}}</option>
         </select>
@@ -276,16 +276,34 @@ export default {
       return decodeURI(urlEncode);
     },
     selectList(selectedList) {
+      console.log("selectedList: ", selectedList)
       const itemsSelected = this.listData
         .filter(list => list.name === selectedList)
         .map(listToShow => listToShow.items);
       this.items = itemsSelected[0];
       this.listSelected = selectedList;
+
+      console.log("this.items: ", this.items)
+      console.log("this.listSelected: ", this.listSelected)
       if (this.isOverwritten()) {
         this.recover();
       }
 
       // this.getListsSavedOfType();
+    },
+    selectCustomList(selectedList) {
+      const arraySelectedList = selectedList.split(',')
+      const fullNameList = arraySelectedList[0]
+      const arrayFullNameList = fullNameList.split('/*')
+      const nameList = arrayFullNameList[0]
+      const customNameList = arrayFullNameList[1]
+
+      let formatSelectedList = selectedList.replace(fullNameList + ',', '')
+      formatSelectedList = JSON.parse(formatSelectedList)
+
+      this.items = formatSelectedList
+      this.listSelected = nameList
+
     },
     isOverwritten() {
       const listSaved = localStorage.getItem(this.listSelected);

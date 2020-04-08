@@ -41,7 +41,7 @@ export default {
               checked: false
             },
             {
-              name: "Lemtejas",
+              name: "Lentejas",
               checked: false
             },
             {
