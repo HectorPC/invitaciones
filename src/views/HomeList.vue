@@ -246,7 +246,7 @@ export default {
     this.save(this.getDataUrl(), this.listType);
     this.selectList(this.listType);
     this.recover();
-    this.recoverAllLocalStorage();
+    this.recoverListOfLocalStorage();
   },
   methods: {
     getDataUrl() {
@@ -276,15 +276,11 @@ export default {
       return decodeURI(urlEncode);
     },
     selectList(selectedList) {
-      console.log("selectedList: ", selectedList)
       const itemsSelected = this.listData
         .filter(list => list.name === selectedList)
         .map(listToShow => listToShow.items);
       this.items = itemsSelected[0];
       this.listSelected = selectedList;
-
-      console.log("this.items: ", this.items)
-      console.log("this.listSelected: ", this.listSelected)
       if (this.isOverwritten()) {
         this.recover();
       }
@@ -415,17 +411,14 @@ export default {
         deleteItem.style.display = "table-cell";
       });
     },
-    recoverAllLocalStorage() {
-      this.listStoraged = Object.entries(localStorage);
-      // this.options.forEach(optionList => {
-      //   localStorageItems.forEach(storageItem => {
-      //     if (optionList === storageItem[0]) {
-      //       this.listStoraged.push(optionList);
-      //     }
-      //   });
-      // });
+    recoverListOfLocalStorage() {
+      const fullLocalStorage = Object.entries(localStorage);
 
-      console.log("listStoraged: ", this.listStoraged);
+      fullLocalStorage.forEach(arrayElement => {
+        if(arrayElement[0].indexOf('Lista') !== -1) {
+          this.listStoraged.push(arrayElement)
+        }
+      });
     },
     recover() {
       const listNameToRecover = this.options.find(

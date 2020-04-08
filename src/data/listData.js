@@ -966,7 +966,7 @@ export default {
         ]
     },
     {
-        name: 'Personalizada',
+        name: 'Lista personalizada',
         id: 5,
         category: 'vacio',
         items: []
