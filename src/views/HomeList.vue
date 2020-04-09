@@ -15,7 +15,11 @@
       <div class="list-storaged select">
         <select name="slct" id="slct" @change="selectCustomList($event.target.value)">
           <option selected>Sin seleccionar</option>
-          <option :value="list" v-for="(list,key) in listStoraged" :key="key">{{formatListname(list[0])}}</option>
+          <option
+            :value="list"
+            v-for="(list,key) in listStoraged"
+            :key="key"
+          >{{formatListname(list[0])}}</option>
         </select>
       </div>
     </div>
@@ -81,14 +85,14 @@
               id="categoryText"
               name="categoryText"
               placeholder="Categoría"
-            ></input-text>
+            />
             <input-text
               class="input-text-add"
               type="input"
               id="insertText"
               name="insertText"
               placeholder="Nuevo producto"
-            ></input-text>
+            />
             <div class="check-add" @click="addItem">
               <i class="material-icons check-text">check_circle_outline</i>
               <span class="add-text">Añadir</span>
@@ -288,18 +292,17 @@ export default {
       // this.getListsSavedOfType();
     },
     selectCustomList(selectedList) {
-      const arraySelectedList = selectedList.split(',')
-      const fullNameList = arraySelectedList[0]
-      const arrayFullNameList = fullNameList.split('/*')
-      const nameList = arrayFullNameList[0]
-      const customNameList = arrayFullNameList[1]
+      const arraySelectedList = selectedList.split(",");
+      const fullNameList = arraySelectedList[0];
+      const arrayFullNameList = fullNameList.split("/*");
+      const nameList = arrayFullNameList[0];
+      const customNameList = arrayFullNameList[1];
 
-      let formatSelectedList = selectedList.replace(fullNameList + ',', '')
-      formatSelectedList = JSON.parse(formatSelectedList)
+      let formatSelectedList = selectedList.replace(fullNameList + ",", "");
+      formatSelectedList = JSON.parse(formatSelectedList);
 
-      this.items = formatSelectedList
-      this.listSelected = nameList
-
+      this.items = formatSelectedList;
+      this.listSelected = nameList;
     },
     isOverwritten() {
       const listSaved = localStorage.getItem(this.listSelected);
@@ -309,6 +312,12 @@ export default {
       this.isNew = !this.isNew;
     },
     addItem() {
+      console.log(
+        "categoryText; ",
+        document.querySelector("#categoryText").value
+      );
+      console.log("insertText; ", document.querySelector("#insertText").value);
+
       this.isNew = false;
       const newCategoryValue = this.toLowerCase(
         document.querySelector("#categoryText").value
@@ -341,6 +350,7 @@ export default {
       }
     },
     toLowerCase(text) {
+      console.log("text", text);
       return text.toLowerCase();
     },
     exitsCategory(category) {
@@ -415,8 +425,8 @@ export default {
       const fullLocalStorage = Object.entries(localStorage);
 
       fullLocalStorage.forEach(arrayElement => {
-        if(arrayElement[0].indexOf('Lista') !== -1) {
-          this.listStoraged.push(arrayElement)
+        if (arrayElement[0].indexOf("Lista") !== -1) {
+          this.listStoraged.push(arrayElement);
         }
       });
     },
@@ -429,37 +439,34 @@ export default {
         this.items = JSON.parse(listSaved);
       }
     },
-    // recover() {
-    //   const listNameToRecover = this.options.find(
-    //     listName => listName === this.listSelected
-    //   );
-    //   const listSaved = localStorage.getItem(listNameToRecover);
-    //   if (listSaved !== undefined) {
-    //     this.items = JSON.parse(listSaved);
-    //   }
-    // },
     save(items, list) {
       const listToSave = items;
       if (list === "") {
         list = this.listSelected;
       }
-      try{
+      try {
         localStorage.setItem(list, JSON.stringify(listToSave));
-      }catch(e) {
+      } catch (e) {
         if (e == QUOTA_EXCEEDED_ERR) {
-            alert('Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada.'); //data wasn't successfully saved due to quota exceed so throw an error
-          }
+          alert(
+            "Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada."
+          ); //data wasn't successfully saved due to quota exceed so throw an error
+        }
       }
     },
     saveNewList() {
       const nameList =
-        this.listSelected + "/*" + document.querySelector("input#newList").value;
-      try{
-          localStorage.setItem(nameList, JSON.stringify(this.items));
-      }catch(e) {
+        this.listSelected +
+        "/*" +
+        document.querySelector("input#newList").value;
+      try {
+        localStorage.setItem(nameList, JSON.stringify(this.items));
+      } catch (e) {
         if (e == QUOTA_EXCEEDED_ERR) {
-            alert('Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada.'); //data wasn't successfully saved due to quota exceed so throw an error
-          }
+          alert(
+            "Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada."
+          ); //data wasn't successfully saved due to quota exceed so throw an error
+        }
       }
     },
     share() {
@@ -520,15 +527,18 @@ export default {
     },
     replaceNameList(itemList, idNewName) {
       localStorage.removeItem(itemList);
-      const newListName = document.querySelector(
-        "input#" + idNewName
-      ).value;
-      try{
-        localStorage.setItem(this.listSelected + "/*" + newListName, JSON.stringify(this.items));
-      }catch(e) {
+      const newListName = document.querySelector("input#" + idNewName).value;
+      try {
+        localStorage.setItem(
+          this.listSelected + "/*" + newListName,
+          JSON.stringify(this.items)
+        );
+      } catch (e) {
         if (e == QUOTA_EXCEEDED_ERR) {
-            alert('Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada.'); //data wasn't successfully saved due to quota exceed so throw an error
-          }
+          alert(
+            "Has execido el número de listas que pueden ser guardadas, elimina alguna lista para poder guardar listas nuevas. La lista no ha sido guardada."
+          ); //data wasn't successfully saved due to quota exceed so throw an error
+        }
       }
     }
   }
@@ -835,16 +845,16 @@ select {
   }
 
   ul {
-overflow: auto;
-max-height: 450px;
-  li {
-    list-style-type: decimal;
-    display: flex;
-    justify-content: space-between;
-    div {
-      width: 100%;
+    overflow: auto;
+    max-height: 450px;
+    li {
+      list-style-type: decimal;
+      display: flex;
+      justify-content: space-between;
+      div {
+        width: 100%;
+      }
     }
-  }
   }
 
   .show-add-list {
